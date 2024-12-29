@@ -5,7 +5,7 @@
             <div class="flex flex-col gap-y-10">
 
                 <div class="gap-y-2 flex flex-col">
-                    <h1 class="text-ungu dark:text-orange-100 font-bold text-[30px] sm:text-[50px]  leading-none">Kini Urusan Layanan 
+                    <h1 class="text-ungu dark:text-orange-100 font-bold text-[30px] sm:text-[50px]  leading-none">Kini Urusan Layanan Administrasi 
                     </h1>
                     <h1 class="text-black1 dark:text-purple-500 font-bold text-[30px] sm:text-[50px]  leading-none">
                         Lebih Cepat dan Mudah!
@@ -23,13 +23,12 @@
             <div class="p-5">
                 <h5 class="mb-2 text-[20px] font-bold tracking-tight text-gray-900 dark:text-white">Informasi Layanan
                 </h5>
-                <p> Temukan beragam layanan yang kami tawarkan untuk membantu Anda. Dari pelayanan pengurusan data
-                    penduduk hingga berbagai kebutuhan perizinan, kami hadir untuk membantu dan mempermudah akses
-                    layanan bagi warga RW 013 Blok C Taman Alamanda. <br><br></p>
+                <p> Temukan beragam layanan yang kami tawarkan untuk membantu Anda, yaitu layanan administrasi, perijinan, bantuan sosial
+                    dan lain sebagainya, dapat dilakukan secara online melalui website RW 13 Blok C Tamaan Alamanda. <br><br></p>
                 <div class="flex flex-row gap-x-4 items-end">
                     <a href="#"
                         class="hover:bg-indigo-900 dark:hover:bg-purple-700 text-base bg-ungu dark:bg-purple-800 border dark:border-purple-700  text-white py-4 px-10 rounded-lg font-semibold">
-                        Layanan masih dalam maintenance</a>
+                        Layanan masih dalam perbaikan</a>
                 </div>
             </div>
     </section>
