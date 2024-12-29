@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/ekselmyi/sirute.web/
-    - /bin/cp -R sirute $DEPLOYPATH
+    - /bin/cp -R / $DEPLOYPATH
     # - /bin/cp -R resources $DEPLOYPATH
     #- /bin/cp -R routes $DEPLOYPATH
     # - /bin/cp -R public $DEPLOYPATH
