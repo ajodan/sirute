@@ -25,7 +25,7 @@
                         <svg onclick="this.parentElement.parentElement.style.display='none'"
                             class="fill-current h-6 w-6 text-green-500" role="button"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <title>Close</title>
+                            <title>Tutup</title>
                             <path
                                 d="M14.348 5.652a.5.5 0 0 1 0 .707l-8.485 8.485a.5.5 0 0 1-.707-.707l8.485-8.485a.5.5 0 0 1 .707 0zm-8.485 8.485a.5.5 0 0 1-.707 0l-8.485-8.485a.5.5 0 0 1 .707-.707l8.485 8.485a.5.5 0 0 1 0 .707z" />
                         </svg>
@@ -56,13 +56,23 @@
                             Nama Kepala Keluarga
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Nik
+                            Nomor Induk Kependudukan
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            No KK
+                            Nomor Kartu Keluarga
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Tanggal Lahir
+                        </th>
+                      
+                        <th scope="col" class="px-6 py-3">
+                            Status Penduduk
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nomor Ponsel
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -79,6 +89,16 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->no_kk }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->pendudukHasOne->tgl_lahir }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->pendudukHasOne->status_penduduk }}
+                            </td>
+
+                            <td class="px-6 py-4">
+                                {{ $item->pendudukHasOne->no_hp }}
                             </td>
                             <td class="px-6 py-4 flex gap-2">
                                 <a href="{{ route('admin.penduduk.kk.detail', $item->no_kk) }}">

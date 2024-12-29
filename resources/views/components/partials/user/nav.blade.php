@@ -4,7 +4,7 @@
         <a href="{{ route('user.home') }}" class="flex mr-auto items-center space-x-3">
             <img :src="darkMode ? '{{ asset('assets/images/logo/logo-light.png') }}' :
                 '{{ asset('assets/images/logo/logo-dark.png') }}'"
-                width="40px" height="auto" class="duration-300" alt="Logo" />
+                width="200px" height="auto" class="duration-300" alt="Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
         <div class="flex gap-x-2 sm:gap-x-3 items-center sm:order-2">
@@ -107,7 +107,7 @@
                     <div x-show="dropdownOpen"
                         class="absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:bg-[#1c123d] dark:border-strokedark ">
                         <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
-                            <li {{ auth()->user()->level->nama_level == 'Penduduk' ? 'hidden' : '' }}>
+                            <li {{ auth()->user()->level->nama_level == 'Penduduk' ? '' : '' }}>
                                 <a href="{{ route('admin.dashboard') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa-solid fa-toolbox w-[22px]"></i>
@@ -176,7 +176,7 @@
                                         d="M6.05001 11.7563H12.2031C12.6156 11.7563 12.9594 11.4125 12.9594 11C12.9594 10.5875 12.6156 10.2438 12.2031 10.2438H6.08439L8.21564 8.07813C8.52501 7.76875 8.52501 7.2875 8.21564 6.97812C7.90626 6.66875 7.42501 6.66875 7.11564 6.97812L3.67814 10.4844C3.36876 10.7938 3.36876 11.275 3.67814 11.5844L7.11564 15.0906C7.25314 15.2281 7.45939 15.3312 7.66564 15.3312C7.87189 15.3312 8.04376 15.2625 8.21564 15.125C8.52501 14.8156 8.52501 14.3344 8.21564 14.025L6.05001 11.7563Z"
                                         fill="" />
                                 </svg>
-                                Log Out
+                                Keluar
                             </button>
                         </form>
                     </div>
@@ -202,7 +202,7 @@
                     <a href="{{ route('user.home') }}"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent"
                         aria-current="page"
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('home')) }">Home</a>
+                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('home')) }">Beranda</a>
                 </li>
                 <li>
                     <a href="{{ route('user.penduduk') }}"
@@ -214,17 +214,22 @@
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
                         :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('berita')) }">Berita</a>
                 </li>
-                {{-- <li>
+                <li>
                     <a href="{{ route('user.agenda') }}"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
                         :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('agenda')) }">Agenda</a>
                 </li>
                 <li>
+                    <a href="{{ route('user.aspirasi') }}"
+                        class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
+                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
+                </li>
+                {{--  <li
                     <a href="{{ route('user.umkm') }}"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
                         :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('umkm')) }">UMKM</a>
                 </li>
-                <li>
+                 <li>
                     <a href="{{ route('user.inventaris') }}"
                         class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
                         :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('inventaris')) }">Inventaris</a>
@@ -247,11 +252,11 @@
                         class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#1c123d] dark:divide-purple-600">
                         <ul class="p-4 text-sm text-purple-700 dark:text-purple-400"
                             aria-labelledby="dropdownLargeButton">
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('user.agenda') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
                                     :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('agenda')) }">Agenda</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('user.umkm') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
@@ -267,11 +272,11 @@
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
                                     :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('layanan')) }">Layanan</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('user.aspirasi') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
                                     :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </li>

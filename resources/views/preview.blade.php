@@ -16,11 +16,11 @@
     <div class="grid grid-cols-6 px-9 py-6 items-center">
         <div class="logo "><img src="/assets/images/rw/logo kab.png" alt="" class="bg-cover w-[110px]"></div>
         <div class="col-span-5 text-center">
-            <p class="text-lg font-surat">PEMERINTAH KABUPATEN MALANG</p>
-            <p class="text-sm font-surat font-bold mb-1">RUKUN WARGA 02</p>
-            <p class="text-xs font-surat">Jl. Haji Alwi Dusun Pulesari No. 41 RT 03 RW 02 <br>Kelurahan Arjosari
-                Kecamatan Blimbing Kab. Malang,
-                65125 </p>{{-- <p class="text-xs font-surat">Telp. (0341) 404424 – 404425, Fax (0341) 404420,</p> --}} {{-- <p class="text-xs font-surat">http://www.polinema.ac.id</p> --}}
+            <p class="text-lg font-surat">PEMERINTAH DESA KARANGSATRIA</p>
+            <p class="text-sm font-surat font-bold mb-1">RUKUN WARGA 013</p>
+            <p class="text-xs font-surat">Taman Alamanda Blok C<br>Desa Karangsatria
+                Kecamatan Tambun Utara, Kabupaten Bekasi,
+                17510 </p>{{-- <p class="text-xs font-surat">Telp. (0341) 404424 – 404425, Fax (0341) 404420,</p> --}} {{-- <p class="text-xs font-surat">http://www.polinema.ac.id</p> --}}
         </div>
     </div>
     <div class="border-[1.5px] border-b-black text-justify"></div>
@@ -87,9 +87,9 @@
     </div>
     <div class="grid grid-cols-6 gap-4 text-xs font-surat mt-14">
         <div class="col-start-5 col-end-7 text-center">
-            <p>Ketua RW 02 Kel. Arjosari,
+            <p>Ketua RW 013 Desa Karangsatria,
                 {{ now()->day . ' ' . now()->monthName . ' ' . now()->year }}</p><br><br><br><br>
-            <p>Ibnu Taufiq</p>{{-- <p>NIP. 198010102005011001</p> --}}
+            <p>Supriyono</p>{{-- <p>NIP. 198010102005011001</p> --}}
         </div>
     </div>
 </div>

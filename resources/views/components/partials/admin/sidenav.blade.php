@@ -5,7 +5,7 @@
     <!-- SIDEBAR HEADER -->
     <div class="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5">
         <a href="index.html">
-            <img :src="darkMode ? '{{ asset('assets/images/logo/logo-light.png') }}' :
+            <img :src="darkMode ? '{{ asset('assets/images/logo/logo-dark.png') }}' :
                 '{{ asset('assets/images/logo/logo-dark.png') }}'"
                 width="150px" height="auto" class="duration-300" alt="Logo" />
         </a>
@@ -33,16 +33,16 @@
                             href="{{ route('admin.dashboard') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('dashboard')) }">
                             <i class="fa-solid fa-house-chimney"></i>
-                            Dashboard
+                            Beranda
                         </a>
                     </li>
                     <!-- Menu Item Dashboard -->
 
-                    <h3 class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
-                        Kependudukan</h3>
+                    <h3 x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
+                        Admin</h3>
 
                     <!-- Menu Item Level -->
-                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW'">
+                    <li x-show="levelUser === 'Super Admin'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.level') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('level')) }">
@@ -50,68 +50,46 @@
                             Kelola Level
                         </a>
                     </li>
-                    <!-- Menu Item Level -->
-
-                    <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
-                            href="#" @click.prevent="selected = (selected.includes('penduduk') ? '':'penduduk')"
-                            :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('penduduk')) }">
-                            <i class="fa-solid fa-id-card"></i>
-                            Penduduk
-                            <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current"
-                                :class="{ 'rotate-180': (selected.includes('penduduk')) }" width="20" height="20"
-                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                                    fill="" />
-                            </svg>
+                    <li x-show="levelUser === 'Super Admin'">
+                        <a class=" group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
+                            :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk/akun') }"
+                            href="{{ route('admin.penduduk.akun') }}"><i class="fa-solid fa-layer-group"></i>Kelola Akun
                         </a>
-
-                        <!-- Dropdown Menu Start -->
-                        <div class="translate transform overflow-hidden"
-                            :class="(selected.includes('penduduk')) ? 'block' : 'hidden'">
-                            <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
-                                        :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk') }"
-                                        href="{{ route('admin.penduduk') }}">Daftar
-                                        Penduduk
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class=" group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
-                                        :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk/akun') }"
-                                        href="{{ route('admin.penduduk.akun') }}">Akun
-                                        Penduduk
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
-                                        :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk/kk') }"
-                                        href="{{ route('admin.penduduk.kk') }}">Daftar KK
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Dropdown Menu End -->
                     </li>
-
-                    {{-- Menu Data RT --}}
                     <li x-show="levelUser === 'Super Admin' || levelUser === 'RW'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.data-rt') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('data-rt')) }">
-                            <i class="fa-solid fa-people-roof"></i>
-
-                            Data RT
+                            <i class="fa-solid fa-layer-group"></i>
+                            Ketua RT
                         </a>
                     </li>
+                    <!-- Menu Item Level -->
+                    <h3 x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
+                        Penduduk</h3>
 
-                    <h3 class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
-                        Kesejahteraan Masyarakat</h3>
+                    {{-- Menu Data RT --}}
+                    <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
+                            :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk') }"
+                            href="{{ route('admin.penduduk') }}"><i class="fa-solid fa-people-group"></i>
+                            Daftar Penduduk
+                        </a>
+                    </li>
+                   
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
+                            :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk/kk') }"
+                            href="{{ route('admin.penduduk.kk') }}"><i class="fa-solid fa-people-group"></i>
+                            Daftar KK
+                        </a>
+                    </li>
+                    
+                    <h3 x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
+                        Kesejahteraan</h3>
 
                     <!-- Menu Bansos -->
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="#" @click.prevent="selected = (selected.includes('bansos') ? '':'bansos')"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('bansos')) }">
@@ -150,7 +128,7 @@
                     <!-- Menu Bansos End -->
 
                     {{-- Menu Data UMKM --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.data-umkm') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('data-umkm')) }">
@@ -160,7 +138,7 @@
                     </li>
 
                     {{-- Menu Layanan --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.layanan') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('layanan')) }">
@@ -171,7 +149,7 @@
                     </li>
 
                     {{-- Menu Aspirasi --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.aspirasi') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('aspirasi')) }">
@@ -182,7 +160,7 @@
 
 
                     {{-- Menu Keuangan --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="#"
                             @click.prevent="selected = (selected.includes('inventaris') ? '':'inventaris')"
@@ -220,7 +198,7 @@
 
 
                     {{-- Menu News --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || leveluser === 'RW' || leveluser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.news') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('news')) }">
@@ -231,11 +209,11 @@
                         </a>
                     </li>
 
-                    <h3 class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu Laporan
+                    <h3  x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu Laporan
                         RT/RW</h3>
 
                     {{-- Menu Keuangan --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="#" @click.prevent="selected = (selected.includes('keuangan') ? '':'keuangan')"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('keuangan')) }">
@@ -333,7 +311,7 @@
                     </li>
 
                     {{-- Menu Report Data --}}
-                    <li>
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.report-data') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('report-data')) }">

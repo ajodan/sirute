@@ -18,6 +18,7 @@
         </div>
         <div class="sm:flex justify-between mb-5">
             <!-- Modal toggle -->
+            @if (auth()->user()->level->nama_level != 'Penduduk')
             <div class="order-2 mb-5 flex justify-end">
                 <button data-modal-target="add-penduduk" data-modal-toggle="add-penduduk"
                     class="text-white bg-blue-700 hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
@@ -25,6 +26,7 @@
                     Tambah Penduduk
                 </button>
             </div>
+            @endif
             <x-partials.admin.penduduk.filter />
         </div>
         @if (session('success'))
@@ -36,7 +38,7 @@
                     <svg onclick="this.parentElement.parentElement.style.display='none'"
                         class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20">
-                        <title>Close</title>
+                        <title>Tutup</title>
                         <path
                             d="M14.348 5.652a.5.5 0 0 1 0 .707l-8.485 8.485a.5.5 0 0 1-.707-.707l8.485-8.485a.5.5 0 0 1 .707 0zm-8.485 8.485a.5.5 0 0 1-.707 0l-8.485-8.485a.5.5 0 0 1 .707-.707l8.485 8.485a.5.5 0 0 1 0 .707z" />
                     </svg>
@@ -59,19 +61,29 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="whitespace-nowrap">
                         <th scope="col" class="px-6 py-3">
-                            Nama
+                            Nama Lengkap
                         </th>
                         <th scope="col" class="px-6 py-3">
                             NIK
                         </th>
                         <th scope="col" class="px-6 py-3 ">
+                            Tempat Lahir
+                        </th>
+                        <th scope="col" class="px-6 py-3 ">
                             Jenis Kelamin
                         </th>
                         <th scope="col" class="px-6 py-3 ">
-                            Alamat
+                            Blok/No. Rumah
                         </th>
+                        <th scope="col" class="px-6 py-3 ">
+                            Usia
+                        </th>
+                        <th scope="col" class="px-6 py-3 ">
+                            Nomor Ponsel
+                        </th>
+                       
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -85,20 +97,32 @@
                             <td class="px-6 py-4 ">
                                 {{ $item->nik }}
                             </td>
+                            <td class="px-6 py-4 ">
+                                {{ $item->tempat_lahir }}
+                            </td>
                             <td class="px-6 py-4">
                                 {{ $item->jenis_kelamin }}
                             </td>
                             <td class="px-6 py-4 max-w-[17rem] truncate">
-                                {{ $item->alamatLengkap() }}
+                                {{ $item->alamatRumah() }}
+                            </td>
+                            <td class="px-6 py-4 ">
+                                {{ ($item->age()) }} Tahun
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->no_hp }}
                             </td>
                             <td class="px-6 py-4 flex gap-2">
-                                @empty($item->akun)
+                                @if($item->hub_kk === "Kepala Keluarga")
+                                    @empty($item->akun)
                                     <button onclick="showFormAddAkun({{ $item }})"
                                         data-modal-target="add-akun-penduduk" data-modal-toggle="add-akun-penduduk"
                                         class="font-medium text-white bg-blue-700 p-2  rounded">
                                         Buat Akun
                                     </button>
-                                @endempty
+                                    @endempty
+                                @endif
+                                
                                 <a href="{{ route('admin.penduduk.detail', $item->nik) }}">
                                     <button class="font-medium text-white bg-green-400 p-2  rounded">
                                         Detail
@@ -109,7 +133,7 @@
                                     class="font-medium text-white bg-yellow-300 p-2  rounded">
                                     Edit
                                 </button>
-
+                                @if (auth()->user()->level->nama_level != 'Penduduk')
                                 <form action="{{ route('admin.penduduk.delete', $item->nik) }}" method="post">
                                     @csrf
                                     @method('delete')
@@ -119,6 +143,7 @@
                                         Hapus
                                     </button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -140,6 +165,7 @@
             document.getElementById('tempat-lahir').value = '';
             document.getElementById('tgl-lahir').value = '';
             document.getElementById('jenis-kelamin').value = '';
+            document.getElementById('no_hp').value = '';
         }
 
         const hideButton = document.querySelectorAll('[data-modal-hide]');

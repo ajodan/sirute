@@ -25,10 +25,28 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Nama
+                            Nama Lengkap
                         </th>
                         <th scope="col" class="px-6 py-3">
                             NIK
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Jenis Kelamin
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tempat Lahir
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tanggal Lahir
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Hubungan Keluarga
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Pendidikan
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Pekerjaan
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -43,8 +61,27 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $item->nama }}
                             </th>
+                           
                             <td class="px-6 py-4">
                                 {{ $item->nik }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->jenis_kelamin }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->tempat_lahir }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->tgl_lahir }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->hub_kk }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->pendidikan }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->pekerjaan }}
                             </td>
                             <td class="px-6 py-4">
                                 <button class="font-medium text-white bg-green-400 p-2  rounded">
@@ -59,15 +96,16 @@
             </table>
         </div>
         <div class="my-10 text-xl flex justify-between items-center">
-            <h1><strong>FOTO RUMAH</strong></h1>
+            <h1><strong>Dokumen Keluarga</strong></h1>
             <div class="order-2 mb-5 flex justify-end">
                 <button data-modal-target="add-foto-rumah" data-modal-toggle="add-foto-rumah"
                     class="text-white bg-blue-700 hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                     type="button">
-                    Tambah Foto Rumah
+                    Tambah Dokumen
                 </button>
             </div>
         </div>
+        <div> Dokumen Keluarga dapat berupa Kartu Keluarga, KTP, Akta Lahir, Akta Kematian, dan lain-lain. Dokumen dalam format JPG, dan PNG (Size File <2MB).</div> 
         @if (session('success'))
             <div class="mb-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
                 role="alert">
@@ -84,6 +122,7 @@
                 </span>
             </div>
         @endif
+        
         @if ($errors->any())
             <div class="p-4 mb-4 text-sm bg-red-600 text-white rounded-lg" role="alert">
                 <span class="font-bold">Data gagal disimpan</span>
@@ -95,9 +134,10 @@
                 </div>
             @endforeach
         @endif
+        
         @if ($penduduk->foto_rumah->isEmpty())
             <div class="mt-5 text-center">
-                <h1 class="text-2xl">Foto rumah tidak ditemukan</h1>
+                <h1 class="text-2xl">Foto dokumen keluarga tidak ditemukan</h1>
             </div>
         @endif
         <div class="grid md:grid-cols-3 grid-cols-1 gap-4">

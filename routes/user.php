@@ -19,6 +19,7 @@ use App\Http\Controllers\User\UserController;
 
 Route::get('/home', [UserController::class, 'index'])->name('user.home');
 
+
 Route::prefix('aspirasi')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [AspirasiController::class, 'index'])->name('user.aspirasi');
@@ -31,6 +32,7 @@ Route::prefix('penduduk')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [PendudukController::class, 'index'])->name('user.penduduk');
         Route::get('/detail/{nik}', [PendudukController::class, 'show'])->name('user.detail');
+        // Route::get('/edit/{nik}', [PendudukController::class, 'edit_penduduk'])->name('user.edit_penduduk');
     });
 });
 

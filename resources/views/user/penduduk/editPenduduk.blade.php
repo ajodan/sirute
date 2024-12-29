@@ -40,10 +40,14 @@
                                     <div class="flex flex-1">
                                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                                             <div class="flex flex-col pt-3">
-                                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nomor
+                                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nomor1111
                                                     Ponsel
                                                 </dt>
-                                                <dd class="text-lg font-semibold">{{ $penduduk->no_hp }}</dd>
+                                              
+                                                <input type="text" value="{{ $umkm->nama_umkm }}" name="nama_umkm" id="username"
+                                    autocomplete="username"
+                                    class="block flex-1 border-0 bg-transparent ml-1 py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                    placeholder="">
                                             </div>
                                             <div class="flex flex-col pt-3">
                                                 <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Pendidikan

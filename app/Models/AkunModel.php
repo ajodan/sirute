@@ -23,6 +23,11 @@ class AkunModel extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * Get the penduduk that owns the AkunModel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function penduduk(): BelongsTo
     {
         return $this->belongsTo(PendudukModel::class, 'nik', 'nik');

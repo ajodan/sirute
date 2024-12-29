@@ -6,23 +6,23 @@
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-x-4 ">
                     <div class="flex flex-col flex-1 gap-y-8 sm:gap-y-10">
                         <div class="gap-y-2 sm:gap-y-6 flex flex-col">
-                            <h1 class="text-gray-600 font-bold text-5xl sm:text-[70px] leading-none dark:text-white">
-                                Tumbuh<br>
-                                <span class="text-purple-500 dark:text-purple-400">Bersama RW 02.</span>
+                            <h1 class="text-blue-600 font-bold text-5xl sm:text-[50px] leading-none dark:text-white">
+                                <span class="text-yellow-500 dark:text-yellow-100">TAMAN ALAMANDA</span><br>
+                                RW 13/BLOK C
+                                
                             </h1>
                             <div class="text-sm sm:text-base leading-loose text-black3 dark:text-white">
-                                Digitalisasi pencatatan dan pengelolaan data warga RW 02. 
-                                mempercepat akses informasi, mendukung pembagian bansos tepat sasaran, kemudahan layanan sosial, pencarian
-                                cepat, dan laporan statistik.
+                                Digitalisasi pencatatan dan pengelolaan data warga RW 013 untuk 
+                                mempercepat akses informasi, mendukung layanan sosial dan laporan data statistik warga.
                             </div>
                         </div>
                         <div class="flex flex-row gap-x-4 items-center">
                             <a href="{{ route('user.layanan') }}"
-                                class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Layanan Kami</a>
+                                class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Layanan Administrasi</a>
                         </div>
                     </div>
                     <div class="flex flex-row item-center hidden sm:block">
-                        <img src="{{ asset('assets/images/illustration/home.webp') }}" alt=""
+                        <img src="{{ asset('assets/images/illustration/gerbang.webp') }}" alt=""
                             class="w-[550px] h-max-[550px]">
                     </div>
                 </div>
@@ -32,41 +32,35 @@
                 <div class="grid grid-col sm:grid-cols-3 gap-y-3 gap-x-8 px-5">
                     <div
                         class="my-card bg-purple-100 dark:bg-ungu_muda flex flex-col gap-y-4 sm:gap-y-8 items-start rounded-2xl p-7 sm:p-10">
-                        <i class="fa-solid fa-broom text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
+                        <i class="fa-solid fa-info text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
                         <div class="flex flex-col gap-y-3 sm:gap-y-5">
                             <h3 class=" text-xl sm:text-2xl font-bold text-gray-600 dark:text-white">
-                                Kebersihan
+                                Informasi
                             </h3>
                             <div class="text-sm sm:text-base leading-relaxed text-gray-500  dark:text-paragraf">
-                                Rutinitas bersih lingkungan bulanan dan petugas kebersihan harian membuat RW 02 selalu
-                                bersih
-                                dan nyaman.</div>
+                                Tersedianya informasi terkini yang memudahkan warga RW 13/Blok C untuk mengakses informasi terkait lingkungan.</div>
                         </div>
                     </div>
                     <div
                         class="my-card bg-purple-100 dark:bg-ungu_muda flex flex-col gap-y-4 sm:gap-y-8 items-start rounded-2xl p-7 sm:p-10">
-                        <i class="fa-solid fa-lock text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
+                        <i class="fa-solid fa-lightbulb text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
                         <div class="flex flex-col gap-y-3 sm:gap-y-5">
                             <h3 class="text-xl sm:text-2xl font-bold text-gray-600 dark:text-white">
-                                Keamanan
+                                Aspirasi
                             </h3>
                             <div class="text-sm sm:text-base leading-relaxed text-gray-500 dark:text-paragraf">
-                                Satpam Linmas berjaga 24 jam dan berbagai peraturan yang ketat membuat RW 02 lebih aman
-                                dan
-                                nyaman.</div>
+                                Terjalinnya komunikasi antara warga dengan pengurus RT dan RW di lingkungan RW 13/Blok C.</div>
                         </div>
                     </div>
                     <div
                         class="my-card bg-purple-100 dark:bg-ungu_muda flex flex-col gap-y-4 sm:gap-y-8 items-start rounded-2xl p-7 sm:p-10">
-                        <i class="fa-solid fa-gear text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
+                        <i class="fa-solid fa-database text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
                         <div class="flex flex-col gap-y-3 sm:gap-y-5">
                             <h3 class="text-xl sm:text-2xl font-bold text-gray-600 dark:text-white">
-                                Pelayanan
+                                Database Warga
                             </h3>
                             <div class="text-sm sm:text-base leading-relaxed text-gray-500 dark:text-paragraf">
-                                Pelayanan masyarakat yang responsif dan fasilitas umum yang lengkap membuat RW 02
-                                semakin
-                                nyaman.</div>
+                                Tersedianya database warga RW 13/Blok C yang dapat diakses melalui portal informasi.</div>
                         </div>
                     </div>
                 </div>
@@ -84,11 +78,10 @@
                                 class="font-extrabold text-3xl sm:text-5xl leading-tight pb-4 sm:pb-2 text-gray-600 dark:text-white">
                                 Ketua Rukun Warga
                             </h1>
-                            <div class="text-sm sm:text-base sm:mt-3 leading-loose text-gray-500 dark:text-paragraf">
-                                "Kepengurusan RW 02 Kelurahan Arjosari" mencantumkan ketua RW dan RT, memudahkan warga
-                                dalam
-                                berkomunikasi dan berkoordinasi dengan pengurus.
-                            </div>
+                            {{-- <div class="text-sm sm:text-base sm:mt-3 leading-loose text-gray-500 dark:text-paragraf">
+                                "Kepengurusan RW 13 Blok C Taman Alamanda" mencantumkan ketua RW dan RT, untuk memudahkan warga
+                                dalam berkomunikasi dan berkoordinasi dengan pengurus RW dan RT.
+                            </div> --}}
                         </div>
                         <div class="block sm:hidden">
                             <div class="flex mt-5 relative group ">
@@ -122,7 +115,7 @@
                                         </div>
                                         <div class="flex flex-col">
                                             <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Nomor
-                                                handphone
+                                                Ponsel
                                             </dt>
                                             <dd class="text-sm font-semibold">{{ $rw->penduduk->no_hp }}</dd>
                                         </div>
@@ -138,13 +131,13 @@
                                     <dd class="text-lg font-semibold">{{ $rw->penduduk->nama }}</dd>
                                 </div>
                                 <div class="flex flex-col py-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Alamat rumah</dt>
-                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->alamatLengkap() }}</dd>
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Jabatan</dt>
+                                    <dd class="text-lg font-semibold">Ketua RW 13 Periode 2024-2027</dd>
                                 </div>
-                                <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Phone</dt>
+                                {{-- <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nomor Ponsel</dt>
                                     <dd class="text-lg font-semibold">{{ $rw->penduduk->no_hp }}</dd>
-                                </div>
+                                </div> --}}
                             </dl>
                             <div class="flex flex-row gap-x-4 items-center mt-10">
                                 <a href="{{ route('user.detail', $rw->penduduk->nik) }}"
@@ -218,12 +211,12 @@
                 <div class=" items-center">
                     <div>
                         <h1 class=" text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten ">
-                            Jumlah Warga Setiap RT
+                            Prosentase Warga RW 13 berdasarkan RT
                         </h1>
-                        <p class="mt-4 text-center mx-auto lg:w-1/2 md:w-1/2">Jumlah warga di setiap RT penting untuk
+                        {{-- <p class="mt-4 text-center mx-auto lg:w-1/2 md:w-1/2">Jumlah warga di setiap RT penting untuk
                             mengelola lingkungan, menentukan kebutuhan fasilitas, dan merencanakan sumber daya secara
                             berkelanjutan.
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
                 <div class="list w-full h-auto clear-both flex mt-[60px] ">
@@ -271,12 +264,12 @@
                 <div class=" items-center">
                     <div>
                         <h1 class=" text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten ">
-                            Daftar Ketua RT
+                            Daftar Ketua RT RW 13
                         </h1>
-                        <p class="mt-4 text-center mx-auto lg:w-1/2 md:w-1/2">
+                        {{-- <p class="mt-4 text-center mx-auto lg:w-1/2 md:w-1/2">
                             Ketua RT adalah pemimpin yang dipilih warga untuk menjaga keharmonisan, mengoordinasikan
                             kegiatan, dan memastikan kebutuhan serta aspirasi warga terpenuhi.
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
                 <div class="mt-15">
@@ -339,10 +332,10 @@
             <section class="agenda font-sans py-12">
                 <h1 class="text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten">Kegiatan dan
                     Agenda</h1>
-                <p class="mt-8 text-center mx-auto lg:w-1/2 md:w-1/2">
+                {{-- <p class="mt-8 text-center mx-auto lg:w-1/2 md:w-1/2">
                     RW 02 Arjosari aktif mengadakan berbagai kegiatan dan agenda untuk meningkatkan kesejahteraan serta
                     keharmonisan warganya. Berikut adalah beberapa kegiatan dan agenda yang dilaksanakan
-                </p>
+                </p> --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 items-center mt-20 sm:gap-x-10">
                     <div class="flex flex-row item-center">
                         <img src="{{ asset('assets/images/illustration/kalenderimg.webp') }}" alt=""
@@ -405,12 +398,11 @@
             <section class="umkm mx-auto font-sans py-12">
                 <div class="flex flex-col gap-y-8">
                     <div class="gap-y-2 flex flex-col text-center">
-                        <h1 class="text-black1 font-bold text-5xl leading-tight dark:text-whiten">Usaha Warga RW
+                        <h1 class="text-black1 font-bold text-5xl leading-tight dark:text-whiten">UMKM RW 13
                         </h1>
                         <div
                             class="text-base leading-loose text-black3 dark:text-white items-center text-center mx-auto lg:w-1/2 md:w-1/2">
-                            "Usaha Warga RW" adalah program pemberdayaan ekonomi warga RW melalui pengembangan usaha
-                            lokal dan peningkatan akses pasar.
+                            Merupakan program pemberdayaan ekonomi warga RW 13 dengan melalui pengembangan usaha lokal dan peningkatan akses pasar.
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 gap-y-13 mt-8">
@@ -453,7 +445,7 @@
                     <div class="flex justify-center">
                         <a href="{{ route('user.umkm') }}"
                             class=" text-base bg-purple-400 hover:bg-indigo-700 text-white dark:bg-purple-700 dark:hover:bg-white py-3 px-7 rounded-full font-semibold ">Lihat
-                            UMKM Lainnya</a>
+                            UMKM</a>
                     </div>
                 </div>
             </section>
@@ -466,8 +458,8 @@
                         </h1>
                         <div
                             class="text-sm sm:text-base leading-loose text-black3 dark:text-white items-center pb-6 mt-4">
-                            Suarakan Keluh Kesah Pesan dan Kesan mu <br>untuk membangun Lingkungan RW 2 Menjadi Lebih
-                            Baik
+                            Suarakan Kritik serta Saran<br>yang membangun untuk lingkungan RW 13 menjadi lebih
+                            baik
                         </div>
                         <div class="grid grid-cols-1 mx-auto sm:grid-cols-2 md:grid-cols-4 gap-8 gap-y-13">
                             @foreach ($aspirasi as $item)

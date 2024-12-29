@@ -38,11 +38,11 @@
                                 id="no-kk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukkan No KK">
-                            <datalist id="listKK">
-                                @foreach ($kk as $item)
-                                    <option value="{{ $item->no_kk }}">{{ $item->pendudukHasOne->nama }}</option>
-                                @endforeach
-                            </datalist>
+                                <datalist id="listKK">
+                                    @foreach ($kk as $item)
+                                        <option value="{{ $item->no_kk }}">{{ $item->no_kk }}</option>
+                                    @endforeach
+                                </datalist>
                         </div>
 
                         <label for="nik"
@@ -115,25 +115,23 @@
                         <select name="jenis_kelamin" id="jenis-kelamin" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled value>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki">Laki laki</option>
+                            <option value="Laki-Laki">Laki Laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
 
                         <label for="agama"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                        <div class="flex">
-                            <span
-                                class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                                </svg>
-                            </span>
-                            <input name="agama" type="text" id="agama" required
-                                class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Agama">
-                        </div>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
+                        <select name="agama" id="agama" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled value>Pilih Agama</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen Protestan">Kristen Protestan</option>
+                            <option value="Katholik">Katholik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Konghucu">Konghucu</option>
+                        </select>
+
 
                         <label for="status-perkawinan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
@@ -146,8 +144,23 @@
                             <option value="Cerai">Cerai</option>
                             <option value="Cerai Mati">Cerai Mati</option>
                         </select>
-
-
+                        <label for="hub-kk"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hubungan Keluarga</label>
+                    <select name="hub_kk" id="hub_kk" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih Hubungan Keluarga --</option>
+                        <option value="Kepala Keluarga">Kepala Keluarga</option>
+                        <option value="Suami">Suami</option>
+                        <option value="Istri">Istri</option>
+                        <option value="Anak">Anak</option>
+                        <option value="Menantu">Menantu</option>
+                        <option value="Cucu">Cucu</option>
+                        <option value="Orang Tua">Orang Tua</option>
+                        <option value="Mertua">Mertua</option>
+                        <option value="Famili Lain">Famili Lain</option>
+                        <option value="Pembantu">Pembantu</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
                         <label for="pekerjaan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
                         <div class="flex">
@@ -163,9 +176,26 @@
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Pekerjaan">
                         </div>
-
+                        <label for="pendidikan"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pendidikan Terakhir</label>
+                    <select name="pendidikan" id="pendidikan" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih Pendidikan --</option>
+                        <option value="Tidak/Belum Sekolah">Tidak/Belum Sekolah</option>
+                        <option value="Belum Tamat SD/Sederajat">Belum Tamat SD/Sederajat</option>
+                        <option value="Sudah Tamat SD/Sederajat">Sudah Tamat SD/Sederajat</option>
+                        <option value="Belum Tamat SLTP/Sederajat">Belum Tamat SLTP/Sederajat</option>
+                        <option value="SLTP/Sederajat">SLTP/Sederajat</option>
+                        <option value="Belum Tamat SLTA/Sederajat">Belum Tamat SLTA/Sederajat</option>
+                        <option value="SLTA/Sederajat">SLTA/Sederajat</option>
+                        <option value="Diploma I/II">Diploma I/II</option>
+                        <option value="Akademi/Diploma III/Sarjana Muda">Akademi/Diploma III/Sarjana Muda</option>
+                        <option value="Diploma IV/Strata I">Diploma IV/Strata I</option>
+                        <option value="Strata II">Strata II</option>
+                        <option value="Strata III">Strata III</option>
+                    </select>
                         <label for="gol-darah"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gol.
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan
                             Darah</label>
                         <div class="flex">
                             <span
@@ -178,7 +208,7 @@
                             </span>
                             <input name="gol_darah" type="text" id="gol-darah" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Gol Darah">
+                                placeholder="Golongan Darah">
                         </div>
 
                         <label for="status-penduduk"
@@ -194,7 +224,7 @@
                         <hr class="h-1 my-13 bg-gray-200 rounded border-0 dark:bg-gray-3">
 
                         <label for="kel"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Desa</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -206,7 +236,7 @@
                             </span>
                             <input name="kel" type="text" id="kel" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Kelurahan">
+                                placeholder="Desa">
                         </div>
 
                         <label for="kecamatan"
@@ -226,7 +256,7 @@
                         </div>
 
                         <label for="jalan"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalan</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalan/Blok</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -238,25 +268,34 @@
                             </span>
                             <input name="jalan" type="text" id="jalan" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Jalan">
+                                placeholder="Jalan/Blok">
                         </div>
 
                         <label for="rt"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT</label>
-                        <div class="flex">
-                            <span
-                                class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                                </svg>
-                            </span>
-                            <input {{ $level === 'RT' ? 'readonly' : null }} value="{{ $level === 'RT' ? $rt : null }}"
-                                name="rt" type="text" id="rt" required
-                                class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="RT">
-                        </div>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT</label>
+                    <select name="rt" id="rt" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih RT --</option>
+                        <option value="1">RT 01</option>
+                        <option value="2">RT 02</option>
+                        <option value="3">RT 03</option>
+                        <option value="4">RT 04</option>
+                    </select>
+                    <label for="norumah"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blok/No. Rumah Domisili</label>
+                <div class="flex">
+                    <span
+                        class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                        </svg>
+                    </span>
+                    <input name="norumah" type="text" id="norumah" required
+                        class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Blok/Nomor Rumah">
+                </div>
 
                         <label for="rw"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RW</label>
@@ -269,12 +308,11 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input readonly value="2" name="rw" type="text" id="rw" required
+                            <input value="13" name="rw" type="text" id="rw" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="RW">
                         </div>
-                        <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
-                            Hp</label>
+                        <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Ponsel</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -286,12 +324,39 @@
                             </span>
                             <input name="no_hp" type="text" id="no_hp" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="No. Hp">
+                                placeholder="Nomor Ponsel">
 
                         </div>
 
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <div class="flex">
+                            <span
+                                class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                                </svg>
+                            </span>
+                            <input name="email" type="text" id="email"
+                                class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Email">
+
+                        </div>
+
+                        <label for="status_dasar"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Dasar</label>
+                    <select name="status_dasar" id="status_dasar" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih Status Dasar --</option>
+                        <option value="Hidup">Hidup</option>
+                        <option value="Meninggal Dunia">Meninggal Dunia</option>
+                        <option value="Pindah">Pindah</option>
+                        <option value="Tidak Aktif">Tidak Aktif</option>
+                    </select>
+
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="file_input">Upload foto</label>
+                            for="file_input">Upload Photo</label>
                         <input name="image" accept="image/*"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file_input_help" id="gambar_profile" type="file">

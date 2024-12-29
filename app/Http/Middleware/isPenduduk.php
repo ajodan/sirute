@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class isPenduduk
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $level = auth()->user()->level->nama_level;
-        $auth = $level == 'Super Admin' || $level == 'RT' || $level == 'RW' || $level == 'Penduduk';
+        $auth = $level == 'Penduduk';
         if ($auth) {
             return $next($request);
         }
-        return redirect()->route('user.home');
+        return redirect()->route('admin.dashboard');
     }
 }

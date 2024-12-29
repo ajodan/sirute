@@ -3,15 +3,14 @@
         <div class="hidden sm:flex justify-center items-center bg-transparent col-span-1">
             <div class="absolute z-[-1] h-screen w-screen bg-purple-400" id="particles-js"></div>
             <div class="text-right pr-20 pl-20 ">
-                <h2 class="text-5xl font-extrabold font-sans text-white mb-5 uppercase">Hubungan <span
-                        class="text-indigo-700">Era
-                        Digital</span>
+                <h2 class="text-5xl font-extrabold font-sans text-white mb-5 uppercase">LOGIN<span
+                        class="text-indigo-700"> SIRUTE RW 13</span>
                 </h2>
-                <p class="text-white text-lg mb-9">Selamat datang di Portal Web RW 02, tempat di mana Anda dapat
+                {{-- <p class="text-white text-lg mb-9">Selamat datang di Portal Web RW 02, tempat di mana Anda dapat
                     mengakses berbagai layanan dan informasi terkait dengan lingkungan dan kegiatan komunitas di RW 02.
                     Portal ini menyediakan akses mudah dan cepat bagi warga untuk terhubung, berkomunikasi, dan
                     terinformasi tentang berbagai kegiatan dan inisiatif yang sedang berlangsung di sekitar lingkungan
-                    kita.</p>
+                    kita.</p> --}}
                 <a href="{{ route('user.home') }}">
                     <button type="button"
                         class="text-white hover:text-indigo-700 hover:bg-white bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-white font-medium text-base px-8 py-2.5 text-center me-2 mb-2 ">
@@ -22,8 +21,8 @@
         <div class="sm:py-0 py-20 flex justify-center items-center bg-white col-span-1" x-data="{ page: 'penduduk' }">
             <form class="w-full sm:pl-20 sm:pr-24 sm:px-0 px-10" action="{{ route('auth') }}" method="POST">
                 @csrf
-                <h1 class="text-3xl font-sans font-medium text-purple-500 mb-2">Welcome!</h1>
-                <h3 class="text-2xl font-sans font-normal capitalize mb-8">Masuk ke akun anda</h3>
+                <h1 class="text-3xl font-sans font-medium text-purple-500 mb-2">LOGIN</h1>
+                {{-- <h3 class="text-2xl font-sans font-normal capitalize mb-8">Masuk ke akun anda</h3> --}}
 
                 <div class="mb-5">
                     <label for="username" class="block mb-2 text-lgfont-medium text-gray-900 dark:text-white">
@@ -44,8 +43,8 @@
                         <input id="terms" type="checkbox" value="true" name="remember"
                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                     </div>
-                    <label for="terms" class="ms-2 text-base font-medium  text-gray-900 dark:text-gray-300">Remember
-                        me</label>
+                    {{-- <label for="terms" class="ms-2 text-base font-medium  text-gray-900 dark:text-gray-300">Remember
+                        me</label> --}}
                 </div>
                 @error('message')
                     <div class="text-red-500 text-sm mb-5">{{ $message }}</div>

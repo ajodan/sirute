@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class PendudukModel extends Model
 {
@@ -19,11 +20,15 @@ class PendudukModel extends Model
         'jenis_kelamin',
         'agama',
         'status_perkawinan',
+        'hub_kk',
         'pekerjaan',
+        'pendidikan',
         'gol_darah',
         'no_kk',
         'status_penduduk',
         'no_hp',
+        'email',
+        'status_dasar',
         'id_alamat',
         'image'
     ];
@@ -40,6 +45,11 @@ class PendudukModel extends Model
     public function alamat(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(AlamatModel::class, 'id_alamat', 'id_alamat');
+    }
+
+    public function age()
+    {
+        return Carbon::parse($this->attributes['tgl_lahir'])->age;
     }
 
     public function kk()
@@ -71,6 +81,11 @@ class PendudukModel extends Model
     public function alamatLengkap(): string
     {
         return $this->alamat->jalan . ' RT' . $this->alamat->rt . ' RW' . $this->alamat->rw . ' Kelurahan ' . $this->alamat->kel . ' Kecamatan ' . $this->alamat->kecamatan;
+    }
+
+    public function alamatRumah(): string
+    {
+        return ' ' . $this->alamat->norumah;
     }
 
     public function isPenerimaBansos()

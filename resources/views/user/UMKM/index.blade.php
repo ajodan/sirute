@@ -4,24 +4,42 @@
             style="background-image: url(/assets/images/illustration/mieayam.webp);">
             <div
                 class="header-content absolute flex flex-col items-end gap-6 max-w-[50%] bottom-[10%] right-[6vw] animate-fadein3s">
-                <h2 class="font-medium text-right text-white text-5xl leading-tight">Bangga Menggunakan Produk Lokal</h2>
-                <p class="text-sm text-right text-white">Mendukung produk lokal menunjukkan kebanggaan terhadap karya
-                    anak bangsa. Produk Indonesia
-                    berkualitas tinggi, mendorong ekonomi, menciptakan lapangan kerja, dan melestarikan budaya. Bangga
-                    menggunakan produk lokal berarti membangun masa depan Indonesia.</p>
+                <h2 class="font-medium text-right text-white text-5xl leading-tight">UMKM Warga RW 13</h2>
+                <p class="text-sm text-right text-white">UMKM (Usaha Mikro, Kecil, dan Menengah) adalah sektor usaha yang memainkan peran penting dalam perekonomian, khususnya di Indonesia. UMKM meliputi berbagai jenis usaha, mulai dari usaha mikro yang berskala kecil hingga usaha menengah yang memiliki skala lebih besar tetapi belum termasuk kategori perusahaan besar.</p>
             </div>
         </div>
     </section>
 
     <section class="max-w-6xl mx-auto font-sans sm:px-0 px-10">
         <div class="explore-menu flex flex-col gap-5">
-            <h1 class="text-[#262626] dark:text-white text-2xl font-semibold">Menjelajah UMKM</h1>
+            <h1 class="text-[#262626] dark:text-white text-2xl font-semibold">Deskripsi Singkat UMKM</h1>
             <p class="explore-menu-text
-                sm:max-w-[60%] text-justify">Mengenalkan Anda pada usaha mikro,
-                kecil, dan
-                menengah yang menjadi pilar ekonomi lokal di RW 2 Arjosari. Temukan produk dan jasa unik dari UMKM di
-                lingkungan ini, dan dukung pertumbuhan ekonomi serta melestarikan kekayaan budaya Indonesia. Mari
-                bersama-sama mendukung UMKM untuk masa depan yang lebih baik.</p>
+                sm:max-w-[900%] text-justify">Berikut adalah deskripsi singkat masing-masing kategori :<br><br>
+
+                <b>Usaha Mikro</b><br>
+                
+                Memiliki aset dan omset tahunan yang sangat kecil.
+                Biasanya dikelola oleh individu atau keluarga.
+                Contoh: pedagang kaki lima, warung kecil, atau usaha kerajinan rumahan.<br><br>
+                
+                <b>Usaha Kecil</b><br>
+                
+                Memiliki aset dan omset yang lebih besar dibanding usaha mikro, tetapi masih dalam skala terbatas.
+                Bisa memiliki beberapa karyawan dan sudah memiliki sistem operasional sederhana.
+                Contoh: toko kelontong, bengkel motor, atau kafe kecil.<br><br>
+
+                <b>Usaha Menengah</b><br><br>
+                
+                Memiliki aset dan omset yang lebih besar dari usaha kecil tetapi belum mencapai skala perusahaan besar.
+                Biasanya memiliki struktur manajemen yang lebih terorganisasi dan jumlah karyawan yang lebih banyak.
+                Contoh: pabrik makanan ringan, perusahaan jasa menengah, atau distributor barang.<br><br>
+
+                Peran UMKM di RW 13/Blok C:
+                
+                Memberikan lapangan kerja bagi masyarakat.
+                Meningkatkan kesejahteraan komunitas lokal.
+                Menyumbang pada Produk Domestik Bruto (PDB).
+                Mendorong inovasi dan kreativitas di berbagai sektor usaha.</p>
         </div>
     </section>
 
@@ -29,7 +47,7 @@
         <div class="display mt-8">
             <div class="py-5 mt-3">
                 <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Cari</label>
                 <div class="relative">
                     <form action="" method="get" class="flex">
                         <div>
@@ -85,7 +103,7 @@
                             class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-[#412283] dark:border-purple-600 dark:placeholder-purple-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                             placeholder="Cari UMKM">
                         <button type="submit"
-                            class="text-white absolute end-2.5 bottom-2.5 bg-purple-500 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Search</button>
+                            class="text-white absolute end-2.5 bottom-2.5 bg-purple-500 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-purple-700 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Cari</button>
                     </form>
                 </div>
             </div>

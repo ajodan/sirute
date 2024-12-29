@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // redirect to home
     return redirect(route('user.home'));
+    
 });
 
 Route::prefix('admin')->group(function () {

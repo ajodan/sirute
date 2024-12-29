@@ -22,6 +22,7 @@ use App\Models\UMKMModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
 class PendudukController extends Controller
 {
@@ -51,6 +52,11 @@ class PendudukController extends Controller
         return $this->level === 'RW';
     }
 
+    private function isRT(): bool
+    {
+        return $this->level === 'RT';
+    }
+
     public function index(Request $request)
     {
         $paginate = 10;
@@ -65,10 +71,14 @@ class PendudukController extends Controller
                 $query->where('nama', 'like', '%' . $request->s . '%');
             } elseif ($this->isRW()) {
                 $query->where('nama', 'like', '%' . $request->s . '%');
-            } else {
+            } elseif ($this->isRT()) {
                 $rt = $this->alamat->rt;
                 $query->whereHas('alamat', function ($query) use ($rt) {
                     $query->where('rt', $rt);
+                });
+            } else {
+                $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
+                    $query->where('norumah', auth()->user()->penduduk->alamat->norumah);
                 });
             }
 
@@ -88,8 +98,6 @@ class PendudukController extends Controller
             if ($request->has('jenis_kelamin')) {
                 $query->where('jenis_kelamin', $request->jenis_kelamin);
             }
-
-
             $penduduk = $query->orderBy('created_at', 'desc')->paginate($paginate)->withQueryString();
         } catch (\Exception $e) {
             return redirect()->route('error')->with([
@@ -170,6 +178,8 @@ class PendudukController extends Controller
                 $query->where('nama', 'like', '%' . $request->s . '%');
             });
         }
+
+       //dd($penduduk);
         $penduduk = $penduduk->paginate(10)->withQueryString();
         return view('admin.penduduk.kk', compact('penduduk'));
     }
@@ -177,7 +187,7 @@ class PendudukController extends Controller
     public function kk_detail_penduduk(string $no_kk)
     {
         $penduduk = KkModel::with('penduduk')->where('no_kk', $no_kk)->first();
-        // dd($penduduk->toArray());
+        //dd($penduduk->toArray());
         return view('admin.penduduk.kk-detail', compact('penduduk'));
     }
 
@@ -214,6 +224,7 @@ class PendudukController extends Controller
                     'jalan' => $request->jalan,
                     'rw' => $request->rw,
                     'rt' => $request->rt,
+                    'norumah' => $request->norumah,
                 ]);
 
                 PendudukModel::create([
@@ -225,11 +236,15 @@ class PendudukController extends Controller
                     'jenis_kelamin' => $request->jenis_kelamin,
                     'agama' => $request->agama,
                     'status_perkawinan' => $request->status_perkawinan,
+                    'hub_kk' => $request->hub_kk,
                     'pekerjaan' => $request->pekerjaan,
+                    'pendidikan' => $request->pendidikan,
                     'gol_darah' => $request->gol_darah,
                     'no_kk' => $request->no_kk,
                     'status_penduduk' => $request->status_penduduk,
                     'no_hp' => $request->no_hp,
+                    'email' => $request->email,
+                    'status_dasar' => $request->status_dasar,
                     'image' => $request->image->hashName(),
                 ]);
 
@@ -298,15 +313,20 @@ class PendudukController extends Controller
             'Golongan Darah' => $penduduk->gol_darah,
             'Agama' => $penduduk->agama,
             'Status Perkawinan' => $penduduk->status_perkawinan,
+            'Hubungan Kartu Keluarga' => $penduduk->hub_kk,
             'Pekerjaan' => $penduduk->pekerjaan,
+            'Pendidikan Terakhir' => $penduduk->pendidikan,
             'Alamat' => $penduduk->alamat->jalan,
+            'Email' => $penduduk->email,
             'Kelurahan' => $penduduk->alamat->kel,
             'Kecamatan' => $penduduk->alamat->kecamatan,
             'RT' => $penduduk->alamat->rt,
             'RW' => $penduduk->alamat->rw,
+            'Status Dasar' => $penduduk->status_dasar,
         ];
         $foto_rumah = FotoRumah::where('no_kk', $penduduk->no_kk)->get();
         $foto_penduduk = $penduduk->foto_profile();
+        //dd($detail_penduduk);
         return view('admin.penduduk.penduduk-detail', compact('detail_penduduk', 'foto_rumah', 'foto_penduduk'));
     }
 
@@ -475,10 +495,10 @@ class PendudukController extends Controller
         $request->validate([
             'foto_rumah.*' => 'required|file|mimes:jpg,jpeg,png,svg|max:2048',
         ], [
-            'foto_rumah.*.required' => 'Foto rumah wajib diunggah.',
-            'foto_rumah.*.file' => 'Foto rumah harus berupa file.',
-            'foto_rumah.*.mimes' => 'Foto rumah harus berformat: jpg, jpeg, png, atau svg.',
-            'foto_rumah.*.max' => 'Ukuran foto rumah tidak boleh lebih dari 2MB.',
+            'foto_rumah.*.required' => 'Foto dokumen wajib diunggah.',
+            'foto_rumah.*.file' => 'Foto dokumen harus berupa file.',
+            'foto_rumah.*.mimes' => 'Foto dokumen harus berformat: jpg, jpeg, png, atau svg.',
+            'foto_rumah.*.max' => 'Ukuran foto dokumen tidak boleh lebih dari 2MB.',
         ]);
 
         try {
@@ -493,7 +513,7 @@ class PendudukController extends Controller
             return redirect()->route('admin.penduduk.kk-detail', $request->no_kk)->withErrors($e->getMessage());
         }
 
-        return redirect()->back()->with('success', 'Foto Rumah Berhasil Ditambahkan.');
+        return redirect()->back()->with('success', 'Foto Dokumen Berhasil Ditambahkan.');
     }
 
     public function delete_foto_rumah($id)
@@ -505,7 +525,7 @@ class PendudukController extends Controller
                 unlink('storage/images/rumah/' . $fotoRumah->image);
             }
             $fotoRumah->delete();
-            return redirect()->back()->with('success', 'Foto Rumah Berhasil Dihapus.');
+            return redirect()->back()->with('success', 'Foto Dokumen Berhasil Dihapus.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }

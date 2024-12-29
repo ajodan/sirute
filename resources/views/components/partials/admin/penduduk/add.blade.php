@@ -36,11 +36,11 @@
                                 type="number" list="listKK" id="no-kk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukkan No KK">
-                            <datalist id="listKK">
-                                @foreach ($kk as $item)
-                                    <option value="{{ $item->no_kk }}">{{ $item->pendudukHasOne->nama }}</option>
-                                @endforeach
-                            </datalist>
+                                <datalist id="listKK">
+                                    @foreach ($kk as $item)
+                                        <option value="{{ $item->no_kk }}">{{ $item->no_kk }}</option>
+                                    @endforeach
+                                </datalist>
                         </div>
 
                         <label for="nik"
@@ -99,7 +99,7 @@
                             <input value="{{ old('tempat_lahir') }}" name="tempat_lahir" type="text"
                                 id="tempat-lahir"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Malang">
+                                placeholder="Tempat Lahir">
                         </div>
 
                         <label for="tgl-lahir"
@@ -117,7 +117,7 @@
                             <input value="{{ old('tgl_lahir') }}" required name="tgl_lahir" type="date"
                                 id="tgl-lahir"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Malang">
+                                placeholder="Tanggal Lahir">
                         </div>
 
                         <label for="jenis-kelamin"
@@ -125,8 +125,8 @@
                         <select name="jenis_kelamin" id="jenis-kelamin" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled value>Pilih Jenis Kelamin</option>
-                            <option {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }} value="Laki-laki">Laki
-                                laki</option>
+                            <option {{ old('jenis_kelamin') == 'Laki-Laki' ? 'selected' : '' }} value="Laki-Laki">Laki
+                                Laki</option>
                             <option {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }} value="Perempuan">
                                 Perempuan</option>
                         </select>
@@ -134,18 +134,34 @@
                         <label for="agama"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
                         <div class="flex">
-                            <span
+                            {{-- <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
-                            </span>
-                            <input value="{{ old('agama') }}" name="agama" type="text" id="agama"
+                            </span> --}}
+                            {{-- <input value="{{ old('agama') }}" name="agama" type="text" id="agama"
                                 required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Agama">
+                                placeholder="Agama"> --}}
+                            <select name="agama" id="agama" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected disabled value>-- Pilih Agama --</option>
+                                <option {{ old('agama') == 'Islam' ? 'selected' : '' }} value="Islam">
+                                    Islam</option>
+                                <option {{ old('agama') == 'Kristen Protestan' ? 'selected' : '' }}
+                                    value="Kristen Protestan">Kristen Protestan</option>
+                                <option {{ old('agama') == 'Katholik' ? 'selected' : '' }} value="Katholik">Katholik
+                                </option>
+                                <option {{ old('agama') == 'Hindu' ? 'selected' : '' }}
+                                    value="Hindu">Hindu</option>
+                                <option {{ old('agama') == 'Budha' ? 'selected' : '' }}
+                                    value="Budha">Budha</option>
+                                <option {{ old('agama') == 'Konghucu' ? 'selected' : '' }}
+                                    value="Konghucu">Konghucu</option>
+                            </select>
                         </div>
 
                         <label for="status-perkawinan"
@@ -163,7 +179,63 @@
                             <option {{ old('status_perkawinan') == 'Cerai Mati' ? 'selected' : '' }}
                                 value="Cerai Mati">Cerai Mati</option>
                         </select>
-
+                        <label for="hub_kk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hubungan Keluarga</label>
+                    <select name="hub_kk" id="hub_kk" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih Hubungan Keluarga --</option>
+                        <option {{ old('hub_kk') == 'Kepala Keluarga' ? 'selected' : '' }} value="Kepala Keluarga">
+                            Kepala Keluarga</option>
+                        <option {{ old('hub_kk') == 'Suami' ? 'selected' : '' }}
+                            value="Suami">Suami</option>
+                        <option {{ old('hub_kk') == 'Istri' ? 'selected' : '' }}
+                            value="Istri">Istri</option>
+                        <option {{ old('hub_kk') == 'Anak' ? 'selected' : '' }}
+                            value="Anak">Anak</option>
+                        <option {{ old('hub_kk') == 'Menantu' ? 'selected' : '' }}
+                            value="Menantu">Menantu</option>
+                        <option {{ old('hub_kk') == 'Cucu' ? 'selected' : '' }}
+                            value="Cucu">Cucu</option>
+                        <option {{ old('hub_kk') == 'Orang Tua' ? 'selected' : '' }}
+                            value="Orang Tua">Orang Tua</option>
+                        <option {{ old('hub_kk') == 'Mertua' ? 'selected' : '' }}
+                            value="Mertua">Mertua</option>
+                        <option {{ old('hub_kk') == 'Famili Lain' ? 'selected' : '' }}
+                            value="Famili Lain">Famili Lain</option>
+                        <option {{ old('hub_kk') == 'Pembantu' ? 'selected' : '' }}
+                            value="Pembantu">Pembantu</option>
+                        <option {{ old('hub_kk') == 'Lainnya' ? 'selected' : '' }}
+                            value="Lainnya">Lainnya</option>
+                    </select>
+                        <label for="pendidikan"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pendidikan Terakhir</label>
+                    <select name="pendidikan" id="pendidikan" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih Pendidikan Terakhir --</option>
+                        <option {{ old('pendidikan') == 'Tidak/Belum Sekolah' ? 'selected' : '' }} value="Tidak/Belum Sekolah">
+                            Tidak/Belum Sekolah</option>
+                        <option {{ old('pendidikan') == 'Belum Tamat SD/Sederajat' ? 'selected' : '' }}
+                            value="Belum Tamat SD/Sederajat">Belum Tamat SD/Sederajat</option>
+                        <option {{ old('pendidikan') == 'Sudah Tamat SD/Sederajat' ? 'selected' : '' }}
+                            value="Sudah Tamat SD/Sederajat">Sudah Tamat SD/Sederajat</option>
+                        <option {{ old('pendidikan') == 'Belum Tamat SLTP/Sederajat' ? 'selected' : '' }}
+                            value="Belum Tamat SLTP/Sederajat">Belum Tamat SLTP/Sederajat</option>
+                        <option {{ old('pendidikan') == 'SLTP/Sederajat' ? 'selected' : '' }}
+                            value="SLTP/Sederajat">SLTP/Sederajat</option>
+                        <option {{ old('pendidikan') == 'Belum Tamat SLTA/Sederajat' ? 'selected' : '' }}
+                            value="Belum Tamat SLTA/Sederajat">Belum Tamat SLTA/Sederajat</option>
+                        <option {{ old('pendidikan') == 'SLTA/Sederajat' ? 'selected' : '' }}
+                            value="SLTA/Sederajat">SLTA/Sederajat</option>
+                        <option {{ old('pendidikan') == 'Diploma I/II' ? 'selected' : '' }}
+                            value="Diploma I/II">Diploma I/II</option>
+                        <option {{ old('pendidikan') == 'Akademi/Diploma III/Sarjana Muda' ? 'selected' : '' }}
+                            value="Akademi/Diploma III/Sarjana Muda">Akademi/Diploma III/Sarjana Muda</option>
+                        <option {{ old('pendidikan') == 'Diploma IV/Strata I' ? 'selected' : '' }}
+                            value="Diploma IV/Strata I">Diploma IV/Strata I</option>
+                        <option {{ old('pendidikan') == 'Strata II' ? 'selected' : '' }}
+                            value="Strata II">Strata II</option>
+                        <option {{ old('pendidikan') == 'Strata III' ? 'selected' : '' }}
+                            value="Strata III">Strata III</option>
+                    </select>
                         <label for="pekerjaan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
                         <div class="flex">
@@ -214,7 +286,7 @@
                         <hr class="h-1 my-13 bg-gray-200 rounded border-0 dark:bg-gray-3">
 
                         <label for="kel"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Desa/Kelurahan</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -224,10 +296,9 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input value="{{ old('kel') }}" name="kel" type="text" id="kel"
-                                required
+                            <input value="{{ old('kel') }}" name="kel" type="text" id="kel" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Kelurahan">
+                                placeholder="Desa/Kelurahan">
                         </div>
 
                         <label for="kecamatan"
@@ -248,7 +319,7 @@
                         </div>
 
                         <label for="jalan"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalan</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalan/Blok</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -261,11 +332,27 @@
                             <input value="{{ old('jalan') }}" name="jalan" type="text" id="jalan"
                                 required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Jalan">
+                                placeholder="Jalan/Blok">
                         </div>
 
+                      
                         <label for="rt"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT</label>
+                        <select name="rt" id="rt" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled value>-- Pilih RT --</option>
+                            <option {{ old('rt') == '1' ? 'selected' : '' }} value="1">
+                                RT 01</option>
+                            <option {{ old('rt') == '2' ? 'selected' : '' }}
+                                value="2">RT 02</option>
+                            <option {{ old('rt') == '3' ? 'selected' : '' }}
+                                value="3">RT 03</option>
+                            <option {{ old('rt') == '4' ? 'selected' : '' }}
+                                value="4">RT 04</option>
+                        </select>
+
+                        <label for="norumah"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blok/No. Rumah Domisili</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -275,12 +362,12 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input {{ $level === 'RT' ? 'readonly' : null }}
-                                value="{{ $level === 'RT' ? $rt : old('rt') ?? '' }}" name="rt" type="text"
-                                id="rt" required
+                            <input value="{{ old('norumah') }}" name="norumah" type="text" id="norumah"
+                                required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="RT">
+                                placeholder="Blok/Nomor Rumah">
                         </div>
+
 
                         <label for="rw"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RW</label>
@@ -293,14 +380,13 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input readonly value="2" name="rw" type="text" id="rw" required
+                            <input readonly value="13" name="rw" type="text" id="rw" required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="RW">
 
                         </div>
 
-                        <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
-                            Hp</label>
+                        <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Ponsel</label>
                         <div class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -313,13 +399,45 @@
                             <input value="{{ old('no_hp') }}" name="no_hp" type="text" id="no_hp"
                                 required
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="No. Hp">
+                                placeholder="Nomor Ponsel">
 
                         </div>
 
+                        <label for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                    <div class="flex">
+                        <span
+                            class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                            </svg>
+                        </span>
+                        <input value="{{ old('email') }}" name="email" type="text" id="email"
+                            required
+                            class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Email">
+                    </div>
+
+                        <label for="status_dasar"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Dasar</label>
+                    <select name="status_dasar" id="status_dasar" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled value>-- Pilih Status Dasar --</option>
+                        <option {{ old('status_dasar') == 'Hidup' ? 'selected' : '' }} value="Hidup">
+                            Hidup</option>
+                        <option {{ old('status_dasar') == 'Meninggal Dunia' ? 'selected' : '' }}
+                            value="Meninggal Dunia">Meninggal Dunia</option>
+                        <option {{ old('status_dasar') == 'Pindah' ? 'selected' : '' }}
+                            value="Pindah">Pindah</option>
+                        <option {{ old('status_dasar') == 'Tidak Aktif' ? 'selected' : '' }}
+                            value="Tidak Aktif">Tidak Aktif</option> 
+                    </select>
+
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="file_input">Upload foto</label>
-                        <input required name="image" accept="image/*"
+                            for="file_input">Upload Photo</label>
+                        <input name="image" accept="image/*"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file_input_help" id="file_input" type="file">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
@@ -327,8 +445,8 @@
 
                         <label x-show="isKepalaKK"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="file_input">Upload foto rumah</label>
-                        <input required x-show="isKepalaKK" :disabled="!isKepalaKK" name="rumah[]" multiple
+                            for="file_input">Upload Dokumen</label>
+                        <input x-show="isKepalaKK" :disabled="!isKepalaKK" name="rumah[]" multiple
                             accept="image/*"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file_input_help" id="file_input" type="file">

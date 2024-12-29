@@ -6,19 +6,13 @@
                 <div class="flex-1 flex-col gap-y-10 space-y-5">
                     <div class="gap-y-2 flex flex-col space-y-2">
                         <h1 class="text-gray-600 font-bold text-4xl sm:text-[70px] dark:text-white leading-tight">
-                            Data
-                            Seluruh<br>
-                            <span class="text-purple-500 dark:text-purple-700">Penduduk RT
-                                {{ $user->penduduk->alamat->rt }}.</span>
+                            Daftar Data Warga<br>
+                            <span class="text-purple-500 dark:text-purple-700">RT
+                                {{ $user->penduduk->alamat->rt }} RW 13</span>
                         </h1>
-                        <div class="text-base leading-loose text-gray-500 dark:text-gray-400">
-                            Data seluruh penduduk RT {{ $user->penduduk->alamat->rt }} adalah fondasi penting dalam
-                            perencanaan dan
-                            pembangunan wilayah.
-                            Informasi ini, termasuk jumlah dan profil penduduk, menjadi dasar bagi pemerintah lokal
-                            untuk
-                            merancang kebijakan yang lebih efektif dan responsif terhadap kebutuhan masyarakat.
-                        </div>
+                        {{-- <div class="text-base leading-loose text-gray-500 dark:text-gray-400">
+                            RT {{ $user->penduduk->alamat->rt }} RW 013 Blok C Taman Alamanda.
+                        </div> --}}
                     </div>
                 </div>
 
@@ -190,19 +184,22 @@
 
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Nama
+                            Nama Lengkap
                         </th>
                         <th scope="col" class="px-6 py-3 hidden sm:table-cell">
-                            Alamat
+                            Nomor Rumah
                         </th>
                         <th scope="col" class="px-6 py-3 hidden sm:table-cell">
                             Jenis Kelamin
                         </th>
                         <th scope="col" class="px-6 py-3 hidden sm:table-cell">
-                            No.Hp
+                            Status KK
+                        </th>
+                        <th scope="col" class="px-6 py-3 hidden sm:table-cell">
+                            Nomor Ponsel
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -220,22 +217,28 @@
                                 <div class="ps-3">
                                     <div class="sm:text-base font-semibold">{{ $item->nama }}</div>
                                     <div class="font-normal text-gray-500">
-                                        {{ $item->akun->level->nama_level != 'Penduduk' ? $item->akun->level->nama_level : $item->status_penduduk }}
+                                        {{-- {{ $item->akun->level->nama_level != 'Penduduk' ? $item->akun->level->nama_level : $item->status_penduduk }} --}}
                                     </div>
                                 </div>
                             </th>
                             <td class="px-6 py-4 hidden sm:table-cell">
-                                {{ $item->alamatLengkap() }}
+                                {{ $item->alamatRumah() }}
                             </td>
                             <td class="px-6 py-4 hidden sm:table-cell">
                                 {{ $item->jenis_kelamin }}
                             </td>
                             <td class="px-6 py-4 hidden sm:table-cell">
+                                {{ $item->hub_kk }}
+                            </td>
+                            <td class="px-6 py-4 hidden sm:table-cell">
                                 {{ $item->no_hp }}
                             </td>
-                            <td class="px-6 py- 4">
+                            <td class="px-12 py- 8">
                                 <a href="{{ route('user.detail', $item->nik) }}"
                                     class="font-medium text-purple-400 hover:text-indigo-700 dark:text-purple-700 dark:hover:text-white">Detail</a>
+                                {{-- <a href="{{ route('user.edit', $item->nik) }}"
+                                        class="font-medium text-purple-400 hover:text-indigo-700 dark:text-purple-700 dark:hover:text-white">Edit</a>
+                                    --}}
                             </td>
                         </tr>
                     @endforeach

@@ -124,8 +124,7 @@
         <!-- ====== Usia Penduduk End -->
 
         <!-- ====== Data Keuangan Start -->
-        <div
-            class="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-7">
+        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-7">
             <div class="mb-3 gap-4 justify-center">
                 <h4 class="text-xl font-bold text-black dark:text-white text-center">
                     Data Keuangan
@@ -138,7 +137,7 @@
         <!-- ====== Data Keuangan End -->
 
         <!-- ====== Detail Keuangan Start -->
-        <div
+        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'"
             class="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-5">
             <div class="mb-3 gap-4 justify-center">
                 <h4 class="mb-4 text-xl font-bold text-black dark:text-white text-center">
@@ -256,10 +255,10 @@
             @endif
             <section class="mb-3 gap-4" id="kalender">
                 <h4 class="text-xl font-bold text-black dark:text-white text-center">
-                    Kalender RW 02
+                    Kalender RW 13
                 </h4>
                 <div id="calendar"></div>
-                <button data-modal-target="add-agenda" data-modal-toggle="add-agenda"
+                <button x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" data-modal-target="add-agenda" data-modal-toggle="add-agenda"
                     class="mt-5 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-700 dark:hover:bg-purple-800 dark:focus:ring-purple-800"
                     type="button">
                     Tambah Agenda

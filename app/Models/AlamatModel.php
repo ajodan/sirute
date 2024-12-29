@@ -15,7 +15,8 @@ class AlamatModel extends Model
         'rt',
         'kel',
         'kecamatan',
-        'jalan'
+        'jalan',
+        'norumah'
     ];
 
     public function penduduk(): \Illuminate\Database\Eloquent\Relations\BelongsTo

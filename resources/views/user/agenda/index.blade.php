@@ -8,25 +8,23 @@
             <div class="flex flex-col gap-y-10">
                 <div class="gap-y-2 flex flex-col">
                     <h2 class="text-ungu dark:text-orange-100 font-bold text-3xl sm:text-[50px] leading-none">Informasi
-                        Kegiatan
-                        dan
-                        Agenda
+                        Kegiatan dan Agenda
                     </h2>
                     <h1 class="text-black1 dark:text-purple-500 font-bold text-3xl sm:text-[60px] leading-none">
-                        Warga RW 2
+                        RW 13/Blok C
                     </h1>
                 </div>
             </div>
         </div>
     </section>
     <section class=" max-w-2xl  mx-auto font-sans bg-purple-500 dark:bg-purple-800 p-2 rounded-3xl z-20 relative">
-        <h1 class="text-center font-bold text-3xl leading-tight text-white">Agenda</h1>
+        <h1 class="text-center font-bold text-3xl leading-tight text-white">Kegiatan dan Agenda</h1>
     </section>
 
     <section id="kalender"
         class="grid sm:grid-cols-2 gap-4 max-w-6xl sm:pt-20 mx-auto font-sans pb-12 mb-60 bg-ungu dark:bg-[#37177b] p-10 sm:p-14 rounded-3xl z-20 relative ">
         <div>
-            <h5 class="mx-5 mb-2 text-[20px] font-bold tracking-tight text-white dark:text-white">Kalender Agenda RW 2
+            <h5 class="mx-5 mb-2 text-[20px] font-bold tracking-tight text-white dark:text-white">Kalender Agenda RW 13/Blok C
             </h5>
             <div class="bg-purple-200 dark:bg-[#180248] rounded-xl sm:mx-5 p-5 sm:p-10">
                 <div id="calendar"></div>
@@ -53,7 +51,7 @@
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
-            <ol class="relative border-s border-gray-200 dark:border-gray-700">
+            {{-- <ol class="relative border-s border-gray-200 dark:border-gray-700">
                 <template x-for="item in $store.agenda.data">
                     <li class="mb-10 ms-4">
                         <div
@@ -70,7 +68,7 @@
                             veritati.</p>
                     </li>
                 </template>
-            </ol>
+            </ol> --}}
         </div>
     </section>
     <x-partials.user.agenda.detail />

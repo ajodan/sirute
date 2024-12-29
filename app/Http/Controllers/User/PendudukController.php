@@ -12,9 +12,16 @@ class PendudukController extends Controller
 {
     public function index(Request $request)
     {
-        $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
-            $query->where('rt', auth()->user()->penduduk->alamat->rt);
-        });
+        if(auth()->user()->id_level == 2){
+            $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
+                $query->where('rt', auth()->user()->penduduk->alamat->rt);
+            });
+        } else {
+            $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
+                $query->where('norumah', auth()->user()->penduduk->alamat->norumah);
+            });
+        }
+        
         if ($request->has('s')) {
             $query->where('nama', 'like', '%' . $request->s . '%');
         }
@@ -81,6 +88,11 @@ class PendudukController extends Controller
         // store data
     }
 
+    public function edit_penduduk($nik)
+    {
+        return view('penduduk.edit', compact('nik'));
+    }
+
     public function update(Request $request)
     {
         // update data
@@ -95,6 +107,7 @@ class PendudukController extends Controller
     {
         return view('penduduk.detail', compact('nik'));
     }
+    
 
     public function destroy($nik)
     {

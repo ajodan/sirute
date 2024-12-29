@@ -5,8 +5,7 @@
             <div class="flex flex-col gap-y-10">
 
                 <div class="gap-y-2 flex flex-col">
-                    <h1 class="text-ungu dark:text-orange-100 font-bold text-[30px] sm:text-[50px]  leading-none">Kini Urusan Layanan
-                        
+                    <h1 class="text-ungu dark:text-orange-100 font-bold text-[30px] sm:text-[50px]  leading-none">Kini Urusan Layanan 
                     </h1>
                     <h1 class="text-black1 dark:text-purple-500 font-bold text-[30px] sm:text-[50px]  leading-none">
                         Lebih Cepat dan Mudah!
@@ -26,16 +25,16 @@
                 </h5>
                 <p> Temukan beragam layanan yang kami tawarkan untuk membantu Anda. Dari pelayanan pengurusan data
                     penduduk hingga berbagai kebutuhan perizinan, kami hadir untuk membantu dan mempermudah akses
-                    layanan bagi masyarakat. <br><br></p>
+                    layanan bagi warga RW 013 Blok C Taman Alamanda. <br><br></p>
                 <div class="flex flex-row gap-x-4 items-end">
-                    <a href="#tutorial"
-                        class="hover:bg-indigo-900 dark:hover:bg-purple-700 text-base bg-ungu dark:bg-purple-800 border dark:border-purple-700  text-white py-4 px-10 rounded-lg font-semibold">Cara
-                        Menggunakan layanan</a>
+                    <a href="#"
+                        class="hover:bg-indigo-900 dark:hover:bg-purple-700 text-base bg-ungu dark:bg-purple-800 border dark:border-purple-700  text-white py-4 px-10 rounded-lg font-semibold">
+                        Layanan masih dalam maintenance</a>
                 </div>
             </div>
     </section>
 
-    <section class="row max-w-6xl mx-auto font-sans p-6 py-12">
+    {{-- <section class="row max-w-6xl mx-auto font-sans p-6 py-12">
         <div class="">
             <h5 class="mb-2 text-[20px] font-bold tracking-tight text-gray-900 dark:text-white">Daftar Layanan</h5>
         </div>
@@ -64,9 +63,9 @@
             @endforeach
 
         </div>
-    </section>
+    </section> --}}
 
-    <section id="tutorial"
+    {{-- <section id="tutorial"
         class=" max-w-6xl pt-20 mx-auto font-sans pb-12 mb-60 bg-ungu dark:bg-purple-900 p-7 rounded-3xl z-20 relative ">
         <div class=" items-center justify-between">
             <h5 class="mb-2 text-[20px] font-bold tracking-tight text-white dark:text-white">Cara Menggunakan
@@ -79,5 +78,5 @@
                 4. Setelah berbentuk hard file, antar kepada RW untuk diproses lebih lanjut.
             </h1>
         </div>
-    </section>
+    </section> --}}
 </x-layout.user-layout>
