@@ -14,6 +14,7 @@ class InventarisModel extends Model
         'nama',
         'image',
         'jumlah',
+        'rt',
     ];
 
     public function getImage(): string

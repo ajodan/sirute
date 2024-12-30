@@ -4,7 +4,7 @@
     @click.outside="sidebarToggle = false">
     <!-- SIDEBAR HEADER -->
     <div class="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5">
-        <a href="index.html">
+        <a href="/admin">
             <img :src="darkMode ? '{{ asset('assets/images/logo/logo-dark.png') }}' :
                 '{{ asset('assets/images/logo/logo-dark.png') }}'"
                 width="150px" height="auto" class="duration-300" alt="Logo" />
@@ -33,12 +33,12 @@
                             href="{{ route('admin.dashboard') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('dashboard')) }">
                             <i class="fa-solid fa-house-chimney"></i>
-                            Beranda
+                            Beranda<br>
                         </a>
                     </li>
                     <!-- Menu Item Dashboard -->
 
-                    <h3 x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
+                    <h3 x-show="levelUser === 'Super Admin' || levelUser === 'RW'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
                         Admin</h3>
 
                     <!-- Menu Item Level -->
@@ -67,7 +67,7 @@
                     <!-- Menu Item Level -->
                     <h3 x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="mb-3 mt-4 ml-4 text-sm font-medium text-black dark:text-white duration-300">Menu
                         Penduduk</h3>
-
+<li></li>
                     {{-- Menu Data RT --}}
                     <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
@@ -78,7 +78,7 @@
                     </li>
                    
                     <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
+                        <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark dark:text-white duration-300 ease-in-out hover:text-ungu dark:hover:bg-purple-600"
                             :class="{ 'text-ungu dark:bg-purple-700': (selected == '/admin/penduduk/kk') }"
                             href="{{ route('admin.penduduk.kk') }}"><i class="fa-solid fa-people-group"></i>
                             Daftar KK
@@ -133,7 +133,7 @@
                             href="{{ route('admin.data-umkm') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('data-umkm')) }">
                             <i class="fa-solid fa-shop"></i>
-                            Data UMKM
+                            UMKM
                         </a>
                     </li>
 
@@ -311,7 +311,7 @@
                     </li>
 
                     {{-- Menu Report Data --}}
-                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
+                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="{{ route('admin.report-data') }}"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('report-data')) }">

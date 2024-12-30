@@ -28,27 +28,29 @@
 
                     <!-- Modal body Form -->
                     <div class="p-4 md:p-5 space-y-4 overflow-y-auto max-h-[50vh]">
-                        <label for="no-kk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="no-kk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
                             KK</label>
-                        <div class="relative mb-6">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="relative mb-6">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <i class="fa-solid fa-hashtag"></i>
                             </div>
-                            <input autocomplete="off" required name="no_kk" type="text" list="listKK"
+                           
+                            <input x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" autocomplete="off" required name="no_kk" type="text" list="listKK"
                                 id="no-kk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukkan No KK">
-                                <datalist id="listKK">
+                                <datalist id="listKK" >
                                     @foreach ($kk as $item)
                                         <option value="{{ $item->no_kk }}">{{ $item->no_kk }}</option>
                                     @endforeach
                                 </datalist>
+                            
                         </div>
 
-                        <label for="nik"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="nik"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIK</label>
                         <div class="flex">
-                            <span
+                            <span x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'"
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -56,14 +58,14 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input required name="nik" type="text" id="nik"
+                            <input x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" required x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="nik" type="text" id="nik"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="NIK">
                         </div>
 
-                        <label for="nama"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                        <div class="flex">
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="nama"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Lengkap</label>
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -72,14 +74,14 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input required name="nama" type="text" id="nama"
+                            <input x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" required x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="nama" type="text" id="nama"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Nama">
                         </div>
 
-                        <label for="tempat-lahir"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="tempat-lahir"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tempat Lahir</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -88,15 +90,15 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input name="tempat_lahir" type="text" id="tempat-lahir"
+                            <input x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="tempat_lahir" type="text" id="tempat-lahir"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Malang">
+                                placeholder="Bekasi">
                         </div>
 
-                        <label for="tgl-lahir"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="tgl-lahir"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                             Lahir</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -105,38 +107,36 @@
                                         d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                                 </svg>
                             </span>
-                            <input required name="tgl_lahir" type="date" id="tgl-lahir"
+                            <input required x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="tgl_lahir" type="date" id="tgl-lahir"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Malang">
+                                placeholder="Tanggal Lahir">
                         </div>
 
-                        <label for="jenis-kelamin"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="jenis-kelamin"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="jenis-kelamin" required
+                        <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="jenis_kelamin" id="jenis-kelamin" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled value>Pilih Jenis Kelamin</option>
                             <option value="Laki-Laki">Laki Laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
 
-                        <label for="agama"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="agama"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                        <select name="agama" id="agama" required
+                        <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="agama" id="agama" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled value>Pilih Agama</option>
                             <option value="Islam">Islam</option>
-                            <option value="Kristen Protestan">Kristen Protestan</option>
+                            <option value="Kristen">Kristen</option>
                             <option value="Katholik">Katholik</option>
                             <option value="Hindu">Hindu</option>
                             <option value="Budha">Budha</option>
                             <option value="Konghucu">Konghucu</option>
                         </select>
-
-
-                        <label for="status-perkawinan"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="status-perkawinan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
                             Perkawinan</label>
-                        <select name="status_perkawinan" id="status-perkawinan" required
+                        <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="status_perkawinan" id="status-perkawinan" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled value>-- Pilih Status --</option>
                             <option value="Kawin">Kawin</option>
@@ -144,9 +144,10 @@
                             <option value="Cerai">Cerai</option>
                             <option value="Cerai Mati">Cerai Mati</option>
                         </select>
-                        <label for="hub-kk"
+
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="hub-kk"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hubungan Keluarga</label>
-                    <select name="hub_kk" id="hub_kk" required
+                    <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="hub_kk" id="hub_kk" required
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected disabled value>-- Pilih Hubungan Keluarga --</option>
                         <option value="Kepala Keluarga">Kepala Keluarga</option>
@@ -161,9 +162,9 @@
                         <option value="Pembantu">Pembantu</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
-                        <label for="pekerjaan"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="pekerjaan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pekerjaan</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -176,25 +177,9 @@
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Pekerjaan">
                         </div>
-                        <label for="pendidikan"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="pendidikan"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pendidikan Terakhir</label>
-                    <select name="pendidikan" id="pendidikan" required
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected disabled value>-- Pilih Pendidikan --</option>
-                        <option value="Tidak/Belum Sekolah">Tidak/Belum Sekolah</option>
-                        <option value="Belum Tamat SD/Sederajat">Belum Tamat SD/Sederajat</option>
-                        <option value="Sudah Tamat SD/Sederajat">Sudah Tamat SD/Sederajat</option>
-                        <option value="Belum Tamat SLTP/Sederajat">Belum Tamat SLTP/Sederajat</option>
-                        <option value="SLTP/Sederajat">SLTP/Sederajat</option>
-                        <option value="Belum Tamat SLTA/Sederajat">Belum Tamat SLTA/Sederajat</option>
-                        <option value="SLTA/Sederajat">SLTA/Sederajat</option>
-                        <option value="Diploma I/II">Diploma I/II</option>
-                        <option value="Akademi/Diploma III/Sarjana Muda">Akademi/Diploma III/Sarjana Muda</option>
-                        <option value="Diploma IV/Strata I">Diploma IV/Strata I</option>
-                        <option value="Strata II">Strata II</option>
-                        <option value="Strata III">Strata III</option>
-                    </select>
-                        <label for="gol-darah"
+                   <label for="gol-darah"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan
                             Darah</label>
                         <div class="flex">
@@ -211,10 +196,10 @@
                                 placeholder="Golongan Darah">
                         </div>
 
-                        <label for="status-penduduk"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="status-penduduk"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
                             Penduduk</label>
-                        <select name="status_penduduk" id="status-penduduk" required
+                        <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="status_penduduk" id="status-penduduk" required
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled value>-- Pilih Status --</option>
                             <option value="Pendatang">Pendatang</option>
@@ -223,9 +208,9 @@
 
                         <hr class="h-1 my-13 bg-gray-200 rounded border-0 dark:bg-gray-3">
 
-                        <label for="kel"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="kel"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Desa</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -239,9 +224,9 @@
                                 placeholder="Desa">
                         </div>
 
-                        <label for="kecamatan"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="kecamatan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kecamatan</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -255,9 +240,9 @@
                                 placeholder="Kecamatan">
                         </div>
 
-                        <label for="jalan"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="jalan"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalan/Blok</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -271,9 +256,9 @@
                                 placeholder="Jalan/Blok">
                         </div>
 
-                        <label for="rt"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="rt"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT</label>
-                    <select name="rt" id="rt" required
+                    <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="rt" id="rt" required
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected disabled value>-- Pilih RT --</option>
                         <option value="1">RT 01</option>
@@ -281,9 +266,9 @@
                         <option value="3">RT 03</option>
                         <option value="4">RT 04</option>
                     </select>
-                    <label for="norumah"
+                    <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="norumah"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blok/No. Rumah Domisili</label>
-                <div class="flex">
+                <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                     <span
                         class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -297,9 +282,9 @@
                         placeholder="Blok/Nomor Rumah">
                 </div>
 
-                        <label for="rw"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="rw"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RW</label>
-                        <div class="flex">
+                        <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="flex">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -344,9 +329,9 @@
 
                         </div>
 
-                        <label for="status_dasar"
+                        <label x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" for="status_dasar"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Dasar</label>
-                    <select name="status_dasar" id="status_dasar" required
+                    <select x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" name="status_dasar" id="status_dasar" required
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected disabled value>-- Pilih Status Dasar --</option>
                         <option value="Hidup">Hidup</option>

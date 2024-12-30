@@ -154,8 +154,8 @@
                     <ul class="ml-[-25px] flex flex-wrap">
                         <li class="mb-[50px] pl-[25px] w-full sm:w-1/5 block">
                             <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-purple-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-purple-500 dark:text-purple-400 font-extrabold data-penduduk"
+                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
+                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
                                     data-penduduk-total="{{ $totalPenduduk }}">
                                 </h3>
                                 <span
@@ -165,8 +165,8 @@
                         </li>
                         <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
                             <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-purple-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-purple-500 dark:text-purple-400 font-extrabold data-penduduk"
+                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
+                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
                                     data-penduduk-total="{{ $totalPendudukLaki }}">
                                 </h3>
                                 <span
@@ -176,8 +176,8 @@
                         </li>
                         <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
                             <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-purple-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-purple-500 dark:text-purple-400 font-extrabold data-penduduk"
+                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
+                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
                                     data-penduduk-total="{{ $totalPendudukPerempuan }}">
                                 </h3>
                                 <span
@@ -186,8 +186,8 @@
                         </li>
                         <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
                             <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-purple-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-purple-500 dark:text-purple-400 font-extrabold data-penduduk"
+                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
+                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
                                     data-penduduk-total="{{ $totalPendudukTetap }}">
                                 </h3>
                                 <span
@@ -197,8 +197,8 @@
                         </li>
                         <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
                             <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-purple-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-purple-500 dark:text-purple-400 font-extrabold data-penduduk"
+                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
+                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
                                     data-penduduk-total="{{ $totalPendudukPendatang }}">
                                 </h3>
                                 <span
@@ -244,11 +244,11 @@
                                     <p class="text-gray-500 pb-2">RT {{ $item->rt }}</p>
                                     <div class="bg-purple-200 grow relative h-2.5 w-full rounded-2xl">
                                         <div data-persentase="{{ $item->persentase }}"
-                                            class="bar-data-rt bg-purple-500 dark:bg-purple-700 absolute top-0 left-0 h-full rounded-2xl transition-all ease-in-out duration-1000 w-1">
+                                            class="bar-data-rt bg-green-500 dark:bg-green-700 absolute top-0 left-0 h-full rounded-2xl transition-all ease-in-out duration-1000 w-1">
                                             <span
-                                                class="bg-purple-500 dark:bg-purple-700 absolute -right-4 bottom-full mb-2 rounded-sm px-3.5 py-1 text-sm text-white">
+                                                class="bg-green-500 dark:bg-green-700 absolute -right-4 bottom-full mb-2 rounded-sm px-3.5 py-1 text-sm text-white">
                                                 <span
-                                                    class="bg-purple-500 dark:bg-purple-700 absolute bottom-[-2px] left-1/2 -z-10 h-2 w-2 -translate-x-1/2 rotate-45 rounded-sm"></span>
+                                                    class="bg-green-500 dark:bg-green-700 absolute bottom-[-2px] left-1/2 -z-10 h-2 w-2 -translate-x-1/2 rotate-45 rounded-sm"></span>
                                                 {{ $item->persentase }}%
                                             </span>
                                         </div>
@@ -523,11 +523,11 @@
                             <form action="{{ route('user.aspirasi.store') }}" class="max-w-sm" method="post">
                                 @csrf
                                 <textarea name="aspirasi" id="message" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-[#37177b] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-grren-500 focus:border-green-500 dark:bg-[#37177b] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                                     placeholder="Tulis aspirasi disini..."></textarea>
 
                                 <button type="submit"
-                                    class="   my-2 text-white hover:bg-indigo-900  bg-kuning focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-400 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Kirim
+                                    class="   my-2 text-white hover:bg-indigo-900  bg-kuning focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-400 dark:hover:bg-green-700 dark:focus:ring-green-800">Kirim
                                     Aspirasi</button>
                             </form>
                         </div>

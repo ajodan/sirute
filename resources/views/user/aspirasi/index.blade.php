@@ -7,7 +7,7 @@
                         <h1 class="text-ungu dark:text-orange-100 font-bold text-[40px] sm:text-[60px]  leading-none">Aduan Aspirasi dan Masukan
                         </h1>
                         <h1 class="text-black1 dark:text-purple-500 font-bold text-[20px] sm:text-[40px]  leading-none">
-                            Untuk membangun kesejahteraaan lingkungan
+                            Untuk membangun kemajuan dan perkembangan lingkungan
                         </h1>
                     </div>
                 </div>
@@ -26,14 +26,14 @@
                                 <div
                                     class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 bg-purple-300 rounded-e-xl rounded-es-xl dark:bg-[#37177b]">
                                     <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Author :
+                                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Pengirim Pesan :
                                         </span>
                                         <span
-                                            class="text-sm font-semibold text-gray-900 dark:text-white">{{ $item->author }}</span>
+                                            class="text-sm font-semibold text-gray-900 dark:text-white">{{ $item->penduduk->nama }}</span>
                                     </div>
 
                                     <span
-                                        class="text-sm font-normal text-start text-gray-500 dark:text-gray-400">Pesan
+                                        class="text-sm font-normal text-start text-gray-500 dark:text-gray-400">Isi Pesan
                                         :
                                     </span>
                                     <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">

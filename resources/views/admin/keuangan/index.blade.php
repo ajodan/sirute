@@ -53,13 +53,16 @@
                             No KK
                         </th>
                         <th scope="col" class="px-6 py-3 ">
-                            Iuran
+                            Jumlah Iuran
                         </th>
                         <th scope="col" class="px-6 py-3 ">
-                            Alamat
+                            Alamat 
+                        </th>
+                        <th scope="col" class="px-6 py-3 ">
+                            Keterangan 
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -77,7 +80,11 @@
                                 {{ $item->jumlah }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $item->kk->kepalaKeluarga->alamat->jalan . ' RT' . $item->kk->kepalaKeluarga->alamat->rt . ' RW' . $item->kk->kepalaKeluarga->alamat->rw . ' Kelurahan ' . $item->kk->kepalaKeluarga->alamat->kel . ' Kecamatan ' . $item->kk->kepalaKeluarga->alamat->kecamatan }}
+                                {{ $item->kk->kepalaKeluarga->alamat->jalan . ' RT' . $item->kk->kepalaKeluarga->alamat->rt . ' RW' . $item->kk->kepalaKeluarga->alamat->rw }}
+                                {{-- {{ $item->kk->kepalaKeluarga->alamat->jalan . ' RT' . $item->kk->kepalaKeluarga->alamat->rt . ' RW' . $item->kk->kepalaKeluarga->alamat->rw . ' Kelurahan ' . $item->kk->kepalaKeluarga->alamat->kel . ' Kecamatan ' . $item->kk->kepalaKeluarga->alamat->kecamatan }} --}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->keterangan }}
                             </td>
                             <td class="px-6 py-4 flex gap-2">
                                 <a href="{{ route('admin.keuangan.detail', $item->no_kk) }}">

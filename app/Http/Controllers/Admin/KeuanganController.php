@@ -143,6 +143,7 @@ class KeuanganController extends Controller
         DB::transaction(function () use ($request) {
             $keuangan = new KeuanganModel();
             $keuangan->jumlah = $request->jumlah;
+            $keuangan->keterangan = $request->keterangan;
             $keuangan->no_kk = $request->no_kk;
             $keuangan->save();
         });

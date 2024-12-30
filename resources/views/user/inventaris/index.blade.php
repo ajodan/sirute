@@ -7,7 +7,7 @@
                         sesuatu?
                     </h1>
                     <h1 class="text-black1 dark:text-purple-500 font-bold text-4xl sm:text-[70px] leading-none">
-                        Pinjam Saja Ke Pak RW!
+                        Pinjam Saja Ke Pak RT!
                     </h1>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="p-5">
                 <h5 class="mb-2 text-[20px] font-bold tracking-tight text-gray-900 dark:text-white">Informasi Inventaris
                 </h5>
-                <p> Temukan beragam Inventaris milik kita yang dapat dipinjam untuk membantu kebutuhan anda ataupun
+                <p> Temukan beragam Inventaris milik RT/RW yang dapat dipinjam untuk membantu kebutuhan anda ataupun
                     keperluan bersama. Inventaris yang tersedia bersumber dari dana Kas warga yang setiap pengeluarannya
                     di setujui oleh warga, maka gunakanlah inventaris kita sebaik mungkin. <br><br></p>
                 <div class="flex flex-row gap-x-4 items-end">
@@ -61,7 +61,7 @@
                                 <div class="absolute item-center bottom-0 right-0 px-6 py-4">
                                     <button data-modal-target="pinjam-inventaris" data-modal-toggle="pinjam-inventaris"
                                         onclick="showpinjam({{ $item }})"
-                                        class="text-sm sm:text-lg ml-auto bg-purple-600 hover:bg-purple-800 dark:bg-purple-700 dark:hover:bg-purple-900 text-white px-4 py-2 rounded-lg">Pinjam</button>
+                                        class="text-sm sm:text-lg ml-auto bg-purple-600 hover:bg-purple-800 dark:bg-purple-700 dark:hover:bg-purple-900 text-white px-4 py-2 rounded-lg">Pinjam Inventaris</button>
                                 </div>
                             </div>
                         </div>
@@ -76,10 +76,10 @@
         <div class=" items-center justify-between">
             <h5 class="mb-2 text-[20px] font-bold tracking-tight text-white dark:text-white">Mekanisme Peminjaman</h5>
             <h1 class="leading-loose text-white dark:text-white">
-                1. Klik tombol pinjam. <br>
-                2. Isi jumlah barang yang diperlukan. <br>
-                3. Tunggu hingga mendapat pemberitahuan bahwa peminjaman telah di setujui oleh Admin. <br>
-                4. Datang ke rumah Pak RW untuk mengambil barang.
+                1. Klik tombol Pinjam Inventaris. <br>
+                2. Isi jumlah barang inventaris yang diperlukan. <br>
+                3. Tunggu hingga mendapat pemberitahuan bahwa peminjaman inventaris telah di setujui oleh Pengurus RT/RW. <br>
+                4. Datang ke rumah/pos RT untuk mengambil barang inventaris yang diperlukan.
             </h1>
         </div>
     </section>

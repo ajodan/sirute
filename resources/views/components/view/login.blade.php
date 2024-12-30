@@ -1,16 +1,12 @@
 <x-layout.form-login-layout>
     <div class="sm:grid grid-cols-2 h-screen">
         <div class="hidden sm:flex justify-center items-center bg-transparent col-span-1">
-            <div class="absolute z-[-1] h-screen w-screen bg-purple-400" id="particles-js"></div>
+            <div class="absolute z-[-1] h-screen w-screen bg-green-400" id="particles-js"></div>
             <div class="text-right pr-20 pl-20 ">
-                <h2 class="text-5xl font-extrabold font-sans text-white mb-5 uppercase">LOGIN<span
-                        class="text-indigo-700"> SIRUTE RW 13</span>
+                <h2 class="text-5xl font-extrabold font-sans text-white mb-5 uppercase">LAYANAN MANDIRI<span
+                        class="text-indigo-700">  SIRUTE</span>
                 </h2>
-                {{-- <p class="text-white text-lg mb-9">Selamat datang di Portal Web RW 02, tempat di mana Anda dapat
-                    mengakses berbagai layanan dan informasi terkait dengan lingkungan dan kegiatan komunitas di RW 02.
-                    Portal ini menyediakan akses mudah dan cepat bagi warga untuk terhubung, berkomunikasi, dan
-                    terinformasi tentang berbagai kegiatan dan inisiatif yang sedang berlangsung di sekitar lingkungan
-                    kita.</p> --}}
+                <p class="text-white text-lg mb-7">Untuk mendapatkan akses Sistem Informasi Rukun Tetangga (SIRuTe) RW 13, <br>Silakan klik <a href="https://wa.me/6281314408686" target="_blank" class="btn btn-success"><b>Hubungi Admin</b></a></p>
                 <a href="{{ route('user.home') }}">
                     <button type="button"
                         class="text-white hover:text-indigo-700 hover:bg-white bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-white font-medium text-base px-8 py-2.5 text-center me-2 mb-2 ">
@@ -21,29 +17,29 @@
         <div class="sm:py-0 py-20 flex justify-center items-center bg-white col-span-1" x-data="{ page: 'penduduk' }">
             <form class="w-full sm:pl-20 sm:pr-24 sm:px-0 px-10" action="{{ route('auth') }}" method="POST">
                 @csrf
-                <h1 class="text-3xl font-sans font-medium text-purple-500 mb-2">LOGIN</h1>
+                <h1 class="text-3xl font-sans font-medium text-purple-500 mb-2">LOGIN LAYANAN MANDIRI</h1>
                 {{-- <h3 class="text-2xl font-sans font-normal capitalize mb-8">Masuk ke akun anda</h3> --}}
 
                 <div class="mb-5">
-                    <label for="username" class="block mb-2 text-lgfont-medium text-gray-900 dark:text-white">
+                    <label for="username" class="block mb-2 text-lgfont-medium text-green-900 dark:text-white">
                         Username</label>
                     <input type="text" id="username"
-                        class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        class="shadow-sm bg-white border border-green-300 text-gray-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         placeholder="NIK" required name="username" />
                 </div>
                 <div class="mb-5">
-                    <label for="password" class="block mb-2 text-lgfont-medium text-gray-900 dark:text-white">
+                    <label for="password" class="block mb-2 text-lgfont-medium text-green-900 dark:text-white">
                         Password</label>
                     <input type="password" id="password"
-                        class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        class="shadow-sm bg-white border border-green-300 text-green-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         placeholder="Password" name="password" required />
                 </div>
                 <div class="flex items-center mb-5 mt-4">
                     <div class="flex items-center h-5">
                         <input id="terms" type="checkbox" value="true" name="remember"
-                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+                            class="w-4 h-4 border border-green-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                     </div>
-                    {{-- <label for="terms" class="ms-2 text-base font-medium  text-gray-900 dark:text-gray-300">Remember
+                    {{-- <label for="terms" class="ms-2 text-base font-medium  text-green-900 dark:text-gray-300">Remember
                         me</label> --}}
                 </div>
                 @error('message')

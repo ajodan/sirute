@@ -51,6 +51,18 @@
                                 placeholder="Masukkan Nominal">
                         </div>
 
+                        <label for="keterangan"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                        <div class="relative mb-6">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-solid fa-hashtag"></i>
+                            </div>
+                            <input  autocomplete="off" required name="keterangan" maxlength="255" type="text"
+                                id="keterangan"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukkan Keterangan Pembayaran">
+                        </div>
+
                         <!-- Modal footer -->
                         <div
                             class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

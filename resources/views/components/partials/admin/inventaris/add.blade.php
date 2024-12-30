@@ -43,6 +43,19 @@
                             <input autocomplete="off" required name="jumlah" type="text" id="jumlah" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Masukkan jumlah">
                         </div>
 
+                        <label for="rt" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT</label>
+                        <div class="relative mb-6">
+                            <select name="rt" id="rt" required
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled value>Pilih RT</option>
+                            <option {{ old('rt') == '1' ? 'selected' : '' }} value="1">RT 01</option>
+                            <option {{ old('rt') == '2' ? 'selected' : '' }} value="2">RT 02</option>
+                            <option {{ old('rt') == '3' ? 'selected' : '' }} value="3">RT 03</option>
+                            <option {{ old('rt') == '4' ? 'selected' : '' }} value="4">RT 04</option>
+                        </select>
+                        </div>
+
+                       
                         <!-- Modal footer -->
                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 dark:bg-purple-700 dark:hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-purple-800">Tambah Barang</button>
@@ -60,6 +73,6 @@
         form.querySelector('input[name="id_inventaris"]').value = e.id_inventaris;
         form.querySelector('input[name="nama"]').value = e.nama;
         form.querySelector('input[name="jumlah"]').value = e.jumlah;
-
+        form.querySelector('input[name="rt"]').value = e.rt;
     }
 </script>

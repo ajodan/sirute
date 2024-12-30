@@ -1,6 +1,6 @@
 <x-layout.admin-layout>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-4">
+    <div x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'" class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-4">
         <!-- Card Item Start -->
         <div
             class="rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -169,7 +169,7 @@
         <div
             class="overflow-hidden col-span-12 rounded-sm border border-gray-200 bg-white py-6 shadow-default dark:border-gray-700 dark:bg-gray-800 xl:col-span-6 xl:h-[650px]">
             <h4 class="mb-4 px-7.5 text-xl font-bold text-black dark:text-white text-center">
-                Agenda RW
+                Agenda RT/RW
             </h4>
             <div class="overflow-auto h-[550px] p-5">
                 <div x-show="$store.agenda.data.length === 0">

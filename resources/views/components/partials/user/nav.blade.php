@@ -79,7 +79,7 @@
             @guest
                 <div class="py-1">
                     <a href="{{ route('login') }}"
-                        class="block px-5 py-2 mr-5 bg-indigo-950 dark:bg-purple-400 rounded-full text-white">Login</a>
+                        class="block px-5 py-2 mr-5 bg-indigo-950 dark:bg-purple-400 rounded-full text-white">Layanan Mandiri</a>
                 </div>
             @endguest
             @auth
@@ -91,8 +91,8 @@
                                 class="block text-xs font-medium text-black dark:text-white">{{ $level == 'RT' ? 'Ketua ' . $level : $level }}</span>
                         </span>
 
-                        <img src="{{ auth()->user()->penduduk->foto_profile() }}" alt="User"
-                            class="h-12 w-12 rounded-full object-cover" />
+                        <img src="{{ auth()->user()->penduduk->foto_profile() }}" alt="Photo Penduduk"
+                            class="h-12 w-12 square-full object-cover" />
 
                         <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block dark:text-white"
                             width="12" height="8" viewBox="0 0 12 8" fill="none"
@@ -111,7 +111,7 @@
                                 <a href="{{ route('admin.dashboard') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa-solid fa-toolbox w-[22px]"></i>
-                                    Admin
+                                    Internal
                                 </a>
                             </li>
                             <li>
@@ -200,46 +200,48 @@
                 class="font-medium flex flex-col md:items-center p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
                 <li>
                     <a href="{{ route('user.home') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent"
                         aria-current="page"
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('home')) }">Beranda</a>
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('home')) }">Beranda</a>
+                </li>
+                
+                <li>
+                    <a href="{{ route('user.berita') }}"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('berita')) }">Berita</a>
                 </li>
                 <li>
                     <a href="{{ route('user.penduduk') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent"
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('penduduk')) }">Penduduk</a>
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent"
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('penduduk')) }">Penduduk</a>
                 </li>
-                <li>
-                    <a href="{{ route('user.berita') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('berita')) }">Berita</a>
+               
+                </li><a href="{{ route('user.umkm') }}"
+                        class="block py-2 px-3 text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('umkm')) }">UMKM</a>
                 </li>
                 <li>
                     <a href="{{ route('user.agenda') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('agenda')) }">Agenda</a>
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('agenda')) }">Agenda</a>
+                <li>
+                    <a href="{{ route('user.inventaris') }}"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('inventaris')) }">Inventaris</a>
                 </li>
+
                 <li>
                     <a href="{{ route('user.aspirasi') }}"
-                        class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
+                        class="block py-2 px-3 text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
                 </li>
-                {{--  <li
-                    <a href="{{ route('user.umkm') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('umkm')) }">UMKM</a>
-                </li>
-                 <li>
-                    <a href="{{ route('user.inventaris') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('inventaris')) }">Inventaris</a>
-                </li>
-                <li>
+                
+                {{-- <li>
                     <a href="{{ route('user.layanan') }}"
-                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
-                        :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('layanan')) }">Layanan</a>
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent "
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('layanan')) }">Layanan</a>
                 </li> --}}
-                <li>
+                {{-- <li>
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropDownLinkLainnya"
                         class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 md:w-auto dark:text-purple-400 md:dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Lainnya
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -252,34 +254,34 @@
                         class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#1c123d] dark:divide-purple-600">
                         <ul class="p-4 text-sm text-purple-700 dark:text-purple-400"
                             aria-labelledby="dropdownLargeButton">
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('user.agenda') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                                    :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('agenda')) }">Agenda</a>
-                            </li> --}}
+                                    :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('agenda')) }">Agenda</a>
+                            </li> 
                             <li>
                                 <a href="{{ route('user.umkm') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                                    :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('umkm')) }">UMKM</a>
+                                    :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('umkm')) }">UMKM</a>
                             </li>
                             <li>
                                 <a href="{{ route('user.inventaris') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                                    :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('inventaris')) }">Inventaris</a>
+                                    :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('inventaris')) }">Inventaris</a>
                             </li>
                             <li>
                                 <a href="{{ route('user.layanan') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                                    :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('layanan')) }">Layanan</a>
+                                    :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('layanan')) }">Layanan</a>
                             </li>
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('user.aspirasi') }}"
                                     class="block px-4 !py-2 text-sm text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                                    :class="{ 'text-purple-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
-                            </li> --}}
+                                    :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
+                            </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

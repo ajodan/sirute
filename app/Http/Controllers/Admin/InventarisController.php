@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\InventarisModel;
 use App\Models\PeminjamanModel;
+use App\Models\PendudukModel;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,9 @@ class InventarisController extends Controller
 
     public function index()
     {
-        $inventaris = InventarisModel::orderBy('created_at', 'desc')->get();
+        $rt = auth()->user()->penduduk->alamat->rt;
+        $inventaris = InventarisModel::where('rt', $rt)->get();
+      //$inventaris = InventarisModel::orderBy('created_at', 'desc')->get();
 
         return view("admin.inventaris", compact("inventaris"));
     }
@@ -44,12 +47,14 @@ class InventarisController extends Controller
         $request->validate([
             'nama' => 'required|string|max:20',
             'jumlah' => 'required',
+
         ]);
         DB::transaction(function () use ($request) {
             $layanan = new InventarisModel();
             $layanan->nama = $request->nama;
             $layanan->image = $request->image->hashName();
             $layanan->jumlah = $request->jumlah;
+            $layanan->rt = $request->rt;
             $layanan->save();
             $image = $request->file('image');
             $image->store('inventaris', 'public');
@@ -77,6 +82,7 @@ class InventarisController extends Controller
             }
             $inventaris->nama = $request->nama;
             $inventaris->jumlah = $request->jumlah;
+            $inventaris->rt = $request->rt;
             $inventaris->save();
         });
         return redirect()->route('admin.inventaris')->with('success', 'Data berhasil diubah');
