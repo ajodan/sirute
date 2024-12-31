@@ -2,15 +2,16 @@
     <div class="sm:grid grid-cols-2 h-screen">
         <div class="hidden sm:flex justify-center items-center bg-transparent col-span-1">
             <div class="absolute z-[-1] h-screen w-screen bg-green-400" id="particles-js"></div>
-            <div class="text-right pr-20 pl-20 ">
+            <div class="text-center pr-20 pl-20 ">
                 <h2 class="text-5xl font-extrabold font-sans text-white mb-5 uppercase">LAYANAN MANDIRI<span
                         class="text-indigo-700">  SIRUTE</span>
                 </h2>
-                <p class="text-white text-lg mb-7">Untuk mendapatkan akses Sistem Informasi Rukun Tetangga (SIRuTe) RW 13, <br>Silakan klik <a href="https://wa.me/6281314408686" target="_blank" class="btn btn-success"><b>Hubungi Admin</b></a></p>
+                <p class="text-white text-lg mb-7">Warga dapat membuat Permohonan Surat Keterangan, UMKM, Peminjaman Inventaris dan Aspirasi/Pengaduan melalui Website RW.
+                    Silakan hubungi Administrator untuk pengaktifan dan mendapatkan kode PIN. <br>Untuk mendapatkan akses ke layanan. Silakan klik <a href="https://wa.me/6281314408686" target="_blank" class="btn btn-success"><b>Hubungi Admin</b></a></p>
                 <a href="{{ route('user.home') }}">
                     <button type="button"
                         class="text-white hover:text-indigo-700 hover:bg-white bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-white font-medium text-base px-8 py-2.5 text-center me-2 mb-2 ">
-                        Beranda</button>
+                        Halaman Website</button>
                 </a>
             </div>
         </div>

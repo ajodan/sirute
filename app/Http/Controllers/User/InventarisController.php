@@ -13,7 +13,9 @@ class InventarisController extends Controller
 {
     public function index()
     {
-        $inventaris = InventarisModel::all();
+        $rt = auth()->user()->penduduk->alamat->rt;
+        $inventaris = InventarisModel::where('rt', $rt)->get();
+      //  $inventaris = InventarisModel::all();
         return view('user.inventaris.index', compact('inventaris'));
     }
 
