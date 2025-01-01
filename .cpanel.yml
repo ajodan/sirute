@@ -6,4 +6,4 @@ deployment:
     - /bin/cp -R resources $DEPLOYPATH
     - /bin/cp -R routes $DEPLOYPATH
     - /bin/cp -R public $DEPLOYPATH
-    
+  
