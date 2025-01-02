@@ -23,6 +23,8 @@
     <script src="{{ asset('assets/js/flowbite.min.js') }}"></script>
     <script defer src="https://unpkg.com/tailwindcss-intersect@1.x.x/dist/observer.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" /> --}}
+    
 </head>
 
 <body class="bg-[#f1f4f5]"x-data="{ 'darkMode': true, loading: true }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
@@ -68,7 +70,9 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
     </div>
     {{ $slot }}
     <x-partials.user.footer />
+    {{-- <script src="{{ asset('assets/js/app.js') }}"></script> --}}
 </body>
+
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.directive('log', (el, {
