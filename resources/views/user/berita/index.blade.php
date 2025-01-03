@@ -127,7 +127,7 @@
                         <h5 class="font-bold text-lg uppercase text-gray-700 dark:text-gray-100 mb-2"> Pentingnya Berita
                             RW 13 </h5>
                         <p class="text-gray-600 dark:text-gray-300">
-                            Berita memiliki peran yang sangat penting di RW 13 Taman Alamanda karena menjadi sumber informasi
+                            Berita memiliki peran yang sangat penting di lingkungan RW 13 Taman Alamanda, karena menjadi sumber informasi
                             utama bagi warga untuk mengetahui berbagai peristiwa, kegiatan, dan kebijakan yang terjadi
                             di lingkungan. Dengan adanya berita, warga dapat tetap terinformasi tentang hal-hal
                             penting seperti keamanan, lingkungan, dan acara sosial di sekitar lingkungan, yang pada gilirannya
