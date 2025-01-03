@@ -125,18 +125,14 @@
                     {{-- * subscribe * --}}
                     <div class="p-1 mt-4 mb-4">
                         <h5 class="font-bold text-lg uppercase text-gray-700 dark:text-gray-100 mb-2"> Pentingnya Berita
-                            RW
-                            02 </h5>
+                            RW 13 </h5>
                         <p class="text-gray-600 dark:text-gray-300">
-                            Berita memiliki peran yang sangat penting di RW 02 Arjosari karena menjadi sumber informasi
+                            Berita memiliki peran yang sangat penting di RW 13 Taman Alamanda karena menjadi sumber informasi
                             utama bagi warga untuk mengetahui berbagai peristiwa, kegiatan, dan kebijakan yang terjadi
-                            di
-                            lingkungan mereka. Dengan adanya berita, warga dapat tetap terinformasi tentang hal-hal
-                            penting
-                            seperti keamanan, lingkungan, dan acara sosial di sekitar mereka, yang pada gilirannya
+                            di lingkungan. Dengan adanya berita, warga dapat tetap terinformasi tentang hal-hal
+                            penting seperti keamanan, lingkungan, dan acara sosial di sekitar lingkungan, yang pada gilirannya
                             memungkinkan mereka untuk berpartisipasi aktif dalam kehidupan komunitas dan membuat
-                            keputusan
-                            yang lebih baik untuk kesejahteraan bersama.
+                            keputusan yang lebih baik untuk kesejahteraan bersama.
                         </p>
                     </div>
                 </div>
