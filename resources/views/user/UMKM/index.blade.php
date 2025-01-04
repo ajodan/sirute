@@ -4,8 +4,8 @@
             style="background-image: url(/assets/images/illustration/umkm-1.webp);">
             <div
                 class="header-content absolute flex flex-col items-end gap-6 max-w-[50%] bottom-[10%] right-[6vw] animate-fadein3s">
-                <h2 class="font-medium text-right text-white text-5xl leading-tight">UMKM Warga RW 13</h2>
-                <p class="text-sm text-right text-white">UMKM (Usaha Mikro, Kecil, dan Menengah) adalah sektor usaha yang memainkan peran penting dalam perekonomian, khususnya di Indonesia. UMKM meliputi berbagai jenis usaha, mulai dari usaha mikro yang berskala kecil hingga usaha menengah yang memiliki skala lebih besar tetapi belum termasuk kategori perusahaan besar.</p>
+                <h2 class="font-medium text-right text-blue text-5xl leading-tight">UMKM Warga RW 13</h2>
+                <p class="text-sm text-right text-blue">UMKM (Usaha Mikro, Kecil, dan Menengah) adalah sektor usaha yang memainkan peran penting dalam perekonomian, khususnya di Indonesia. UMKM meliputi berbagai jenis usaha, mulai dari usaha mikro yang berskala kecil hingga usaha menengah yang memiliki skala lebih besar tetapi belum termasuk kategori perusahaan besar.</p>
             </div>
         </div>
     </section>
