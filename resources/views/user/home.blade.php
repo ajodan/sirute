@@ -78,10 +78,10 @@
                                 class="font-extrabold text-3xl sm:text-5xl leading-tight pb-4 sm:pb-2 text-gray-600 dark:text-white">
                                 Ketua Rukun Warga
                             </h1>
-                            {{-- <div class="text-sm sm:text-base sm:mt-3 leading-loose text-gray-500 dark:text-paragraf">
+                            <div class="text-sm sm:text-base sm:mt-3 leading-loose text-gray-500 dark:text-paragraf">
                                 "Kepengurusan RW 13 Blok C Taman Alamanda" mencantumkan ketua RW dan RT, untuk memudahkan warga
                                 dalam berkomunikasi dan berkoordinasi dengan pengurus RW dan RT.
-                            </div> --}}
+                            </div>
                         </div>
                         <div class="block sm:hidden">
                             <div class="flex mt-5 relative group ">
