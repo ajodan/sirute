@@ -233,7 +233,7 @@
                             <td class="px-6 py-4 hidden sm:table-cell">
                                 {{ $item->no_hp }}
                             </td>
-                            <td class="px-12 py- 8">
+                            <td x-show="levelUser === 'Super Admin' || levelUser === 'RW'" class="px-12 py- 8">
                                 <a href="{{ route('user.detail', $item->nik) }}"
                                     class="font-medium text-purple-400 hover:text-indigo-700 dark:text-purple-700 dark:hover:text-white">Detail</a>
                                 {{-- <a href="{{ route('user.edit', $item->nik) }}"

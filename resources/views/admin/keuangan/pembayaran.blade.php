@@ -8,7 +8,7 @@
                 ADMIN
                 <small class="text-dark">
                     <i class="fas fa-xs fa-angle-right text-muted"></i>
-                    Keuangan
+                    KEUANGAN
                 </small>
             </h3>
         </div>

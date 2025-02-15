@@ -98,11 +98,12 @@ class BeritaController extends Controller
         $isi = $dom->saveHTML();
         DB::transaction(function () use ($request, $isi, $list_images) {
             // add '-' to slug
-            $request->slug = Str::slug($request->slug, '-');
+            $request->slug = Str::slug($request->judul, '-');
             $berita = new BeritaModel();
             $berita->judul = $request->judul;
             $berita->gambar = $request->gambar->hashName();
             $berita->isi = $isi;
+            //$berita->slug = Str::slug($request->judul. '-' . Str::random());
             $berita->slug = $request->slug;
             $berita->author = auth()->user()->nik;
             $berita->tanggal_posting = now();

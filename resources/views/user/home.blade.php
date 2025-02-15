@@ -104,10 +104,14 @@
                                 <div class="w-1/2">
                                     <div class="max-w-md text-gray-900 dark:text-white dark:divide-gray-700">
                                         <div class="flex flex-col">
-                                            <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Nama</dt>
+                                            <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Nama Lengkap</dt>
                                             <dd class="text-sm font-semibold">{{ $rw->penduduk->nama }}</dd>
                                         </div>
-                                        <div class="flex flex-col py-2">
+                                        <div class="flex flex-col py-3">
+                                            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Jabatan</dt>
+                                            <dd class="text-lg font-semibold">Ketua RW 13 Periode 2024-2027</dd>
+                                        </div>
+                                        {{-- <div class="flex flex-col py-2">
                                             <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Alamat</dt>
                                             <dd class="text-sm font-semibold">
                                                 {{ $rw->penduduk->alamatLengkap() }}
@@ -118,7 +122,7 @@
                                                 Ponsel
                                             </dt>
                                             <dd class="text-sm font-semibold">{{ $rw->penduduk->no_hp }}</dd>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

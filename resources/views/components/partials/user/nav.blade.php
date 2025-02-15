@@ -2,7 +2,7 @@
     class="bg-white dark:bg-purple-950 bg-opacity-10 dark:bg-opacity-10 backdrop-filter backdrop-blur-lg  z-50 top-0 fixed w-full">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-end mx-auto p-4 px-10">
         <a href="{{ route('user.home') }}" class="flex mr-auto items-center space-x-3">
-            <img :src="darkMode ? '{{ asset('assets/images/logo/logo-light.png') }}' :
+            <img :src="darkMode ? '{{ asset('assets/images/logo/logo-dark.png') }}' :
                 '{{ asset('assets/images/logo/logo-dark.png') }}'"
                 width="200px" height="auto" class="duration-300" alt="Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
