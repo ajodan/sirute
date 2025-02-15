@@ -101,29 +101,25 @@
                                             class="w-40 top-0 left-0 h-full object-cover object-center rounded-lg">
                                     </div>
                                 </div>
-                                <div class="w-1/2">
-                                    <div class="max-w-md text-gray-900 dark:text-white dark:divide-gray-700">
-                                        <div class="flex flex-col">
-                                            <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Nama Lengkap</dt>
-                                            <dd class="text-sm font-semibold">{{ $rw->penduduk->nama }}</dd>
-                                        </div>
-                                        <div class="flex flex-col py-3">
-                                            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Jabatan</dt>
-                                            <dd class="text-lg font-semibold">Ketua RW 13 Periode 2024-2027</dd>
-                                        </div>
-                                        {{-- <div class="flex flex-col py-2">
-                                            <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Alamat</dt>
-                                            <dd class="text-sm font-semibold">
-                                                {{ $rw->penduduk->alamatLengkap() }}
-                                            </dd>
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <dt class=" text-gray-500 md:text-lg dark:text-gray-400">Nomor
-                                                Ponsel
-                                            </dt>
-                                            <dd class="text-sm font-semibold">{{ $rw->penduduk->no_hp }}</dd>
-                                        </div> --}}
-                                    </div>
+                                <dl
+                                class="text-gray-900 divide-y divide-purple-400 dark:text-white dark:divide-gray-700 mt-6">
+                                <div class="flex flex-col pb-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nama lengkap</dt>
+                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->nama }}</dd>
+                                </div>
+                                <div class="flex flex-col py-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Jabatan</dt>
+                                    <dd class="text-lg font-semibold">Ketua RW 13 Periode 2024-2027</dd>
+                                </div>
+                                {{-- <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nomor Ponsel</dt>
+                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->no_hp }}</dd>
+                                </div> --}}
+                                </dl>
+                                <div class="flex flex-row gap-x-4 items-center mt-10">
+                                    <a href="{{ route('user.detail', $rw->penduduk->nik) }}"
+                                        class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">
+                                        Detail RW</a>
                                 </div>
                             </div>
                         </div>
