@@ -17,9 +17,12 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-x-4 items-center">
+                            <a href="https://bit.ly/4hvTaNt"
+                                target="_blank" class="text-sm sm:text-base bg-yellow-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Pendataan Warga Mudik</a>
                             <a href="{{ route('user.layanan') }}"
                                 class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Layanan Administrasi</a>
                         </div>
+                       
                     </div>
                     <div class="flex flex-row item-center hidden sm:block">
                         <img src="{{ asset('assets/images/illustration/gerbang.webp') }}" alt=""
@@ -119,7 +122,7 @@
                                 <div class="flex flex-row gap-x-4 items-center mt-10">
                                     <a href="{{ route('user.detail', $rw->penduduk->nik) }}"
                                         class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">
-                                        Detail RW</a>
+                                        Detail Ketua RW</a>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +145,7 @@
                             <div class="flex flex-row gap-x-4 items-center mt-10">
                                 <a href="{{ route('user.detail', $rw->penduduk->nik) }}"
                                     class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">
-                                    Detail RW</a>
+                                    Detail Ketua RW</a>
                             </div>
                         </div>
                     </div>
@@ -332,10 +335,10 @@
             <section class="agenda font-sans py-12">
                 <h1 class="text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten">Kegiatan dan
                     Agenda</h1>
-                {{-- <p class="mt-8 text-center mx-auto lg:w-1/2 md:w-1/2">
-                    RW 02 Arjosari aktif mengadakan berbagai kegiatan dan agenda untuk meningkatkan kesejahteraan serta
-                    keharmonisan warganya. Berikut adalah beberapa kegiatan dan agenda yang dilaksanakan
-                </p> --}}
+                <p class="mt-8 text-center mx-auto lg:w-1/2 md:w-1/2">
+                    RW 13 Taman Alamanda aktif mengadakan berbagai kegiatan dan agenda untuk meningkatkan kesejahteraan serta
+                    keharmonisan warganya. Berikut adalah beberapa kegiatan dan agenda dilingkungan Blok C/RW 13:
+                </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 items-center mt-20 sm:gap-x-10">
                     <div class="flex flex-row item-center">
                         <img src="{{ asset('assets/images/illustration/kalenderimg.webp') }}" alt=""

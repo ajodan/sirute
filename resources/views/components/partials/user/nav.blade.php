@@ -79,7 +79,7 @@
             @guest
                 <div class="py-1">
                     <a href="{{ route('login') }}"
-                        class="block px-5 py-2 mr-5 bg-indigo-950 dark:bg-purple-400 rounded-full text-white">Layanan Mandiri</a>
+                        class="block px-5 py-2 mr-5 bg-indigo-950 dark:bg-purple-400 rounded-full text-white">L O G I N</a>
                 </div>
             @endguest
             @auth

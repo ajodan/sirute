@@ -25,7 +25,7 @@ class PopularBerita extends Component
         // berikan 5 berita yang paling populer
         $berita = BeritaModel::with('penulis', 'kategori')->where('status', 'publish')
             ->orderBy('view', 'desc')
-            ->limit(3)
+            ->limit(5)
             ->get();
         return view('components.view.popular-berita', compact('berita'));
     }

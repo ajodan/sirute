@@ -16,7 +16,7 @@ class isRT
     public function handle(Request $request, Closure $next): Response
     {
         $level = auth()->user()->level->nama_level;
-        $auth = $level == 'RT';
+        $auth = $level == 'RT' || $level == 'Pengurus RT';
         if ($auth) {
             return $next($request);
         }
