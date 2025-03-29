@@ -22,10 +22,12 @@ class HeaderComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        $username = auth()->user()->penduduk->nama;
+        $nama = auth()->user()->penduduk->nama;
+        $username = auth()->user()->penduduk->nik;
         $level = auth()->user()->level->nama_level;
+        
         $aspirasi = AspirasiModel::where('status', 'pending')->get();
         // dd($level);
-        return view('components.partials.admin.header-component', compact('username', 'level', 'aspirasi'));
+        return view('components.partials.admin.header-component', compact('username', 'nama', 'level', 'aspirasi'));
     }
 }

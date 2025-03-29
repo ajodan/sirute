@@ -29,6 +29,7 @@ class PendudukController extends Controller
     private $level;
     private $alamat;
     private $user;
+    private $username;
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -39,6 +40,7 @@ class PendudukController extends Controller
     private function init()
     {
         $this->user = auth()->user();
+        $this->username = auth()->user()->penduduk->nik;
         $this->level = $this->user->level->nama_level;
         $this->alamat = $this->user->penduduk->alamat;
     }
@@ -106,6 +108,50 @@ class PendudukController extends Controller
             ]);
         }
         return view('admin.penduduk.index', compact('penduduk'));
+    }
+
+    public function ganti_password($username, Request $request)
+    {
+        $query = AkunModel::with('penduduk')->where('username', $username);
+        try {
+            if (!$this->isAdmin() && !$this->isRW()) {
+                $rt = $this->alamat->rt;
+                $query->whereHas('penduduk.alamat', function ($query) use ($rt) {
+                    $query->where('rt', $rt);
+                });
+            }
+            if ($request->has('s')) {
+                $query->whereHas('penduduk', function ($query) use ($request) {
+                    $query->where('nama', 'like', '%' . $request->s . '%');
+                });
+            }
+
+            if ($request->has('rt')) {
+                $query->whereHas('penduduk.alamat', function ($query) use ($request) {
+                    $query->where('rt', $request->rt);
+                });
+            }
+
+            if ($request->has('jenis_kelamin')) {
+                $query->whereHas('penduduk', function ($query) use ($request) {
+                    $query->where('jenis_kelamin', $request->jenis_kelamin);
+                });
+            }
+
+            if ($request->has('status_penduduk')) {
+                $query->whereHas('penduduk', function ($query) use ($request) {
+                    $query->where('status_penduduk', $request->status_penduduk);
+                });
+            }
+            // dd($query->get());
+        } catch (\Exception $e) {
+            return redirect()->route('error')->with([
+                'code' => 500,
+                'message' => $e->getMessage(),
+            ]);
+        }
+        $penduduk = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+        return view('admin.penduduk.akun', compact('penduduk'));
     }
 
 
@@ -299,6 +345,7 @@ class PendudukController extends Controller
             return config('app.debug') ? redirect()->route('admin.penduduk.akun')->withErrors($e->getMessage())->withInput() : redirect()->route('admin.penduduk.akun')->withErrors('Gagal mengupdate akun.')->withInput();
         }
     }
+
 
     public function detail_penduduk($nik)
     {

@@ -16,6 +16,8 @@
                 </small>
             </h3>
         </div>
+        @if(auth()->user()->id_level != 3)
+        @else
         <div class="sm:flex justify-between mb-5">
             <!-- Modal toggle -->
             <div class="order-2 mb-5 flex justify-end">
@@ -27,6 +29,7 @@
             </div>
             <x-partials.admin.penduduk.filter />
         </div>
+        @endif
         @if (session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3"
                 role="alert">
@@ -65,7 +68,10 @@
                             NIK
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Level
+                            Level Akses
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Alamat Email
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -86,13 +92,16 @@
                             <td class="px-6 py-4">
                                 {{ $item->level->nama_level }}
                             </td>
+                            <td class="px-6 py-4">
+                                {{ $item->email }}
+                            </td>
                             <td class="px-6 py-4 flex gap-2">
                                 <button onclick="showEdit({{ $item }})" data-modal-target="edit-akun-penduduk"
                                     data-modal-toggle="edit-akun-penduduk"
                                     class="font-medium text-white bg-yellow-300 p-2  rounded">
-                                    Edit
+                                    Ganti Password
                                 </button>
-
+                                @if(auth()->user()->id_level != 3)
                                 <form action="{{ route('admin.penduduk.akun.delete', $item->id_akun) }}" method="post">
                                     @csrf
                                     @method('DELETE')
@@ -102,6 +111,9 @@
                                         </div>
                                     </button>
                                 </form>
+                                @else
+                               
+                                @endif
                             </td>
                         </tr>
                     @endforeach

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ReportDataController;
 use App\Http\Controllers\Admin\RTController;
 use App\Http\Controllers\Admin\UmkmController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +33,20 @@ Route::get('/', function () {
     
 });
 
+
+
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () { // auth and admin middleware
         Route::get('/', fn() => redirect(route('admin.dashboard')));
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::put('/gambarstruktur', [AdminController::class, 'updategambarStruktur'])->name('admin.gambarstruktur.update');
+
+       
+
+        // Route::prefix('ganti-password')->group(function () {
+        //     Route::get('/change_password', [ChangePasswordController::class, 'index'])->middleware('auth');
+        //     Route::post('/change_password', [ChangePasswordController::class, 'store'])->middleware('auth');
+        // });
         // Admin Penduduk
         Route::prefix('penduduk')->group(function () {
             Route::get('/', [PendudukController::class, 'index'])->name('admin.penduduk');
@@ -48,6 +58,7 @@ Route::prefix('admin')->group(function () {
 
             Route::prefix('akun')->group(function () {
                 Route::get('/', [PendudukController::class, 'akun_penduduk'])->name('admin.penduduk.akun');
+                Route::get('/ganti_password/{id}', [PendudukController::class, 'ganti_password'])->name('admin.penduduk.akun.ganti_password');
                 Route::post('/store', [PendudukController::class, 'akun_penduduk_store'])->name('admin.penduduk.akun.store');
                 Route::put('/update', [PendudukController::class, 'akun_penduduk_update'])->name('admin.penduduk.akun.update');
                 Route::delete('/delete/{id}', [PendudukController::class, 'akun_penduduk_delete'])->name('admin.penduduk.akun.delete');

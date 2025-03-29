@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Validation\Rules\Password;
+
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,8 +22,17 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      */
+    // public function boot(): void
+    // {
+    //     //
+    // }
+
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        \Illuminate\Support\Facades\Validator::extendImplicit('current_password', function ($attribute, $value, $parameters, $validator) {
+            return Hash::check($value, Auth::user()->password);
+        });
     }
 }
