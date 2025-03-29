@@ -92,7 +92,7 @@
                         </span>
 
                         <img src="{{ auth()->user()->penduduk->foto_profile() }}" alt="Photo Penduduk"
-                            class="h-12 w-12 square-full object-cover" />
+                            class="h-12 w-12 object-cover rounded-lg" />
 
                         <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block dark:text-white"
                             width="12" height="8" viewBox="0 0 12 8" fill="none"
@@ -111,7 +111,7 @@
                                 <a href="{{ route('admin.dashboard') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa-solid fa-toolbox w-[22px]"></i>
-                                    Internal
+                                    Intra Sirute
                                 </a>
                             </li>
                             <li>
