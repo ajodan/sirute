@@ -155,10 +155,10 @@
                         <span class="block text-xs font-medium">{{ $level == 'RT' ? 'Ketua ' . $level : $level }}</span>
                     </span>
 
-                    {{-- <i class="fa fa-user-circle h-12.5 w-12.5" aria-hidden="true">
+                    <i class="fa fa-user-circle h-12.5 w-12.5" aria-hidden="true">
                         <img src="{{ auth()->user()->penduduk->foto_profile() }}" alt="Photo Penduduk"
                         class="h-12 w-12 object-cover circle-lg" />
-                    </i> --}}
+                    </i>
 
                     <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12"
                         height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">

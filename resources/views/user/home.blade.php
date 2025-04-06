@@ -17,8 +17,8 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-x-4 items-center">
-                            <a href="https://bit.ly/4hvTaNt"
-                                target="_blank" class="text-sm sm:text-base bg-yellow-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Pendataan Warga Mudik</a>
+                            {{-- <a href="https://bit.ly/4hvTaNt"
+                                target="_blank" class="text-sm sm:text-base bg-yellow-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Pendataan Warga Mudik</a> --}}
                             <a href="{{ route('user.layanan') }}"
                                 class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Layanan Administrasi</a>
                         </div>

@@ -1,12 +1,12 @@
 <nav
     class="bg-white dark:bg-purple-950 bg-opacity-10 dark:bg-opacity-10 backdrop-filter backdrop-blur-lg  z-50 top-0 fixed w-full">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-end mx-auto p-4 px-10">
-        <a href="{{ route('user.home') }}" class="flex mr-auto items-center space-x-3">
-            <img :src="darkMode ? '{{ asset('assets/images/logo/logo-dark.png') }}' :
+        {{-- <a href="{{ route('user.home') }}" class="flex mr-auto items-center space-x-3">
+             <img :src="darkMode ? '{{ asset('assets/images/logo/logo-dark.png') }}' :
                 '{{ asset('assets/images/logo/logo-dark.png') }}'"
                 width="200px" height="auto" class="duration-300" alt="Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
-        </a>
+        </a> --}}
         <div class="flex gap-x-2 sm:gap-x-3 items-center sm:order-2">
             <label :class="darkMode ? 'bg-purple-200' : 'bg-stroke'" class="relative m-0 block h-7.5 w-14 rounded-full">
                 <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode"
@@ -111,7 +111,7 @@
                                 <a href="{{ route('admin.dashboard') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa-solid fa-toolbox w-[22px]"></i>
-                                    Intra Sirute
+                                    Intra
                                 </a>
                             </li>
                             <li>
@@ -140,7 +140,7 @@
                                 <a href="{{ route('user.bansos') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa-solid fa-handshake w-[22px]"></i>
-                                    Bansos
+                                    Bantuan Sosial
                                 </a>
 
                             </li>
@@ -149,7 +149,7 @@
                                 <a href="{{ route('user.aspirasi.riwayataspirasi') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa-solid fa-comments w-[22px]"></i>
-                                    Aspirasi
+                                    Aspirasi dan Pengaduan
                                 </a>
                             </li>
 
@@ -158,7 +158,7 @@
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     
                                     <i class="fa-solid fa-people-carry-box w-[22px]"></i>
-                                    Peminjaman
+                                    Peminjaman Inventaris
                                 </a>
 
                             </li>
@@ -233,7 +233,7 @@
                 <li>
                     <a href="{{ route('user.aspirasi') }}"
                         class="block py-2 px-3 text-black rounded hover:bg-purple-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-purple-400 md:dark:hover:text-white dark:hover:text-white  md:dark:hover:bg-transparent"
-                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi</a>
+                        :class="{ 'text-yellow-500 dark:text-purple-50': (selected.includes('aspirasi')) }">Aspirasi dan Pengaduan</a>
                 </li>
                 
                 {{-- <li>
