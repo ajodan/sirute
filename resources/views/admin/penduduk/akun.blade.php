@@ -16,7 +16,7 @@
                 </small>
             </h3>
         </div>
-        @if(auth()->user()->id_level != 3)
+        @if(auth()->user()->id_level == 3)
         @else
         <div class="sm:flex justify-between mb-5">
             <!-- Modal toggle -->

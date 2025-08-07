@@ -16,8 +16,9 @@ class Nav extends Component
     {
         $user = auth()->user();
         $username = $user->penduduk->nama ?? null;
+        $nik = $user->penduduk->nik ?? null;
         $level = $user->level->nama_level ?? null;
         $notifications = $user->unreadNotifications ?? [];
-        return view('components.partials.user.nav', compact('user', 'username', 'level', 'notifications'));
+        return view('components.partials.user.nav', compact('user', 'nik', 'username', 'level', 'notifications'));
     }
 }

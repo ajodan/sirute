@@ -7,7 +7,7 @@
                         class="text-indigo-700">  SIRUTE</span>
                 </h2>
                 <p class="text-white text-lg mb-7">Warga dapat membuat Permohonan Surat Keterangan, UMKM, Peminjaman Inventaris dan Aspirasi/Pengaduan melalui Website RW.
-                    Silakan hubungi Administrator untuk pengaktifan dan mendapatkan kode PIN. <br>Untuk mendapatkan akses ke layanan. Silakan klik <a href="https://wa.me/6281314408686" target="_blank" class="btn btn-success"><b>Hubungi Admin</b></a></p>
+                    Silakan hubungi Admin untuk pengaktifan dan mendapatkan kode PIN. <br>Untuk mendapatkan akses ke layanan. Silakan klik <a href="https://wa.me/6281314408686" target="_blank" class="btn btn-success"><b>Hubungi Admin</b></a></p>
                 <a href="{{ route('user.home') }}">
                     <button type="button"
                         class="text-white hover:text-indigo-700 hover:bg-white bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-white font-medium text-base px-8 py-2.5 text-center me-2 mb-2 ">

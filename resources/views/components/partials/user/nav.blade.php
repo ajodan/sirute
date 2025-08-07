@@ -115,6 +115,13 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('admin.penduduk.akun.ganti_password', $nik) }}"
+                                    class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
+                                    <i class="fa fa-user w-[22px]" aria-hidden="true"></i>
+                                    Ganti Password
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('user.profile') }}"
                                     class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-purple-600 dark:hover:text-white lg:text-base">
                                     <i class="fa fa-user w-[22px]" aria-hidden="true"></i>
