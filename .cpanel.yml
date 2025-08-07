@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ekselmyi/public_html/blokc.web.id
+    - export DEPLOYPATH=/home/ajodanwe/public_html/blokc.web.id
     - /bin/cp -R app $DEPLOYPATH
     - /bin/cp -R resources $DEPLOYPATH
     - /bin/cp -R routes $DEPLOYPATH
