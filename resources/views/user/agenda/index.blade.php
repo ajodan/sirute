@@ -1,82 +1,40 @@
 <x-layout.user-layout>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-    <section class="hero max-w-6xl mx-auto font-sans pb-[200px] pt-[200px] sm:px-0 px-10">
-        <div class="flex flex-row items-center justify-between">
-            <div class="hidden sm:flex flex-row item-center">
-                <img src="{{ asset('assets/images/illustration/orangorang.webp') }}" alt="" class=" max-w-100">
-            </div>
-            <div class="flex flex-col gap-y-10">
-                <div class="gap-y-2 flex flex-col">
-                    <h2 class="text-ungu dark:text-orange-100 font-bold text-3xl sm:text-[50px] leading-none">Informasi
-                        Kegiatan dan Agenda
-                    </h2>
-                    <h1 class="text-black1 dark:text-purple-500 font-bold text-3xl sm:text-[60px] leading-none">
-                        RW 13/Blok C
-                    </h1>
-                </div>
+    <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4">Agenda Kegiatan</h3>
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="#">Agenda Kegiatan</a></li>
+                </ol>    
             </div>
         </div>
-    </section>
-    <section class=" max-w-2xl  mx-auto font-sans bg-purple-500 dark:bg-purple-800 p-2 rounded-3xl z-20 relative">
-        <h1 class="text-center font-bold text-3xl leading-tight text-white">Kegiatan dan Agenda</h1>
-    </section>
+        <!-- Header End -->
 
-    <section id="kalender"
-        class="grid sm:grid-cols-2 gap-4 max-w-6xl sm:pt-20 mx-auto font-sans pb-12 mb-60 bg-ungu dark:bg-[#37177b] p-10 sm:p-14 rounded-3xl z-20 relative ">
-        <div>
-            <h5 class="mx-5 mb-2 text-[20px] font-bold tracking-tight text-white dark:text-white">Kalender Agenda RW 13/Blok C
-            </h5>
-            <div class="bg-purple-200 dark:bg-[#180248] rounded-xl sm:mx-5 p-5 sm:p-10">
-                <div id="calendar"></div>
-            </div>
-        </div>
-        <div class="h-[500px] overflow-auto">
-            <div x-show="$store.agenda.data.length === 0">
-                <div class="flex items center justify-center h-full">
-                    <span class="text-white dark:text-gray-500">Tidak ada Agenda</span>
+        <!-- Blog Start -->
+        <div class="container-fluid blog py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Agenda Kegiatan</h5>
+                    <h1 class="mb-4">Kalender Kegiatan</h1>
+                    <p class="mb-0">Temukan berbagai agenda kegiatan terbaru di sini.
+                    </p>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div id="calendar"></div>
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{-- {{ $aspirasi->links() }} --}}
                 </div>
             </div>
-            <div x-show="$store.agenda.isLoading"
-                class="flex items-center justify-center w-full h-56 rounded-lg bg-transparent dark:bg-gray-800 dark:border-gray-700">
-                <div role="status">
-                    <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
-                        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                            fill="currentColor" />
-                        <path
-                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                            fill="currentFill" />
-                    </svg>
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-            {{-- <ol class="relative border-s border-gray-200 dark:border-gray-700">
-                <template x-for="item in $store.agenda.data">
-                    <li class="mb-10 ms-4">
-                        <div
-                            class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                        </div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-100 dark:text-gray-200"
-                            x-text="item.start">Tanggal</time>
-                        <h3 class="text-lg font-semibold text-white dark:text-white" x-text="item.title">Abid Sunatan
-                        </h3>
-                        <p class="mb-4 text-base font-normal text-gray-300 dark:text-gray-400" x-text="item.deskripsi">
-                            Lorem ipsum dolor sit
-                            amet
-                            consectetur adipisicing elit. Enim deserunt minus aspernatur quo, dolorum accusamus eligendi
-                            veritati.</p>
-                    </li>
-                </template>
-            </ol> --}}
         </div>
-    </section>
-    <x-partials.user.agenda.detail />
+        <!-- Blog End -->
+        {{-- <x-partials.user.agenda.detail /> --}}
 </x-layout.user-layout>
 
 <script src="{{ asset('assets/js/calender.js') }}"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script> --}}
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         let calendarEl = document.getElementById('calendar');
         let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -123,7 +81,81 @@
         });
         calendar.render();
     });
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone: 'Asia/Jakarta',
+            locale: 'id',
+            height: 400,
+            events: @json($agenda),
+            headerToolbar: {
+                start: 'prev',
+                center: 'title',
+                end: 'next'
+            },
+            customButtons: {
+                addEvent: {
+                    text: 'Tambah Agenda',
+                    click: function() {
+                        document.getElementById('add-agenda').classList.add('block');
+                    }
+                },
+                next: {
+                    click: function() {
+                        calendar.next();
+                        const date = calendar.getDate();
+                        Alpine.store('agenda').getByDate(date.toISOString());
+                    }
+                },
+                prev: {
+                    click: function() {
+                        calendar.prev();
+                        const date = calendar.getDate();
+                        Alpine.store('agenda').getByDate(date.toISOString());
+                    }
+                }
+            },
+
+            // ✅ Tambah tooltip ketika hover event
+            eventDidMount: function(info) {
+                new bootstrap.Tooltip(info.el, {
+                    title: `
+                        <strong>${info.event.title}</strong><br>
+                        ${info.event.extendedProps.deskripsi ?? '-'}<br>
+                        Mulai : <br>${info.event.start.toLocaleString('id-ID', {
+                            timeZone: 'Asia/Jakarta',
+                            dateStyle: 'full',
+                            timeStyle: 'short'
+                        })}<br>
+                        Selesai : <br>${info.event.end ? info.event.end.toLocaleString('id-ID', {
+                            timeZone: 'Asia/Jakarta',
+                            dateStyle: 'full',
+                            timeStyle: 'short'
+                        }) : '-'}
+                    `,
+                    placement: 'top',
+                    html: true,
+                    trigger: 'hover',
+                    container: 'body'
+                });
+            },
+
+            eventClick: function(info) {
+                info.jsEvent.preventDefault(); 
+                Alpine.store('agenda').title = info.event.title;
+                Alpine.store('agenda').deskripsi = info.event.extendedProps.deskripsi;
+                Alpine.store('agenda').start = info.event.startStr;
+                Alpine.store('agenda').end = info.event.endStr;
+                Alpine.store('agenda').toggle();
+            },
+        });
+        calendar.render();
+    });
 </script>
+
 
 <script>
     document.addEventListener('alpine:init', () => {

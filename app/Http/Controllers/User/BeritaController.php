@@ -21,7 +21,7 @@ use Storage;
 
 class BeritaController extends Controller
 {
-    private $paggination = 10;
+    private $paggination = 6;
     public function index(Request $request)
     {
         $query = BeritaModel::with('penulis')->where('status', 'publish')->orderBy('created_at', 'desc');
@@ -40,20 +40,23 @@ class BeritaController extends Controller
     public function riwayatBerita()
     {
         $nik = auth()->user()->nik;
-        $berita = BeritaModel::with('penulis')->where('author', $nik)->orderBy('updated_at', 'desc')->get();
+        $berita = BeritaModel::with('penulis')->where('author', $nik)->orderBy('updated_at', 'desc')->paginate(5);
         return view('user.berita.riwayatBerita', compact('berita'));
     }
 
     public function show($slug)
     {
         $berita = BeritaModel::with('penulis')->where('slug', $slug)->first();
+        $berita->increment('view', 1);
+        $thumbnail_berita = BeritaModel::with('penulis')->where('status', 'publish')->orderBy('updated_at', 'desc')->limit(5)->get();
         // add view count, and limit view count to 1 per session
         if (!session()->has('viewed_berita_' . $berita->id_berita)) {
             $berita->view += 1;
             $berita->save();
             session()->put('viewed_berita_' . $berita->id_berita, true);
         }
-        return view('user.berita.detailBerita', compact('berita'));
+        //dd($berita);
+        return view('user.berita.detailBerita', compact('berita','thumbnail_berita'));
     }
 
     public function populer()
@@ -103,8 +106,8 @@ class BeritaController extends Controller
             $berita->judul = $request->judul;
             $berita->gambar = $request->gambar->hashName();
             $berita->isi = $isi;
-            //$berita->slug = Str::slug($request->judul. '-' . Str::random());
-            $berita->slug = $request->slug;
+            $berita->slug = Str::slug($request->judul. '-' . Str::random());
+            //$berita->slug = $request->slug;
             $berita->author = auth()->user()->nik;
             $berita->tanggal_posting = now();
             $berita->save();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\BeritaModel;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class NewsController extends Controller
 {

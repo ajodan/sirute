@@ -9,20 +9,27 @@ use App\Models\AlamatModel;
 use App\Models\AspirasiModel;
 use App\Models\PendudukModel;
 use App\Models\SettingHomeModel;
+use App\Models\BeritaModel;
 use App\Models\UMKMModel;
 use Illuminate\Http\Request;
+ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     public function index()
     {
         $agenda = AgendaModel::where('start', '>=', date('Y-m-d'))->first();
+        $berita = BeritaModel::where('status', 'publish')
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get();
         $aspirasi = AspirasiModel::get();
         
         $umkm = UMKMModel::limit(4)->where('status', 'publish')->orderBy('view', 'desc')->get();
         $rw = AkunModel::whereHas('level', function ($q) {
-            $q->where('nama_level', 'RW');
-        })->first();
+            $q->where('nama_level', 'RW')
+              ->orWhere('nama_level', 'Pengurus RW');
+        })->get();
         $rt = AkunModel::whereHas('level', function ($q) {
             $q->where('nama_level', 'RT');
         })->get();
@@ -44,8 +51,13 @@ class UserController extends Controller
         $totalPendudukPerempuan = PendudukModel::where('jenis_kelamin', 'Perempuan')->count();
         $totalPendudukTetap = PendudukModel::where('status_penduduk', 'Penduduk Tetap')->count();
         $totalPendudukPendatang = PendudukModel::where('status_penduduk', 'Pendatang')->count();
-
-        return view("user.home", compact('agenda', 'aspirasi', 'umkm', 'rw', 'rt', 'listRT', 'totalPenduduk', 'totalPendudukLaki', 'totalPendudukPerempuan', 'totalPendudukTetap', 'totalPendudukPendatang'));
+//dd($rw);
+        return view("user.home", compact('agenda', 'aspirasi', 'umkm', 'berita', 'rw', 'rt', 'listRT', 'totalPenduduk', 'totalPendudukLaki', 'totalPendudukPerempuan', 'totalPendudukTetap', 'totalPendudukPendatang'));
+    }
+    public function tugasdanfungsi()
+    {
+      //  $tusi = SettingHomeModel::first();
+        return view('user.tugasdanfungsi.index');
     }
 
 

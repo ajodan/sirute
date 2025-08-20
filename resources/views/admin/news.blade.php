@@ -2,13 +2,13 @@
     <div class="relative">
         <div class="mb-5">
             <div class="mb-2 text-xl">
-                <h1><strong>NEWS</strong></h1>
+                <h1><strong>ARTIKEL/BERITA</strong></h1>
             </div>
             <h3 class="text-muted">
                 ADMIN
                 <small class="text-dark">
                     <i class="fas fa-xs fa-angle-right text-muted"></i>
-                    News
+                    ARTIKEL/BERITA
                 </small>
             </h3>
         </div>
@@ -24,10 +24,10 @@
         <!-- Start Body Content -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-graydark dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr class="whitespace-nowrap">
+                <thead class="text-xs text-gray-700 uppercase bg-gra y-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr class="whitespace-nowrap" >
                         <th scope="col" class="px-6 py-3">
-                            Judul
+                            Judul Artikel/Berita
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Gambar
@@ -42,7 +42,7 @@
                             Status
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -54,24 +54,24 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $item->judul }}
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-3">
                                 @if (Storage::disk('public')->exists('images/berita/' . $item->gambar))
-                                    <img src="{{ $item->sampul }}" class="max-w-20" alt="gambar sampul berita">
+                                    <img src="{{ $item->sampul }}" class="max-w-5" alt="gambar sampul berita">
                                 @else
                                     <img src="{{ asset('assets/images/illustration/images.svg') }}" class="max-w-20"
                                         alt="placeholder image">
                                 @endif
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-3">
                                 {{ $item->tanggal_posting }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-3">
                                 {{ $item->author }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-3">
                                 {{ $item->status }}
                             </td>
-                            <td class="px-6 py-4 flex gap-2">
+                            <td class="px-6 py-3 flex gap-2">
                                 <form {{ $item->status == 'pending' || $item->status == 'reject' ? '' : 'hidden' }}
                                     action="{{ route('user.berita.status') }}" method="post">
                                     @csrf
@@ -111,6 +111,9 @@
                 </tbody>
             </table>
         </div>
+        {{-- <div class="mt-5">
+            {{ $berita->links('vendor.pagination.tailwind') }}
+        </div> --}}
         <!-- End Body Content -->
     </div>
 </x-layout.admin-layout>

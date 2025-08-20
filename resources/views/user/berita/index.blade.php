@@ -1,144 +1,57 @@
 <x-layout.user-layout>
-    <div class="dark:bg-[#1f1345] px-7 w-full sm:max-w-6xl mx-auto font-sans pt-[100px]">
-        <section class="{{ $berita == null ? 'hidden' : '' }} mt-10 max-w-6xl mx-auto">
-            <div class="block md:flex md:space-x-2 px-2 lg:p-0">
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4">Artikel/Berita</h3>
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="{{ url('home') }}">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="#">Artikel</a></li>
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
 
-                <a class="mb-4 md:mb-0 w-full md:w-2/3 relative rounded inline-block h-[24em] overflow-hidden"
-                    href="{{ route('user.berita.detail', $berita_populer[0]->slug) }}">
-                    <div class="absolute left-0 bottom-0 w-full h-full z-10"
-                        style="background-image: linear-gradient(180deg, transparent, rgba(0,0,0,.7));"></div>
-                    <img src="{{ $berita_populer[0]->sampul }}"
-                        class="absolute left-0 top-0 w-full h-full rounded z-0 object-cover" alt="First Example" />
-                    <div class="p-4 absolute bottom-0 left-0 z-20">
-                        <span
-                            class="px-4 py-1 bg-ungu text-gray-200 inline-flex items-center justify-center mb-2">{{ $berita_populer[0]->kategori[0]->nama_kategori }}</span>
-                        <h2 class="text-4xl font-semibold text-gray-100 leading-tight">
-                            {{ $berita_populer[0]->judul }}
-                        </h2>
-                        <div class="flex mt-3">
-                            <i class="fa fa-user h-5 my-auto mx-3 text-white" aria-hidden="true"></i>
-                            <div>
-                                <p class="font-semibold text-gray-200 text-sm"> {{ $berita_populer[0]->penulis->nama }}
+        <!-- Blog Start -->
+        <div class="container-fluid blog py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Artikel/Berita</h5>
+                    <h1 class="mb-4">Daftar Artikel/Berita</h1>
+                    <p class="mb-0">Temukan berbagai artikel dan berita terbaru di sini.
+                    </p>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    @foreach($berita as $item)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner" style="height: 300px; overflow: hidden;">
+                                    <img class="img-fluid w-100 rounded-top" src="{{ asset('storage/images/berita/' . $item->gambar) }}" alt="Image">
+                                    <div class="blog-icon">
+                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>{{ $item->created_at->format('d M Y') }}</small>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-eye"></i> Dibaca: {{ $item->view }} kali</a>
+                                </div>
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                {{-- <p class="mb-0"><font size="2">Dibuat Oleh : {{ $item->penulis->nama }} </font></p> --}}
+                                <p class="mb-0"><font size="2">Tanggal Posting : {{ \Carbon\Carbon::parse($item->tanggal_posting)->format('d M Y') }} </font></p>
+                                <a href="{{ route('user.berita.detail', $item->slug) }}" class="h4">{{ $item->judul }}</a>
+                                <p class="my-3 excerpt-berita">
+                                {{ Str::limit(strip_tags($item->isi), 230) }}
                                 </p>
-                                <p class="font-semibold text-gray-400 text-xs">
-                                    {{ \Carbon\Carbon::parse($berita_populer[0]->tanggal_posting)->format('M Y') }} </p>
+                                <a href="{{ route('user.berita.detail', $item->slug) }}" class="btn btn-primary rounded-pill py-2 px-4" style="font-size: 10px; align-self: flex-end;">Baca Selengkapnya ... </a>
                             </div>
                         </div>
                     </div>
-                </a>
-
-                <a class="{{ $berita_populer[1] == null ? 'hidden' : '' }} w-full md:w-1/3 relative rounded hidden md:block"
-                    style=height: 24em; href="{{ route('user.berita.detail', $berita_populer[1]->slug) }}">
-                    <div class="absolute left-0 top-0 w-full h-full z-10"
-                        style="background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.7));"></div>
-                    <img src="{{ $berita_populer[1]->sampul }}"
-                        class="absolute left-0 top-0 w-full h-full rounded z-0 object-cover" alt="Second Example" />
-                    <div class="p-4 absolute bottom-0 left-0 z-20">
-                        <span
-                            class="px-4 py-1 bg-ungu text-gray-200 inline-flex items-center justify-center mb-2">{{ $berita_populer[1]->kategori[0]->nama_kategori }}</span>
-                        <h2 class="text-3xl font-semibold text-gray-100 leading-tight">{{ $berita_populer[1]->judul }}
-                        </h2>
-                        <div class="flex mt-3">
-                            <i class="fa fa-user h-5 my-auto mx-3 text-white" aria-hidden="true"></i>
-                            <div>
-                                <p class="font-semibold text-gray-200 text-sm"> {{ $berita_populer[1]->penulis->nama }}
-                                </p>
-                                <p class="font-semibold text-gray-400 text-xs">
-                                    {{ \Carbon\Carbon::parse($berita_populer[1]->tanggal_posting)->format('M Y') }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="block lg:flex lg:space-x-2 px-2 lg:p-0 mt-10 mb-10">
-                {{-- * post cards * --}}
-                <div class="w-full lg:w-2/3">
-                    @foreach ($berita as $item)
-                        <a class="block rounded-xl w-full lg:flex mb-5 "
-                            href="{{ route('user.berita.detail', $item->slug) }}">
-                            <div class=" lg:w-48 flex-none bg-cover bg-center text-center overflow-hidden opacity-75"
-                                style="background-image: url('{{ $item->sampul }}')"></div>
-                            <div
-                                class="bg-white dark:bg-ungu_muda rounded px-4 flex flex-col justify-between leading-normal w-full p-5">
-                                <div>
-                                    <div class="mt-3 md:mt-0 ">
-                                        <p class="text-black2 dark:text-gray-100 font-bold text-1xl mb-2">
-                                            {{ $item->judul }}</p>
-                                    </div>
-                                    <p class="text-black3 dark:text-gray-300 text-base">{{ $item->generateCuplikan() }}
-                                    </p>
-                                </div>
-                                <div class="flex mt-3">
-                                    <i class="fa fa-user h-5 my-auto mx-3" aria-hidden="true"></i>
-                                    <div>
-                                        <p class="font-semibold text-black3 dark:text-gray-200 text-sm capitalize">
-                                            {{ $item->penulis->nama }}
-                                        </p>
-                                        <p class="text-gray-400 text-xs">
-                                            {{ \Carbon\Carbon::parse($item->tanggal_posting)->format('M Y') }}</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
-                    <div>
-                        {{ $berita->links() }}
-                    </div>
+                     @endforeach
                 </div>
-
-                {{-- * right sidebar * --}}
-                <div class="w-full lg:w-1/3 px-3">
-                    {{-- * topics * --}}
-                    <div class="mb-4">
-                        <h5 class="font-bold text-lg uppercase text-gray-700 dark:text-gray-100 px-1 mb-2"> Popular
-                            Topics
-                        </h5>
-                        <ul>
-                            @php
-                                $colors = [
-                                    'bg-red-300',
-                                    'bg-green-300',
-                                    'bg-blue-300',
-                                    'bg-yellow-300',
-                                    'bg-purple-300',
-                                ];
-                            @endphp
-                            @foreach ($kategori_populer as $key => $item)
-                                <li
-                                    class="{{ $item->berita_count == 0 ? 'hidden' : '' }} px-1 py-4 border-b border-t border-white hover:border-gray-200 transition duration-300">
-                                    <a href="?kategori={{ $item->nama_kategori }}"
-                                        class="flex items-center text-gray-600 dark:text-gray-200 cursor-pointer">
-                                        <span class="inline-block h-4 w-4 {{ $colors[$key] }} mr-3"></span>
-                                        {{ $item->nama_kategori }}
-                                        <span class="text-gray-500 ml-auto">{{ $item->berita_count }}</span>
-                                        <i class='text-gray-500 bx bx-right-arrow-alt ml-1'></i>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-
-                    </div>
-
-                    {{-- * subscribe * --}}
-                    <div class="p-1 mt-4 mb-4">
-                        <h5 class="font-bold text-lg uppercase text-gray-700 dark:text-gray-100 mb-2"> Pentingnya Berita
-                            RW 13 </h5>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Berita memiliki peran yang sangat penting di lingkungan RW 13 Taman Alamanda, karena menjadi sumber informasi
-                            utama bagi warga untuk mengetahui berbagai peristiwa, kegiatan, dan kebijakan yang terjadi
-                            di lingkungan. Dengan adanya berita, warga dapat tetap terinformasi tentang hal-hal
-                            penting seperti keamanan, lingkungan, dan acara sosial di sekitar lingkungan, yang pada gilirannya
-                            memungkinkan mereka untuk berpartisipasi aktif dalam kehidupan komunitas dan membuat
-                            keputusan yang lebih baik untuk kesejahteraan bersama.
-                        </p>
-                    </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $berita->links() }}
                 </div>
-
-            </div>
-        </section>
-        <div class="h-[70px]"></div>
-    </div>
+        </div>
+        <!-- Blog End -->
 </x-layout.user-layout>

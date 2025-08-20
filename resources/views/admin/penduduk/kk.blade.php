@@ -120,7 +120,7 @@
             </table>
         </div>
         <div class="mt-5">
-            {{ $penduduk->links() }}
+            {{ $penduduk->links('vendor.pagination.tailwind') }}
         </div>
     </div>
 

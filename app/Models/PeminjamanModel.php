@@ -13,6 +13,7 @@ class PeminjamanModel extends Model
     protected $fillable = [
         'id_inventaris',
         'jumlah',
+        'tanggal',
         'nik',
         'status'
     ];

@@ -1,13 +1,13 @@
 <x-layout.user-layout>
     <div class="dark:bg-[#1f1345]">
-        <section class="relative block h-[500px]">
+        {{-- <section class="relative block h-[500px]">
             <div class="absolute top-0 w-full h-full bg-center bg-cover"
                 style="
             background-image: url('assets/images/cover/bg-profile.webp');
           ">
                 <span id="blackOverlay" class="w-full h-full absolute opacity-50 dark:bg-[#1f1345] bg-white"></span>
             </div>
-        </section>
+        </section> --}}
         <section class="relative py-16 bg-blueGray-200">
             <div class="container mx-auto px-4">
                 <div

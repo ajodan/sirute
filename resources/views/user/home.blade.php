@@ -1,699 +1,750 @@
-<style>
-    .carousel-container {
-        perspective: 1000px;
-        touch-action: pan-y pinch-zoom;
-    }
-
-    .carousel-track {
-        transform-style: preserve-3d;
-        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .carousel-item {
-        backface-visibility: hidden;
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .carousel-item.active {
-        opacity: 1;
-        transform: scale(1) translateZ(0);
-    }
-
-    @media (max-width: 640px) {
-        .carousel-item.prev {
-            opacity: 0;
-            transform: scale(0.8) translateX(-50%) translateZ(-100px);
-        }
-
-        .carousel-item.next {
-            opacity: 0;
-            transform: scale(0.8) translateX(50%) translateZ(-100px);
-        }
-    }
-
-    @media (min-width: 641px) {
-        .carousel-item.prev {
-            opacity: 0.7;
-            transform: scale(0.9) translateX(-100%) translateZ(-100px);
-        }
-
-        .carousel-item.next {
-            opacity: 0.7;
-            transform: scale(0.9) translateX(100%) translateZ(-100px);
-        }
-    }
-
-    .carousel-item.hidden {
-        opacity: 0;
-        transform: scale(0.8) translateZ(-200px);
-    }
-
-    .nav-button {
-        transition: all 0.3s;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-    }
-
-    @media (hover: hover) {
-        .nav-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-        }
-    }
-
-    .nav-button:active {
-        transform: scale(0.95);
-    }
-
-    .progress-bar {
-        transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-</style>
-
 <x-layout.user-layout>
-    <div class="fixed inset-0 -z-10">
-        <div class="absolute inset-0 bg-gradient-to-br from-violet-900/20 via-purple-900/20 to-fuchsia-900/20"></div>
-        <div class="absolute top-1/4 left-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-violet-500/10 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-fuchsia-500/10 rounded-full filter blur-3xl"></div>
-    </div>
-
-    <!-- Main container -->
-    <div class="w-full max-w-6xl mx-auto">
-        <!-- Carousel container -->
-        <div class="carousel-container relative">
-            <!-- Progress bar -->
-            <div class="absolute top-0 left-0 right-0 h-1 bg-white/10 rounded-full overflow-hidden z-20">
-                <div class="progress-bar absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-violet-500 to-fuchsia-500"></div>
-            </div>
-
-            <!-- Navigation buttons -->
-            <button class="nav-button absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center z-20 text-white touch-manipulation" onclick="prevSlide()" title="Previous slide">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-            
-            <button class="nav-button absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center z-20 text-white touch-manipulation" onclick="nextSlide()" title="Next slide">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-
-            <!-- Carousel track -->
-            <div class="carousel-track relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden">
-                <!-- Carousel items -->
-                <div class="carousel-item active absolute top-0 left-0 w-full h-full">
-                    <div class="w-full h-full p-4 sm:p-8">
-                        <div class="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden relative group">
-                            <img src="https://images.unsplash.com/photo-1515462277126-2dd0c162007a?auto=format&fit=crop&q=80" alt="Geometric art installation" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-br from-violet-500/40 to-purple-500/40 mix-blend-overlay"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                                <h3 class="text-white text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3">Digital Prism</h3>
-                                <p class="text-gray-200 text-sm sm:text-base md:text-lg max-w-2xl">Where geometry meets art in a stunning display of light and form.</p>
+            <!-- Carousel Start -->
+            <div class="carousel-header">
+                <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        @foreach($berita as $key => $item)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                           <img 
+                                src="{{ $item->gambar ? asset('storage/images/berita/' . $item->gambar) : asset('images/default.jpg') }}" 
+                                class="img-fluid w-100 rounded" 
+                                alt="{{ $item->judul ?? 'Gambar' }}" 
+                                loading="lazy"
+                            >
+                            <div class="carousel-caption">
+                                <div class="p-3" style="max-width: 900px;">
+                                    {{-- <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Berita Terkini</h4> --}}
+                                    <h1 class="display-2 text-capitalize text-white mb-4">{{ $item->judul }}</h1>
+                                    <p class="mb-5 fs-5">{{ Str::limit(strip_tags($item->isi), 255) }}</p>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Berita Selengkapnya ....</a>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon btn bg-primary" aria-hidden="false"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        <span class="carousel-control-next-icon btn bg-primary" aria-hidden="false"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+                </div>
+                </div>
+            </div>
+            <!-- Carousel End -->
+        </div>
+        {{-- <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
+            <div class="container">
+                <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+                    <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Cari Berita" style="height: 60px;">
+                    <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Cari</button>
+                </div>
+            </div>
+        </div> --}}
+        <!-- Navbar & Hero End -->
+         <!-- Blog Start -->
+        <div class="container-fluid blog py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Artikel dan Berita</h5>
+                    {{-- <h1 class="mb-4">Artikel dan Berita</h1> --}}
+                    {{-- <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, vel reiciendis consectetur numquam id similique sunt error obcaecati ducimus officia maiores.
+                    </p> --}}
+                </div>
+               <div class="row g-4 justify-content-center">
+                @foreach($berita as $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <div class="blog-img-inner" style="height: 300px; overflow: hidden;">
+                                <img class="img-fluid w-100 rounded-top" src="{{ asset('storage/images/berita/' . $item->gambar) }}" alt="{{ $item->judul }}">
+                            </div>
+                            <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-calendar-alt text-primary me-2"></i>
+                                    {{ \Carbon\Carbon::parse($item->tanggal_posting)->format('d M Y') }}
+                                </small>
+                                <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2">
+                                    <i class="fa fa-thumbs-up text-primary me-2"></i>{{ $item->like_count }}
+                                </a>
+                                <a href="#" class="btn-hover flex-fill text-center text-white py-2">
+                                    <i class="fa fa-comments text-primary me-2"></i>{{ $item->comment_count }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            {{-- <p class="mb-3"><font size="2">Dibuat oleh : {{ $item->penulis->nama }}</font></p> --}}
+                            <a href="{{ url('berita/detail/' . $item->slug) }}" class="h5">{{ $item->judul }}</a>
+                            <p class="my-3 excerpt-berita">
+                                {{ Str::limit(strip_tags($item->isi), 230) }}
+                            </p>
+                            <a href="{{ url('berita/detail/' . $item->slug) }}" class="btn btn-primary rounded-pill py-2 px-4" style="font-size: 10px;">Baca Selengkapnya ...</a>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-
-            <!-- Indicators -->
-            <div class="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2 z-20">
-                <button class="w-8 sm:w-12 h-1 sm:h-1.5 rounded-full bg-white/40 hover:bg-white/60 transition-colors" title="Go to slide 1"></button>
             </div>
         </div>
-    </div>
-    <div class="dark:bg-[#1f1345]">
-        <div class="px-7 sm:max-w-6xl mx-auto font-sans">
+        <!-- Blog End -->
 
-            <section class="hero pb-12 pt-[100px] ">
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-x-4 ">
-                    <div class="flex flex-col flex-1 gap-y-8 sm:gap-y-10">
-                        <div class="gap-y-2 sm:gap-y-6 flex flex-col">
-                            <h1 class="text-blue-600 font-bold text-5xl sm:text-[50px] leading-none dark:text-white">
-                                <span class="text-yellow-500 dark:text-yellow-100">TAMAN ALAMANDA</span><br>
-                                RW 13/BLOK C
-                                
-                            </h1>
-                            <div class="text-sm sm:text-base leading-loose text-black3 dark:text-white">
-                                Digitalisasi pencatatan dan pengelolaan data warga RW 013 untuk 
-                                mempercepat akses informasi, mendukung layanan sosial dan laporan data statistik warga.
+        <!-- About Start -->
+        <div class="container-fluid about py-5">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5">
+                        <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
+                            <img src="{{ asset('assets/images/illustration/gerbang.webp') }}" class="img-fluid w-100 h-100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                        <h3 class="section-about-title pe-3">Kondisi Geografis</h3>
+                        <h5 class="mb-4"><span class="text-primary">Elevasi dan Topografi</span></h5>
+                        <p class="mb-4">RW 13 Blok C Taman Alamanda berada di kawasan Karangsatria dengan elevasi sekitar 12 meter di atas permukaan laut, menunjukkan kondisi datar sebagaimana karakter wilayah Bekasi secara umum.</p>
+                        <p>Kemiringan tanah sangat rendah (0–2%), sehingga cenderung sulit mengalirkan air secara alami — faktor yang berkontribusi pada risiko genangan saat hujan lebat.</p>
+                        <h5 class="mb-4"><span class="text-primary">Lokasi Administratif</span></h5>
+                        <div class="row gy-2 gx-4 mb-4">
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Provinsi : Jawa Barat</p>
                             </div>
-                        </div>
-                        <div class="flex flex-row gap-x-4 items-center">
-                            {{-- <a href="https://bit.ly/4hvTaNt"
-                                target="_blank" class="text-sm sm:text-base bg-yellow-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Pendataan Warga Mudik</a> --}}
-                            <a href="{{ route('user.layanan') }}"
-                                class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Layanan Administrasi</a>
-                        </div>
-                       
-                    </div>
-                    <div class="flex flex-row item-center hidden sm:block">
-                        <img src="{{ asset('assets/images/illustration/gerbang.webp') }}" alt=""
-                            class="w-[550px] h-max-[550px]">
-                    </div>
-                </div>
-            </section>
-
-            <section class="features py-15">
-                <div class="grid grid-col sm:grid-cols-3 gap-y-3 gap-x-8 px-5">
-                    <div
-                        class="my-card bg-purple-100 dark:bg-ungu_muda flex flex-col gap-y-4 sm:gap-y-8 items-start rounded-2xl p-7 sm:p-10">
-                        <i class="fa-solid fa-info text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
-                        <div class="flex flex-col gap-y-3 sm:gap-y-5">
-                            <h3 class=" text-xl sm:text-2xl font-bold text-gray-600 dark:text-white">
-                                Informasi
-                            </h3>
-                            <div class="text-sm sm:text-base leading-relaxed text-gray-500  dark:text-paragraf">
-                                Tersedianya informasi terkini yang memudahkan warga RW 13/Blok C untuk mengakses informasi terkait lingkungan.</div>
-                        </div>
-                    </div>
-                    <div
-                        class="my-card bg-purple-100 dark:bg-ungu_muda flex flex-col gap-y-4 sm:gap-y-8 items-start rounded-2xl p-7 sm:p-10">
-                        <i class="fa-solid fa-lightbulb text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
-                        <div class="flex flex-col gap-y-3 sm:gap-y-5">
-                            <h3 class="text-xl sm:text-2xl font-bold text-gray-600 dark:text-white">
-                                Aspirasi
-                            </h3>
-                            <div class="text-sm sm:text-base leading-relaxed text-gray-500 dark:text-paragraf">
-                                Terjalinnya komunikasi antara warga dengan pengurus RT dan RW di lingkungan RW 13/Blok C.</div>
-                        </div>
-                    </div>
-                    <div
-                        class="my-card bg-purple-100 dark:bg-ungu_muda flex flex-col gap-y-4 sm:gap-y-8 items-start rounded-2xl p-7 sm:p-10">
-                        <i class="fa-solid fa-database text-4xl sm:text-5xl text-purple-500 dark:text-purple-400"></i>
-                        <div class="flex flex-col gap-y-3 sm:gap-y-5">
-                            <h3 class="text-xl sm:text-2xl font-bold text-gray-600 dark:text-white">
-                                Database Warga
-                            </h3>
-                            <div class="text-sm sm:text-base leading-relaxed text-gray-500 dark:text-paragraf">
-                                Tersedianya database warga RW 13/Blok C yang dapat diakses melalui portal informasi.</div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Kabupaten : Bekasi</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Kecamatan : Tambun Utara</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Desa : Karangsatria</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+        <!-- About End -->
 
-            <section class="KetuaRw py-15">
-                <div class="grid grid-cols-1 sm:grid-cols-2 items-center sm:gap-x-10">
-                    <div class="flex flex-row item-center justify-center">
-                        <img src="{{ $rw->penduduk->foto_profile() }}" alt=""
-                            class="hidden sm:block  sm:h-[500px] rounded-xl object-cover">
-                    </div>
-                    <div class="">
-                        <div>
-                            <h1
-                                class="font-extrabold text-3xl sm:text-5xl leading-tight pb-4 sm:pb-2 text-gray-600 dark:text-white">
-                                Ketua Rukun Warga
-                            </h1>
-                            <div class="text-sm sm:text-base sm:mt-3 leading-loose text-gray-500 dark:text-paragraf">
-                                "Kepengurusan RW 13 Blok C Taman Alamanda" mencantumkan ketua RW dan RT, untuk memudahkan warga
-                                dalam berkomunikasi dan berkoordinasi dengan pengurus RW dan RT.
+        <!-- Services Start -->
+        <div class="container-fluid bg-light service py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Pelayanan</h5>
+                    <h1 class="mb-0">Layanan RT/RW</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                                    <div class="service-content">
+                                        <h5 class="mb-4">Pendataan dan Pencataan Data Warga</h5>
+                                        <p class="mb-0">Membuat Aturan Tata Tertib Lingkungan, Pendataan dan Pencatatan Warga, Membuat Agenda Lingkungan, Membuat Sistem Informasi Layanan RT/RW.</p>
+                                        </p>
+                                    </div>
+                                    <div class="service-icon p-4">
+                                        <i class="fa fa-globe fa-4x text-primary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
+                                    <div class="service-content">
+                                        <h5 class="mb-4">Pengurusan Surat Menyurat</h5>
+                                        <p class="mb-0">Pengurusan Permintaan Surat Menyurat Warga, seperti Permintaan Surat Pengantar, Ubah Kartu Keluarga, Pengurusan Akta Kelahiran dan Kematian, Membuat Surat Keterangan Domisili, Membuat Surat Keterangan Ahli Waris, Sengketa Warga, dan lain-lain.</p>
+                                    </div>
+                                    <div class="service-icon p-4">
+                                        <i class="fa fa-hotel fa-4x text-primary"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="block sm:hidden">
-                            <div class="flex mt-5 relative group ">
-                                <div
-                                    class="absolute flex justify-center items-center bg-indigo-900/0 group-hover:bg-indigo-900/80 w-full h-full transition ease-in-out duration-700 rounded-lg">
-                                    <div class="hidden group-hover:block">
-                                        <a onclick="window.location.href='{{ route('user.detail', $rw->penduduk->nik) }}'"
-                                            class=" text-sm bg-ungu text-white py-4 px-5 my-3 rounded-2xl font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">Detail
-                                            Penduduk
-                                            <i class="fa-solid fa-arrow-right text-md"></i>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                    <div class="service-icon p-4">
+                                        <i class="fa fa-globe fa-4x text-primary"></i>
+                                    </div>
+                                    <div class="service-content">
+                                        <h5 class="mb-4">Kegiatan Gotong Royong</h5>
+                                        <p class="mb-0">Kegiatan gotong royong yang melibatkan warga seperti Pelaksanaan Kerja Bakti Massal, Pembangunan dan Kebersihan, Perbaikan Saluran Air, Pemasangan Penerangan Lingkungan, Ketertiban dan Keamanan Lingkungan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                                    <div class="service-icon p-4">
+                                        <i class="fa fa-hotel fa-4x text-primary"></i>
+                                    </div>
+                                    <div class="service-content">
+                                         <h5 class="mb-4">Mitra Pemerintah Desa</h5>
+                                        <p class="mb-0">RT dan RW sebagai bagian dari Lembaga Kemasyarakatan Desa memiliki tugas: membantu Kepala Desa dalam bidang pelayanan pemerintahan, menyediakan data kependudukan dan melaksanakan tugas lain yang diberikan oleh Kepala Desa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-12">
+                        <div class="text-center">
+                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Service More</a>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+        <!-- Services End -->
+        <!-- Travel Guide Start -->
+        <div class="container-fluid guide py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Pengurus RW</h5>
+                    <h1 class="mb-0">Daftar Pengurus RW</h1>
+                </div>
+                <div class="row g-4">
+                    <?php foreach ($rw as $row) { ?>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="guide-item">
+                                <div class="guide-img">
+                                    <div class="guide-img-efects" style="height: 400px; overflow: hidden;">
+                                        <img src="storage/images/penduduk/<?= $row->penduduk->image ?>" class="img-fluid w-100 rounded-top" alt="<?= $row->penduduk->nama ?>">
+                                    </div>
+                                    <div class="guide-icon rounded-pill p-2">
+                                        <a class="btn btn-square btn-primary rounded-circle mx-1" href="<?= $row->penduduk->facebook ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-square btn-primary rounded-circle mx-1" href="<?= $row->penduduk->instagram ?>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-square btn-primary rounded-circle mx-1" href="mailto:<?= $row->penduduk->email ?>" target="_blank"><i class="fas fa-envelope"></i></a>
+                                        <a class="btn btn-square btn-success rounded-circle mx-1" href="<?= 'https://wa.me/' . $row->penduduk->no_hp ?>" target="_blank">
+                                            <i class="fab fa-whatsapp"></i>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="w-1/2">
-                                    <div class="  ">
-                                        <img src="{{ $rw->penduduk->foto_profile() }}" alt=""
-                                            class="w-40 top-0 left-0 h-full object-cover object-center rounded-lg">
+                                @if($row->penduduk->akun->id_level == 4)
+                                <div class="guide-title text-center rounded-bottom p-4">
+                                    <div class="guide-title-inner">
+                                        <h4 class="mt-3"><?= $row->penduduk->nama ?></h4>
+                                        <p class="mb-0">Ketua RW <?= $row->penduduk->alamat->rw ?></p>
                                     </div>
                                 </div>
-                                <dl
-                                class="text-gray-900 divide-y divide-purple-400 dark:text-white dark:divide-gray-700 mt-6">
-                                <div class="flex flex-col pb-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nama lengkap</dt>
-                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->nama }}</dd>
-                                </div>
-                                <div class="flex flex-col py-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Jabatan</dt>
-                                    <dd class="text-lg font-semibold">Ketua RW 13 Periode 2024-2027</dd>
-                                </div>
-                                {{-- <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nomor Ponsel</dt>
-                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->no_hp }}</dd>
-                                </div> --}}
-                                </dl>
-                                <div class="flex flex-row gap-x-4 items-center mt-10">
-                                    <a href="{{ route('user.detail', $rw->penduduk->nik) }}"
-                                        class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">
-                                        Detail Ketua RW</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hidden sm:block">
-                            <dl
-                                class="text-gray-900 divide-y divide-purple-400 dark:text-white dark:divide-gray-700 mt-6">
-                                <div class="flex flex-col pb-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nama lengkap</dt>
-                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->nama }}</dd>
-                                </div>
-                                <div class="flex flex-col py-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Jabatan</dt>
-                                    <dd class="text-lg font-semibold">Ketua RW 13 Periode 2024-2027</dd>
-                                </div>
-                                {{-- <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Nomor Ponsel</dt>
-                                    <dd class="text-lg font-semibold">{{ $rw->penduduk->no_hp }}</dd>
-                                </div> --}}
-                            </dl>
-                            <div class="flex flex-row gap-x-4 items-center mt-10">
-                                <a href="{{ route('user.detail', $rw->penduduk->nik) }}"
-                                    class="text-sm sm:text-base bg-purple-400 hover:bg-indigo-700 text-white py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700">
-                                    Detail Ketua RW</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="range py-15">
-                <div class="counter_list w-full h-auto clear-both float-left py-15">
-                    <ul class="ml-[-25px] flex flex-wrap">
-                        <li class="mb-[50px] pl-[25px] w-full sm:w-1/5 block">
-                            <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
-                                    data-penduduk-total="{{ $totalPenduduk }}">
-                                </h3>
-                                <span
-                                    class="title text-[15px] text-gray-600 dark:text-white font-poppins font-medium inline-block pl-[26px]">Total
-                                    Penduduk</span>
-                            </div>
-                        </li>
-                        <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
-                            <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
-                                    data-penduduk-total="{{ $totalPendudukLaki }}">
-                                </h3>
-                                <span
-                                    class="title text-[15px] text-gray-600 dark:text-white font-poppins text-nowrap font-medium inline-block pl-[26px]">Laki
-                                    - Laki</span>
-                            </div>
-                        </li>
-                        <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
-                            <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
-                                    data-penduduk-total="{{ $totalPendudukPerempuan }}">
-                                </h3>
-                                <span
-                                    class="title text-[15px] text-gray-600 dark:text-white font-poppins font-medium inline-block pl-[26px]">Perempuan</span>
-                            </div>
-                        </li>
-                        <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
-                            <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
-                                    data-penduduk-total="{{ $totalPendudukTetap }}">
-                                </h3>
-                                <span
-                                    class="title text-[15px] text-gray-600 dark:text-white font-poppins font-medium inline-block pl-[26px]">Penduduk
-                                    Tetap</span>
-                            </div>
-                        </li>
-                        <li class="mb-[50px] pl-[25px] w-1/2 sm:w-1/5 block">
-                            <div
-                                class="list_inner tilt-effect w-full h-auto clear-both float-left relative bg-green-100 dark:bg-ungu_muda rounded-[10px] p-[30px] flex items-center justify-center">
-                                <h3 class="text-[40px] transition-all duration-1000 ease-in text-green-500 dark:text-green-400 font-extrabold data-penduduk"
-                                    data-penduduk-total="{{ $totalPendudukPendatang }}">
-                                </h3>
-                                <span
-                                    class="title text-[15px] text-gray-600 dark:text-white font-poppins font-medium inline-block pl-[26px]">Pendatang</span>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class=" items-center">
-                    <div>
-                        <h1 class=" text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten ">
-                            Prosentase Warga RW 13 berdasarkan RT
-                        </h1>
-                        {{-- <p class="mt-4 text-center mx-auto lg:w-1/2 md:w-1/2">Jumlah warga di setiap RT penting untuk
-                            mengelola lingkungan, menentukan kebutuhan fasilitas, dan merencanakan sumber daya secara
-                            berkelanjutan.
-                        </p> --}}
-                    </div>
-                </div>
-                <div class="list w-full h-auto clear-both flex mt-[60px] ">
-                    <div class="w-full">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 w-full px-4 gap-4">
-                            <style>
-                                /* Tambahkan animasi pada kelas .animate-width */
-                                @keyframes grow-bar {
-                                    from {
-                                        width: 0;
-                                    }
-
-                                    to {
-                                        width: var(--width);
-                                    }
-                                }
-
-                                .animate-width {
-                                    animation: grow-bar 1s forwards;
-                                }
-                            </style>
-
-                            @foreach ($listRT as $item)
-                                <div class="mb-12">
-                                    <p class="text-gray-500 pb-2">RT {{ $item->rt }}</p>
-                                    <div class="bg-purple-200 grow relative h-2.5 w-full rounded-2xl">
-                                        <div data-persentase="{{ $item->persentase }}"
-                                            class="bar-data-rt bg-green-500 dark:bg-green-700 absolute top-0 left-0 h-full rounded-2xl transition-all ease-in-out duration-1000 w-1">
-                                            <span
-                                                class="bg-green-500 dark:bg-green-700 absolute -right-4 bottom-full mb-2 rounded-sm px-3.5 py-1 text-sm text-white">
-                                                <span
-                                                    class="bg-green-500 dark:bg-green-700 absolute bottom-[-2px] left-1/2 -z-10 h-2 w-2 -translate-x-1/2 rotate-45 rounded-sm"></span>
-                                                {{ $item->persentase }}%
-                                            </span>
-                                        </div>
+                                @elseif($row->penduduk->akun->id_level == 6)
+                                <div class="guide-title text-center rounded-bottom p-4">
+                                    <div class="guide-title-inner">
+                                        <h4 class="mt-3"><?= $row->penduduk->nama ?></h4>
+                                        <p class="mb-0">Pengurus RW <?= $row->penduduk->alamat->rw ?></p>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="OurTeam py-5 sm:py-15">
-                <div class=" items-center">
-                    <div>
-                        <h1 class=" text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten ">
-                            Daftar Ketua RT RW 13
-                        </h1>
-                        {{-- <p class="mt-4 text-center mx-auto lg:w-1/2 md:w-1/2">
-                            Ketua RT adalah pemimpin yang dipilih warga untuk menjaga keharmonisan, mengoordinasikan
-                            kegiatan, dan memastikan kebutuhan serta aspirasi warga terpenuhi.
-                        </p> --}}
-                    </div>
-                </div>
-                <div class="mt-15">
-                    <div class="swiper mySwiper !pb-17">
-                        <div class="swiper-wrapper">
-                            @foreach ($rt as $item)
-                                <div class="swiper-slide">
-                                    <div class="relative group overflow-hidden h-[330px] bg-white rounded-2xl">
-                                        <div class="relative h-full">
-                                            <div
-                                                class="absolute bg-indigo-900/0  group-hover:bg-purple-400/80 group-hover:dark:bg-purple-700/80 w-full h-full transition ease-in-out duration-700 skew-x-12 group-hover:skew-x-0 rotate-90 group-hover:rotate-0">
-                                                <div class="flex h-full justify-center items-center gap-5">
-                                                    <a class="opacity-0 group-hover:opacity-100 delay-500 transition ease-linear"
-                                                        href="{{ route('user.detail', $item->nik) }}">
-                                                        <i
-                                                            class="fa-solid fa-user text-white hover:text-indigo-900/80 hover:bg-white p-1 text-base hover:rounded-md  transition ease-linear "></i>
-                                                    </a>
-                                                    <a class="opacity-0 group-hover:opacity-100 delay-500 transition ease-linear"
-                                                        href="{{ 'https://wa.me/' . $item->penduduk->no_hp }}">
-                                                        <i
-                                                            class="fa-brands fa-whatsapp text-white hover:text-indigo-900/80 hover:bg-white p-1 text-base hover:rounded-md  transition ease-linear "></i>
-                                                    </a>
-                                                    <a class="opacity-0 group-hover:opacity-100 delay-500 transition ease-linear"
-                                                        href="{{ $item->link_maps->link ?? '#' }}" target="_blank">
-                                                        <i
-                                                            class="fa-solid fa-map text-white hover:text-indigo-900/80 hover:bg-white p-1 text-base hover:rounded-md  transition ease-linear "></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <img class=" top-0 left-0 w-full h-full object-cover"
-                                                src="{{ $item->penduduk->foto_profile() }}" alt="member">
-                                        </div>
-                                        <div
-                                            class="overflow-hidden p-4 bg-purple-100 group-hover:bg-white/70 absolute left-4 bottom-4 right-4 rounded-lg dark:bg-ungu_muda">
-                                            <p class="font-bold text-center text-black dark:text-white">
-                                                {{ $item->penduduk->nama }}
-                                            </p>
-                                            <p
-                                                class="text-gray-500 text-center group-hover:text-gray-800 dark:text-paragraf">
-                                                Ketua RT {{ $item->penduduk->alamat->rt }}</p>
-                                            <img class="absolute -left-10 -bottom-10"
-                                                src="{{ asset('assets/images/illustration/circle.svg') }}"
-                                                alt="circle">
-                                            <img class="absolute -right-2 -top-4 w-9"
-                                                src="{{ asset('assets/images/illustration/grid.svg') }}"
-                                                alt="circle">
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination absolute  !bottom-3"></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="agenda font-sans py-12">
-                <h1 class="text-center font-bold text-4xl sm:text-5xl leading-tight dark:text-whiten">Kegiatan dan
-                    Agenda</h1>
-                <p class="mt-8 text-center mx-auto lg:w-1/2 md:w-1/2">
-                    RW 13 Taman Alamanda aktif mengadakan berbagai kegiatan dan agenda untuk meningkatkan kesejahteraan serta
-                    keharmonisan warganya. Berikut adalah beberapa kegiatan dan agenda dilingkungan Blok C/RW 13:
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 items-center mt-20 sm:gap-x-10">
-                    <div class="flex flex-row item-center">
-                        <img src="{{ asset('assets/images/illustration/kalenderimg.webp') }}" alt=""
-                            class="h-[350px] hidden sm:block">
-                    </div>
-                    <div class="flex flex-col gap-y-10 ">
-                        @if ($agenda == null)
-                            <div class="bg-purple-100 dark:bg-[#37177b] rounded-3xl pb-5">
-                                <div class="sm:gap-y-2 flex flex-col pl-5 pt-5">
-                                    <h1
-                                        class="text-black1 font-bold text-3xl sm:text-4xl leading-tight dark:text-white ">
-                                        Tidak ada agenda
-                                    </h1>
-                                    <div class="text-base leading-loose text-black3 dark:text-purple-200 pb-4">
-                                        Tidak ada agenda yang tersedia saat ini
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                            <div class="bg-purple-100 dark:bg-[#37177b] rounded-3xl pb-5">
-                                <div class="sm:gap-y-2 flex flex-col pl-5 pt-5">
-                                    <h1
-                                        class="text-black1 font-bold text-3xl sm:text-4xl leading-tight dark:text-white ">
-                                        {{ $agenda->title }}
-                                    </h1>
-                                    <div class="text-base leading-loose text-black3 dark:text-purple-200 pb-4">
-                                        {{ $agenda->deskripsi }}
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col gap-y-10 pl-5 pr-5 sm:pb-5  ">
-
-                                    <div
-                                        class=" flex flex-row bg-white dark:bg-[#29115d] rounded-2xl p-5 items-center gap-x-4">
-                                        <img src="{{ asset('assets/images/illustration/kalenderimg.webp') }}"
-                                            alt="" class="h-[60px] sm:hidden block">
-                                        <div class="flex flex-col ">
-                                            <h3 class="text-xl sm:text-2xl font-bold text-black1 dark:text-purple-100">
-                                                Waktu
-                                            </h3>
-                                            <div
-                                                class="text-sm sm:text-base leading-relaxed text-black4 dark:text-purple-200">
-                                                {{ $agenda->start . ' - ' . $agenda->end }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        <div class="flex flex-row gap-x-4 items-center pl-5 ">
-                            <a href="{{ route('user.agenda') }}"
-                                class=" text-sm sm:text-base bg-purple-400 hover:bg-indigo-900 text-white dark:bg-purple-700 dark:hover:bg-white dark:hover:text-purple-700 py-4 px-5 sm:py-4 sm:px-10 rounded-full font-semibold">
-                                Lainnya</a>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="umkm mx-auto font-sans py-12">
-                <div class="flex flex-col gap-y-8">
-                    <div class="gap-y-2 flex flex-col text-center">
-                        <h1 class="text-black1 font-bold text-5xl leading-tight dark:text-whiten">UMKM RW 13
-                        </h1>
-                        <div
-                            class="text-base leading-loose text-black3 dark:text-white items-center text-center mx-auto lg:w-1/2 md:w-1/2">
-                            Merupakan program pemberdayaan ekonomi warga RW 13 dengan melalui pengembangan usaha lokal dan peningkatan akses pasar.
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 gap-y-13 mt-8">
-                        @foreach ($umkm as $item)
-                            <a href="{{ route('user.umkm.detail', $item->id_umkm) }}">
-                                <div class="group relative dark:bg-ungu_muda rounded-2xl">
-                                    <div
-                                        class="{{ $item->tokoBuka() ? 'hidden' : '' }} absolute bg-slate-950 rounded-2xl w-full h-full opacity-30">
-                                    </div>
-                                    <div class="items w-full h-full m-auto rounded-2xl shadow-md  ">
-                                        <div class="item-img pb-5">
-                                            <img class=" rounded-t-lg h-[200px] w-full object-cover"
-                                                src="{{ $item->getCover() }}" alt="">
-                                        </div>
-                                        <div class="item-info p-5">
-                                            <div class="item-rating flex justify-between items-center mt-3">
-                                                <p class="text-xl font-medium dark:text-white truncate">
-                                                    {{ $item->nama_umkm }}</p>
-                                                {{-- <img class="w-18" src="assets/images/umkm/rating_starts.png" alt=""> --}}
-                                            </div>
-                                            <p class="item-desc text-gray-500 text-xs">
-                                                {{ $item->generateCuplikan() }}</p>
-
-                                            <div
-                                                class="item price text-purple-400 group-hover:text-indigo-700  group-dark:hover:text-purple-700 text-sm font-medium my-3">
-                                                Selengkapnya
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="{{ $item->tokoBuka() ? 'hidden' : '' }} opacity-100 absolute justify-center w-full bottom-[60%] flex">
-                                            <p
-                                                class="text-base shadow-2xl shadow-ungu bg-ungu text-white py-3 px-7 rounded-full font-semibold ">
-                                                TUTUP</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                    <div class="flex justify-center">
-                        <a href="{{ route('user.umkm') }}"
-                            class=" text-base bg-purple-400 hover:bg-indigo-700 text-white dark:bg-purple-700 dark:hover:bg-white py-3 px-7 rounded-full font-semibold ">Lihat
-                            UMKM</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="aspirasi mx-auto font-sans pt-12 pb-5 sm:py-12">
-                <div class="flex flex-col gap-y-8">
-                    <div class="gap-y-2 flex flex-col text-center">
-                        <h1 class="text-black1 font-bold text-4xl sm:text-5xl dark:text-whiten leading-tight">Aspirasi
-                            Warga
-                        </h1>
-                        <div
-                            class="text-sm sm:text-base leading-loose text-black3 dark:text-white items-center pb-6 mt-4">
-                            Suarakan Kritik serta Saran<br>yang membangun untuk lingkungan RW 13 menjadi lebih
-                            baik
-                        </div>
-                        <div class="grid grid-cols-1 mx-auto sm:grid-cols-2 md:grid-cols-4 gap-8 gap-y-13">
-                            @foreach ($aspirasi as $item)
-                                <div class="flex flex-row gap-2.5">
-                                    <div
-                                        class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 bg-purple-300 rounded-e-xl rounded-es-xl dark:bg-[#37177b]">
-                                        <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                                            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Author :
-                                            </span>
-                                            <span
-                                                class="text-sm font-semibold text-gray-900 dark:text-white">{{ $item->author }}</span>
-                                        </div>
-
-                                        <span
-                                            class="text-sm font-normal text-start text-gray-500 dark:text-gray-400">Pesan
-                                            :
-                                        </span>
-                                        <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
-                                            {{ $item->isi }}
-                                        </p>
-                                        <div
-                                            class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 bg-purple-100 rounded-e-xl rounded-es-xl dark:bg-[#261055]">
-                                            @if ($item->status == 'pending')
-                                                <span
-                                                    class="text-sm font-normal text-gray-500 dark:text-gray-300">Belum
-                                                    di respon</span>
-                                            @else
-                                                <span
-                                                    class="text-sm font-normal text-gray-500 dark:text-gray-300">Respon
-                                                    :
-                                                </span>
-                                                <span
-                                                    class="text-sm font-normal text-gray-500 dark:text-gray-300">{{ $item->respon }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="closing font-sans mx-auto max-w-6xl bg-ungu p-14 rounded-3xl ">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
-                    <div class="flex flex-col gap-y-10">
-                        <div class="gap-y-2 flex flex-col">
-                            <h1 class="text-white font-bold text-2xl sm:text-3xl leading-tight">Kirimkan Aspirasimu!
-                            </h1>
-                            <div class="text-sm sm:text-base leading-loose text-white">
-                                Memberikan wadah bagi warga untuk berpartisipasi aktif dalam peningkatan kualitas
-                                layanan
-                                publik
-                                dan mendukung transparansi serta akuntabilitas.
+                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="grid">
-                        <div class="">
-                            <form action="{{ route('user.aspirasi.store') }}" class="max-w-sm" method="post">
-                                @csrf
-                                <textarea name="aspirasi" id="message" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-grren-500 focus:border-green-500 dark:bg-[#37177b] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                                    placeholder="Tulis aspirasi disini..."></textarea>
-
-                                <button type="submit"
-                                    class="   my-2 text-white hover:bg-indigo-900  bg-kuning focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-400 dark:hover:bg-green-700 dark:focus:ring-green-800">Kirim
-                                    Aspirasi</button>
-                            </form>
-                        </div>
-                    </div>
-            </section>
-
-            <div class="h-[70px]"></div>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
-    </div>
+        <!-- Travel Guide End -->
+         <div class="container-fluid guide py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Pengurus RT</h5>
+                    <h1 class="mb-0">Daftar Pengurus RT</h1>
+                </div>
+                <div class="row g-4">
+                    <?php foreach ($rt as $row) { ?>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="guide-item">
+                                <div class="guide-img">
+                                    <div class="guide-img-efects" style="height: 400px; overflow: hidden;">
+                                        <img src="storage/images/penduduk/<?= $row->penduduk->image ?>" class="img-fluid w-100 rounded-top" alt="<?= $row->penduduk->nama ?>">
+                                    </div>
+                                    <div class="guide-icon rounded-pill p-2">
+                                        <a class="btn btn-square btn-primary rounded-circle mx-1" href="<?= $row->penduduk->facebook ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-square btn-primary rounded-circle mx-1" href="<?= $row->penduduk->instagram ?>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                        <a class="btn btn-square btn-primary rounded-circle mx-1" href="mailto:<?= $row->penduduk->email ?>" target="_blank"><i class="fas fa-envelope"></i></a>
+                                        <a class="btn btn-square btn-success rounded-circle mx-1" href="<?= 'https://wa.me/' . $row->penduduk->no_hp ?>" target="_blank">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="guide-title text-center rounded-bottom p-4">
+                                    <div class="guide-title-inner">
+                                        <h4 class="mt-3"><?= $row->penduduk->nama ?></h4>
+                                        <p class="mb-0">Ketua RT 0<?= $row->penduduk->alamat->rt ?></p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
 
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                },
-                420: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                768: {
-                    slidesPerView: 4,
-                    spaceBetween: 10,
-                },
-            },
-            loop: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-    </script>
+        <!-- Gallery Start -->
+        {{-- <div class="container-fluid gallery py-5 my-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">Galeri</h5>
+                <h1 class="mb-4">Galeri Kegiatan Warga</h1>
+                 <p class="mb-0">
+                        Galeri Kegiatan merupakan kumpulan dokumentasi dari kegiatan rutin berupa photo yang dilakukan oleh Warga RW 13 Blok C Taman Alamanda, seperti kegiatan kerja bakti, pertemuan warga, dan kegiatan sosial lainnya.
+                    </p>
+            </div>
+            <div class="tab-class text-center">
+                <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+                    <li class="nav-item">
+                        <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#GalleryTab-1">
+                            <span class="text-dark" style="width: 150px;">Semua</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-2">
+                            <span class="text-dark" style="width: 150px;">RT 01</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-3">
+                            <span class="text-dark" style="width: 150px;">RT 02</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-4">
+                            <span class="text-dark" style="width: 150px;">RT 03</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-5">
+                            <span class="text-dark" style="width: 150px;">RT 04</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-6">
+                            <span class="text-dark" style="width: 150px;">RW 13</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="GalleryTab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-2">
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-1.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-1.jpg" data-lightbox="gallery-1" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-4.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-4.jpg" data-lightbox="gallery-4" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-5.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-5.jpg" data-lightbox="gallery-5" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-6.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-6.jpg" data-lightbox="gallery-6" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-7.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-7.jpg" data-lightbox="gallery-7" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-8.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-8.jpg" data-lightbox="gallery-8" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-9.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-9.jpg" data-lightbox="gallery-9" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-10.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-10.jpg" data-lightbox="gallery-10" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="GalleryTab-2" class="tab-pane fade show p-0">
+                        <div class="row g-2">
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="GalleryTab-3" class="tab-pane fade show p-0">
+                        <div class="row g-2">
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="GalleryTab-4" class="tab-pane fade show p-0">
+                        <div class="row g-2">
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="GalleryTab-5" class="tab-pane fade show p-0">
+                        <div class="row g-2">
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
+                                <div class="gallery-item h-100">
+                                    <img src="img/gallery-3.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                    <div class="gallery-content">
+                                        <div class="gallery-info">
+                                            <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-plus-icon">
+                                        <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!-- Gallery End -->
 
-    <script>
+        <!-- Tour Booking Start -->
+        <div class="container-fluid booking py-5">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <h5 class="section-booking-title pe-3">Aspirasi</h5>
+                        <p class="text-white mb-4">Silahkan sampaikan aspirasi Anda melalui form di sebelah kanan.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="text-white mb-3">Form Aspirasi</h1>
+                        <p class="text-white mb-4">Silakan isi form dibawah ini sesuai dengan aspirasi Anda.</p>
+                        <form id="aspirasiForm" action="{{ route('user.aspirasi.store') }}" method="post">
+                    @csrf       
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea 
+                                    class="form-control bg-white border-0" 
+                                    placeholder="Aspirasi Warga" 
+                                    name="aspirasi" 
+                                    id="aspirasi" 
+                                    style="height: 200px"
+                                    required 
+                                    minlength="10" 
+                                    maxlength="500"></textarea>
+                                <label for="aspirasi">Ketik Aspirasi Disini..</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button id="submitBtn" class="btn btn-primary text-white w-100 py-3" type="submit">
+                                Kirim Aspirasi
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tour Booking End -->
+
+        
+        <!-- Testimonial Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Data Statistik</h5>
+                    <h1 class="mb-0">Statistik Penduduk RW 13</h1>
+                </div>
+                <div class="testimonial-carousel owl-carousel">
+                    <div class="testimonial-item text-center rounded pb-4">
+                        <div class="testimonial-comment bg-light rounded p-4">
+                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <!-- Angka -->
+                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                                        data-penduduk-total="{{ number_format($totalPenduduk, 0, ',', '.') }}">
+                                         
+                                    </h5>
+                                    <!-- Label -->
+                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
+                                </div>
+                        </div>
+                       
+                        <div style="margin-top: -25px;">
+                            <h5 class="mb-0">Total Penduduk</h5>
+                        </div>
+                    </div>
+                    <div class="testimonial-item text-center rounded pb-4">
+                        <div class="testimonial-comment bg-light rounded p-4">
+                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <!-- Angka -->
+                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                                        data-penduduk-total="{{ number_format($totalPendudukLaki, 0, ',', '.') }}">
+                                    </h5>
+                                    <!-- Label -->
+                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
+                                </div>
+                        </div>
+                       
+                        <div style="margin-top: -25px;">
+                            <h5 class="mb-0">Laki-Laki</h5>
+                        </div>
+                    </div>
+                    <div class="testimonial-item text-center rounded pb-4">
+                        <div class="testimonial-comment bg-light rounded p-4">
+                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <!-- Angka -->
+                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                                        data-penduduk-total="{{ number_format($totalPendudukPerempuan, 0, ',', '.') }}">
+                                    </h5>
+                                    <!-- Label -->
+                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
+                                </div>
+                        </div>
+                       
+                        <div style="margin-top: -25px;">
+                            <h5 class="mb-0">Perempuan</h5>
+                        </div>
+                    </div>
+                     <div class="testimonial-item text-center rounded pb-4">
+                        <div class="testimonial-comment bg-light rounded p-4">
+                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <!-- Angka -->
+                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                                         data-penduduk-total="{{ number_format($totalPendudukTetap, 0, ',', '.') }}">
+                                    </h5>
+                                    <!-- Label -->
+                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
+                                </div>
+                        </div>
+                       
+                        <div style="margin-top: -25px;">
+                            <h5 class="mb-0">Penduduk Tetap</h5>
+                        </div>
+                    </div>
+                    <div class="testimonial-item text-center rounded pb-4">
+                        <div class="testimonial-comment bg-light rounded p-4">
+                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
+                                    <!-- Angka -->
+                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                                         data-penduduk-total="{{ number_format($totalPendudukPendatang, 0, ',', '.') }}">
+                                    </h5>
+                                    <!-- Label -->
+                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
+                                </div>
+                        </div>
+                       
+                        <div style="margin-top: -25px;">
+                            <h5 class="mb-0">Penduduk Pendatang</h5>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+        <script>
         document.addEventListener('DOMContentLoaded', function() {
             const bars = document.querySelectorAll('.bar-data-rt');
 
@@ -759,93 +810,5 @@
         });
     </script>
 </x-layout.user-layout>
-<script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.bottom-2 button, .bottom-4 button');
-    const progressBar = document.querySelector('.progress-bar');
-    let autoAdvanceTimer;
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const carousel = document.querySelector('.carousel-track');
 
-    // Add touch events for swipe
-    carousel.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    carousel.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    }
-
-    function updateSlides() {
-        slides.forEach((slide, index) => {
-            slide.className = 'carousel-item absolute top-0 left-0 w-full h-full';
-            if (index === currentSlide) {
-                slide.classList.add('active');
-            } else if (index === (currentSlide + 1) % slides.length) {
-                slide.classList.add('next');
-            } else if (index === (currentSlide - 1 + slides.length) % slides.length) {
-                slide.classList.add('prev');
-            } else {
-                slide.classList.add('hidden');
-            }
-        });
-
-        // Update indicators
-        indicators.forEach((indicator, index) => {
-            indicator.className = `w-8 sm:w-12 h-1 sm:h-1.5 rounded-full transition-colors ${
-                index === currentSlide ? 'bg-white/40' : 'bg-white/20'
-            } hover:bg-white/60`;
-        });
-
-        // Update progress bar
-        progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
-    }
-
-    function resetAutoAdvance() {
-        clearInterval(autoAdvanceTimer);
-        autoAdvanceTimer = setInterval(nextSlide, 5000);
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateSlides();
-        resetAutoAdvance();
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateSlides();
-        resetAutoAdvance();
-    }
-
-    // Add click handlers to indicators
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentSlide = index;
-            updateSlides();
-            resetAutoAdvance();
-        });
-    });
-
-    // Initialize auto advance
-    resetAutoAdvance();
-
-    // Initialize slides
-    updateSlides();
-</script>
+        

@@ -2,268 +2,116 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <x-layout.user-layout>
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Error!</strong>
-                <span class="block sm:inline">{{ $error }}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                    <svg onclick="this.parentElement.parentElement.style.display='none'"
-                        class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20">
-                        <title>Close</title>
-                        <path
-                            d="M14.348 14.849a1 1 0 01-1.414 0L10 10.414l-2.935 2.435a1 1 0 01-1.414-1.435l3-2.5a1 1 0 011.414 0l3 2.5a1 1 0 010 1.435z" />
-                    </svg>
-                </span>
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4">Usaha Kecil Mikro</h3>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="{{ route('user.home') }}">Beranda</a></li>
+                <li class="breadcrumb-item"><a href="#">Usaha Kecil Mikro</a></li>
+            </ol>    
+        </div>
+    </div>
+
+    <!-- Form Tambah Berita -->
+    <div class="container-fluid contact bg-light py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">Tambah Usaha Kecil Mikro</h5>
             </div>
-        @endforeach
-    @endif
-
-    <form class="hero max-w-6xl mx-auto font-sans py-20 sm:px-0 px-10" action="{{ route('user.umkm.store') }}"
-        method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="space-y-12">
-            <div class="border-b border-gray-900/10 pb-12">
-                <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-gray-300 dark:text-white">Request
-                    Pendaftaran UMKM
-                </h2>
-                <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400 text-justify">Dalam proses pencatatan
-                    data UMKM,
-                    langkah awal yang
-                    penting adalah pembuatan data yang akurat dan komprehensif. Melalui formulir ini, Anda dapat dengan
-                    mudah mencatat informasi penting tentang UMKM, termasuk nama UMKM, jadwal operasional, kategori
-                    produk atau layanan, serta unggahan gambar cover dan slide untuk memberikan gambaran yang jelas
-                    tentang bisnis UMKM tersebut</p>
-
-                <div class="mt-10 gap-x-6 gap-y-8">
-                    <div class="sm:col-span-4">
-                        <label for="username"
-                            class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300 dark:text-gray-100">Nama
-                            Usaha
-                            Mikro Kecil dan Menengah (UMKM)</label>
-                        <div class="mt-2">
-                            <div
-                                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                <input type="text" value="{{ old('nama_umkm') }}" name="nama_umkm" id="nama_umkm"
-                                    required autocomplete="off"
-                                    class="block flex-1 border-0 bg-transparent ml-1 py-1.5 pl-1 text-gray-900 dark:text-gray-300 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="Toko..">
-                            </div>
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow rounded-3">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Tambah Usaha Kecil Mikro</h5>
                         </div>
-                    </div>
+                        <div class="card-body">
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <p class="text-danger">{{ $error }}</p>
+                                @endforeach
+                            @endif
 
-                    <div class="col-span-full mt-4">
-                        <label for="cover-photo"
-                            class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300 dark:text-gray-100">Cover
-                            photo</label>
-                        <div
-                            class="mt-2 flex  justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="">
+                            <form action="{{ route('user.umkm.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
 
-                                <div class="text-center">
-                                    <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
-                                        aria-hidden="true" id="fortInput">
-                                        <path fill-rule="evenodd"
-                                            d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <img id="imagePreview" class="hidden mx-auto h-[400px]" src="#"
-                                        alt="Image Preview">
-                                    <div class="mt-4 flex text-sm justify-center leading-6 text-gray-600">
-                                        <label for="cover"
-                                            class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                            <span id="changetext" class="px-2">Upload a file</span>
-                                            <input type="file" class="sr-only" name="cover" id="cover"
-                                                accept="image/*" required>
-                                        </label>
-                                        <p class="pl-1 dark:text-gray-300">or drag and drop</p>
-                                    </div>
-                                    <p class="text-xs leading-5 text-gray-600 dark:text-gray-100">PNG, JPG, GIF max 2MB
-                                    </p>
+                                <!-- Judul -->
+                                <div class="mb-3">
+                                    <label class="form-label">Nama Usaha Kecil Mikro</label>
+                                    <input type="text" name="nama_umkm" class="form-control" value="{{ old('nama_umkm') }}" required>
                                 </div>
-                            </div>
+                                <!-- Gambar -->
+                                <div class="mb-3">
+                                    <label class="form-label">Photo Cover</label>
+                                    <input type="file" id="cover" name="cover" class="form-control">
+                                    <!-- Preview gambar baru -->
+                                    <img id="imagePreview" class="img-thumbnail mt-2 d-none" width="200">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jam_buka" class="form-label">Jam Buka</label>
+                                    <input type="time" id="jam_buka" name="jam_buka" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="jam_tutup" class="form-label">Jam Tutup</label>
+                                    <input type="time" id="jam_tutup" name="jam_tutup" class="form-control" required>
+                                </div>
+                                <?php
+                                $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+                                ?>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                <label class="block mb-2 font-semibold">Pilih Hari Buka</label>
+                                <div class="mb-5 border border-gray-400 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-2 p-3">
+                                    @foreach($hari as $h)
+                                        <div class="flex items-center gap-x-3">
+                                            <input id="{{ $h }}" value="{{ $h }}" name="hari[]" type="checkbox"
+                                                class="h-4 w-4 border-gray-300">
+                                            <label for="{{ $h }}" class="block text-sm font-medium leading-6">{{ $h }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                </div>
+                                <!-- Kategori -->
+                                <div class="grid grid-cols-2 gap-3">
+                                <label class="block mb-2 font-semibold">Kategori UKM</label>
+                                <div class="mb-5 border border-gray-400 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-2 p-3">
+                                    @foreach ($kategori as $item)
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="kategori-{{ $item->id_kategori }}"
+                                                value="{{ $item->id_kategori }}" name="kategori[]"
+                                                class="w-4 h-4 text-blue-600 bg-gray-300 border-gray-300 rounded focus:ring-blue-500">
+                                            <label for="kategori-{{ $item->id_kategori }}" class="ms-2 text-sm font-medium text-gray-900">
+                                                {{ $item->nama_kategori }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                </div>
+                                 <div class="mb-3">
+                                    <label class="form-label">Slide Gambar</label>
+                                    <input type="file" id="slide" name="slide[]" class="form-control">
+                                    <!-- Preview gambar baru -->
+                                    <img id="imagePreview" class="img-thumbnail mt-2 d-none" width="200">
+                                </div>
+
+                                <!-- Isi Berita -->
+                                <div class="mb-3">
+                                    <label class="form-label">Deskripsi UKM</label>
+                                    <textarea id="summernote" name="deskripsi" class="form-control w-100" style="min-height:300px;" required>{{ old('deskripsi') }}</textarea>
+                                </div>
+
+                                <!-- Tombol -->
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ route('user.umkm') }}" class="btn btn-secondary">Kembali</a>
+                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="border-b border-gray-900/10 pb-12">
-                <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-gray-300 dark:text-gray-100">
-                    Informasi Data</h2>
-                <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">Tersedia informasi terbaru mengenai
-                    jam operasional dan
-                    layanan UMKM, lengkap dengan kategori produk, waktu buka dan tutup.</p>
-
-                <div class=" mt-10">
-                    <div id="time-range-container" class="mt-4 grid grid-cols-2 gap-4 mb-6 ">
-                        <div>
-                            <label for="start-time"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 dark:text-white">Jam
-                                Buka:</label>
-                            <div class="relative">
-                                <div
-                                    class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd"
-                                            d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <input type="time" id="start_time" name="start_time"
-                                    class="bg-gray-50 border leading-none border-gray-300 text-gray-900 dark:text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value="00:00" required />
-                            </div>
-                        </div>
-                        <div>
-                            <label for="end-time"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 dark:text-white">Jam
-                                Tutup:</label>
-                            <div class="relative">
-                                <div
-                                    class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd"
-                                            d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <input type="time" id="end_time" name="end_time"
-                                    class="bg-gray-50 border leading-none border-gray-300 text-gray-900 dark:text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value="00:00" required />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <fieldset class="mt-10">
-                    <legend
-                        class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:text-gray-100">
-                        Pilih Hari Buka
-                    </legend>
-                    <div class="mt-4 space-y-3 text-gray-900 dark:text-gray-300 dark:text-gray-300">
-                        <div class="flex items-center gap-x-3">
-                            <input id="Senin" value="Senin" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Senin" class="block text-sm font-medium leading-6">Senin</label>
-                        </div>
-                        <div class="flex items-center gap-x-3">
-                            <input id="Selasa" value="Selasa" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Selasa" class="block text-sm font-medium leading-6">Selasa</label>
-                        </div>
-                        <div class="flex items-center gap-x-3">
-                            <input id="Rabu" value="Rabu" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Rabu" class="block text-sm font-medium leading-6">Rabu</label>
-                        </div>
-                        <div class="flex items-center gap-x-3">
-                            <input id="Kamis" value="Kamis" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Kamis" class="block text-sm font-medium leading-6">Kamis</label>
-                        </div>
-                        <div class="flex items-center gap-x-3">
-                            <input id="Jumat" value="Jumat" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Jumat" class="block text-sm font-medium leading-6">Jumat</label>
-                        </div>
-                        <div class="flex items-center gap-x-3">
-                            <input id="Sabtu" value="Sabtu" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Sabtu" class="block text-sm font-medium leading-6">Sabtu</label>
-                        </div>
-                        <div class="flex items-center gap-x-3">
-                            <input id="Minggu" value="Minggu" name="hari[]" type="checkbox"
-                                class="h-4 w-4 border-gray-300">
-                            <label for="Minggu" class="block text-sm font-medium leading-6">Minggu</label>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset class="mt-10">
-                    <legend
-                        class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300 dark:text-gray-100">
-                        Pilih Kategori
-                        Mikro Kecil dan
-                        Menengah (UMKM)</legend>
-                    <div class="mt-4 space-y-3 text-gray-900 dark:text-gray-300 dark:text-gray-300">
-                        @foreach ($kategori as $item)
-                            <div class="flex items-center gap-x-3">
-                                <input type="checkbox" id="list_kategori-{{ $item->id_kategori }}"
-                                    name="list_kategori[]" value="{{ $item->id_kategori }}" multiple
-                                    class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                                <label for="list_kategori-{{ $item->id_kategori }}"
-                                    class="block text-sm font-medium leading-6 ">{{ $item->nama_kategori }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </fieldset>
-
-            </div>
-
-            <div class="border-b border-gray-900/10 pb-12">
-                <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-gray-300 dark:text-gray-100">
-                    Deskripsi
-                    Mikro Kecil dan Menengah (UMKM)
-                </h2>
-                <p class="mt-1 text-sm leading-6 text-gray-600 text-justify dark:text-gray-300">Disini Anda dapat
-                    memasukkan
-                    beberapa produk anda yang
-                    akan dijadikan slide. Di dalam deskripsi anda dapat memasukkan link e-commerce, peta maps, gambar,
-                    price list , dan sebagainya</p>
-
-                <div class="mt-10 space-y-10">
-                    <div class="col-span-full mt-4">
-                        <label for="cover-photo"
-                            class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300 dark:text-gray-100">Slider
-                            photo
-                            header UMKM</label>
-                        <div
-                            class="mt-2 flex  justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="">
-                                <div class="text-center">
-                                    <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24"
-                                        fill="currentColor" aria-hidden="true" id="fortInputSlide">
-                                        <path fill-rule="evenodd"
-                                            d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <div id="imagePreviewContainer" class="hidden grid-cols-3 gap-4"></div>
-                                    <div class="mt-4 flex text-sm justify-center leading-6 text-gray-600">
-                                        <label for="slide"
-                                            class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                            <span id="changetextslide" class="px-2">Upload a file</span>
-                                            <input type="file" class="sr-only" name="slide[]" id="slide"
-                                                multiple accept="image/*">
-                                        </label>
-                                        <p class="pl-1  dark:text-gray-300">or drag and drop</p>
-                                    </div>
-                                    <p class="text-xs leading-5 text-gray-600 dark:text-gray-300">PNG, JPG, GIF max 2MB
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-2 rounded-lg">
-                        <textarea id="summernote" name="isi">{{ old('deskripsi') ?? '### Tulis Deskripsi UMKM Anda disini ###' }}</textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-6 flex items-center justify-end gap-x-6">
-                <a href="{{ route('user.umkm.dashboard') }}">
-                    <button type="button"
-                        class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-300">Cancel</button></a>
-                <button type="submit"
-                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
             </div>
         </div>
-    </form>
-
-
-    <div class="mt-187.5"></div>
+    </div>  
 </x-layout.user-layout>
 <script>
     $(document).ready(function() {
@@ -284,7 +132,7 @@
         });
     });
 
-    document.getElementById('cover').addEventListener('change', function(event) {
+    document.getElementById('gambar').addEventListener('change', function(event) {
         // remove hidden class
         document.getElementById('imagePreview').classList.remove('hidden');
         const file = event.target.files[0];
@@ -299,38 +147,5 @@
         } else {
             document.getElementById('imagePreview').src = "#";
         }
-
-        document.getElementById('fortInput').classList.add('hidden');
-        document.getElementById('changetext').innerText = 'Change a file';
-    });
-
-    document.getElementById('slide').addEventListener('change', function(event) {
-        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-        imagePreviewContainer.innerHTML = ''; // Kosongkan container
-
-        const files = event.target.files;
-
-        if (files.length > 0) {
-            imagePreviewContainer.classList.remove('hidden'); // Tampilkan container
-            imagePreviewContainer.classList.add('grid'); // Tambahkan kelas grid
-            Array.from(files).forEach(file => {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('max-w-full'); // Tambahkan kelas untuk styling
-                    img.alt = 'Image Preview';
-
-                    imagePreviewContainer.appendChild(img);
-                }
-
-                reader.readAsDataURL(file);
-            });
-        } else {
-            imagePreviewContainer.classList.add('hidden'); // Sembunyikan container jika tidak ada file
-        }
-        document.getElementById('fortInputSlide').classList.add('hidden');
-        document.getElementById('changetextslide').innerText = 'Change a file';
     });
 </script>

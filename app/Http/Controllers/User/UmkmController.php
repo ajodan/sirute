@@ -29,6 +29,7 @@ class UmkmController extends Controller
         }
         $umkm = $query->get();
         $kategori = KategoriUMKMModel::all();
+      //  dd($umkm);
         return view('user.UMKM.index', compact('umkm', 'kategori'));
     }
 
@@ -61,83 +62,205 @@ class UmkmController extends Controller
 
         $kategori = KategoriUMKMModel::all();
         $umkm = UMKMModel::find($id);
-        return view('user.UMKM.edit', compact('umkm', 'kategori'));
+        $hari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+        $hariDipilih = $umkm->hari ? json_decode($umkm->hari, true) : [];
+        $kategoriTerpilih = $umkm->kategori ? json_decode($umkm->kategori, true) : [];
+        $slide = GambarUMKMModel::where('id_umkm', $umkm->id_umkm)->where('position', 'slide')->pluck('gambar')->toArray();
+
+        return view('user.UMKM.edit', compact('umkm', 'kategori','hari','hariDipilih','kategoriTerpilih','slide'));
     }
     public function store(Request $request)
     {
-        try {
-            $isi = $request->isi;
-            $dom = new DOMDocument();
-            $dom->loadHTML($isi);
-            $images = $dom->getElementsByTagName('img');
-            $list_images = [];
-            foreach ($images as $k => $img) {
-                $data = $img->getAttribute('src');
-                if (filter_var($data, FILTER_VALIDATE_URL)) {
-                    continue;
-                }
-                list(, $data) = explode(';', $data);
-                list(, $data) = explode(',', $data);
-                $data = base64_decode($data);
-                // check image size max 2MB
-                if (strlen($data) > 2 * 1024 * 1024) {
-                    return redirect()->back()->withErrors('Ukuran gambar tidak boleh melebihi 2MB')->withInput();
-                }
-                $image_name = time() . $k . '.png';
-                $list_images[$image_name] = $data;
-                $img->removeAttribute('src');
-                $img->setAttribute('src', asset('storage/images/umkm/content/' . $image_name));
-            }
-        } catch (\Exception $e) {
-            return config('app.debug') ? $e->getMessage() : redirect()->back()->withErrors(['Terjadi kesalahan pada gambar/format UMKM yang diupload', 'Coba format ulang text UMKM'])->withInput();
+        // try {
+        //     $isi = $request->isi;
+        //     $dom = new DOMDocument();
+        //     $dom->loadHTML($isi);
+        //     $images = $dom->getElementsByTagName('img');
+        //     $list_images = [];
+        //     foreach ($images as $k => $img) {
+        //         $data = $img->getAttribute('src');
+        //         if (filter_var($data, FILTER_VALIDATE_URL)) {
+        //             continue;
+        //         }
+        //         list(, $data) = explode(';', $data);
+        //         list(, $data) = explode(',', $data);
+        //         $data = base64_decode($data);
+        //         // check image size max 2MB
+        //         if (strlen($data) > 2 * 1024 * 1024) {
+        //             return redirect()->back()->withErrors('Ukuran gambar tidak boleh melebihi 2MB')->withInput();
+        //         }
+        //         $image_name = time() . $k . '.png';
+        //         $list_images[$image_name] = $data;
+        //         $img->removeAttribute('src');
+        //         $img->setAttribute('src', asset('storage/images/umkm/content/' . $image_name));
+        //     }
+        // } catch (\Exception $e) {
+        //     return config('app.debug') ? $e->getMessage() : redirect()->back()->withErrors(['Terjadi kesalahan pada gambar/format UMKM yang diupload', 'Coba format ulang text UMKM'])->withInput();
+        // }
+
+       try {
+    $isi = $request->isi;
+
+    if (empty($isi)) {
+        $isi = '<html><body></body></html>';
+    }
+
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $dom->loadHTML($isi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    libxml_clear_errors();
+
+    $images = $dom->getElementsByTagName('img');
+    $list_images = [];
+
+    foreach ($images as $k => $img) {
+        $data = $img->getAttribute('src');
+
+        if (filter_var($data, FILTER_VALIDATE_URL)) {
+            continue;
         }
 
-        $deskripsi = $dom->saveHTML();
-        DB::transaction(function () use ($request, $deskripsi, $list_images) {
-            $umkm = new UMKMModel();
-            $umkm->nik = auth()->user()->penduduk->nik;
-            $umkm->nama_umkm = $request->nama_umkm;
-            $umkm->cover = $request->cover->hashName();
-            $umkm->deskripsi = $deskripsi;
-            $umkm->hari = implode(',', $request->hari);
-            $umkm->jam_buka = $request->start_time;
-            $umkm->jam_tutup = $request->end_time;
-            $umkm->save();
+        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
+            $data = preg_replace('/^data:image\/\w+;base64,/', '', $data);
+            $data = base64_decode($data);
 
-            // isi content
-            foreach ($list_images as $name => $data) {
-                $gambar = new GambarUMKMModel();
-                $gambar->id_umkm = $umkm->id_umkm;
-                $gambar->gambar = $name;
-                $gambar->position = 'content';
-                $gambar->save();
-                Storage::disk('public')->makeDirectory('images/umkm/content');
-                Storage::disk('public')->put('images/umkm/content/' . $name, $data);
+            if ($data === false) {
+                continue;
             }
 
-            // image slide
-            foreach ($request->slide as $data) {
-                $slide = new GambarUMKMModel();
-                $slide->id_umkm = $umkm->id_umkm;
-                $slide->gambar = $data->hashName();
-                $slide->position = 'slide';
-                $slide->save();
-                $data->store('images/umkm/slide_umkm', 'public');
+            if (strlen($data) > 2 * 1024 * 1024) {
+                return redirect()->back()
+                    ->withErrors('Ukuran gambar tidak boleh melebihi 2MB')
+                    ->withInput();
             }
 
-            // 
-            foreach ($request->list_kategori as $data) {
-                $list_kategori = new ListKategoriUMKMModel();
-                $list_kategori->id_umkm = $umkm->id_umkm;
-                $list_kategori->id_kategori = $data;
-                $list_kategori->save();
-            }
+            $image_name = time() . $k . '.png';
+            $path = 'images/umkm/content/' . $image_name;
 
-            $request->cover->store('images/umkm/cover_umkm', 'public');
-            $user = auth()->user();
-            $user->notify(new UMKM('UMKM berhasil ditambahkan. Mohon tunggu verifikasi dari admin.'));
-        });
-        return redirect()->route('user.umkm.dashboard')->with('success', 'UMKM berhasil ditambahkan');
+            \Storage::disk('public')->put($path, $data);
+
+            $list_images[$image_name] = $data;
+
+            $img->setAttribute('src', asset('storage/' . $path));
+        }
+    }
+
+    $isi_baru = $dom->saveHTML();
+
+    // ✅ Validasi
+    $request->validate([
+        'nama_umkm' => 'required|string|max:255',
+        'hari'      => 'required|array',
+        'jam_buka'  => 'required|date_format:H:i',
+        'jam_tutup' => 'required|date_format:H:i|after:jam_buka',
+        'deskripsi' => 'required|string',
+        'cover'     => 'required|image|max:2048',
+    ]);
+
+    // ✅ Upload cover
+   $coverName = null;
+    if ($request->hasFile('cover')) {
+        $coverName = $request->file('cover')->hashName(); 
+        $request->file('cover')->storeAs('public/images/umkm/cover_umkm', $coverName);
+    }
+
+    // ✅ Simpan UMKM
+    $umkm = \App\Models\UMKMModel::create([
+        'nama_umkm' => $request->nama_umkm,
+        'hari'      => implode(',', $request->hari),
+        'jam_buka'  => $request->jam_buka,
+        'jam_tutup' => $request->jam_tutup,
+        'nik'       => auth()->user()->penduduk->nik,
+        'status'    => 'pending',
+        'deskripsi' => $request->deskripsi,
+        'cover'     => $coverName,
+    ]);
+
+    // ✅ Simpan slide kalau ada
+    if ($request->hasFile('slide')) {
+        foreach ($request->file('slide') as $file) {
+            $slide = new \App\Models\GambarUMKMModel();
+            $slide->id_umkm = $umkm->id_umkm;
+            $slide->gambar = $file->hashName();
+            $slide->position = 'slide';
+            $slide->save();
+
+            $file->store('images/umkm/slide_umkm', 'public');
+        }
+    }
+
+    // ✅ Simpan kategori kalau ada
+    if ($request->filled('list_kategori')) {
+        foreach ($request->list_kategori as $data) {
+            $list_kategori = new \App\Models\KategoriUMKMModel();
+            $list_kategori->id_umkm = $umkm->id_umkm;
+            $list_kategori->id_kategori = $data;
+            $list_kategori->save();
+        }
+    }
+
+    // ✅ Kirim notifikasi
+    $user = auth()->user();
+    $user->notify(new \App\Notifications\Umkm('UMKM berhasil ditambahkan. Mohon tunggu verifikasi dari admin.'));
+
+    return redirect()->route('user.umkm.dashboard')->with('success', 'Data UMKM berhasil disimpan!');
+} catch (\Exception $e) {
+    return config('app.debug')
+        ? $e->getMessage()
+        : redirect()->back()
+            ->withErrors(['Terjadi kesalahan pada gambar/format UMKM yang diupload', 'Coba format ulang text UMKM'])
+            ->withInput();
+}
+
+
+        // $deskripsi = $dom->saveHTML();
+        // DB::transaction(function () use ($request, $deskripsi, $list_images) {
+        //     $umkm = new UMKMModel();
+        //     $umkm->nik = auth()->user()->penduduk->nik;
+        //     $umkm->nama_umkm = $request->nama_umkm;
+        //     $umkm->cover = $request->cover->hashName();
+        //     $umkm->deskripsi = $deskripsi;
+        //     $umkm->hari = implode(',', $request->hari);
+        //     $umkm->jam_buka = $request->start_time;
+        //     $umkm->jam_tutup = $request->end_time;
+        //     $umkm->status = 'pending';
+        //    // dd($umkm->nama);
+        //     $umkm->save();
+
+        //     // isi content
+        //     foreach ($list_images as $name => $data) {
+        //         $gambar = new GambarUMKMModel();
+        //         $gambar->id_umkm = $umkm->id_umkm;
+        //         $gambar->gambar = $name;
+        //         $gambar->position = 'content';
+        //         $gambar->save();
+        //         Storage::disk('public')->makeDirectory('images/umkm/content');
+        //         Storage::disk('public')->put('images/umkm/content/' . $name, $data);
+        //     }
+
+        //     // image slide
+        //     foreach ($request->slide as $data) {
+        //         $slide = new GambarUMKMModel();
+        //         $slide->id_umkm = $umkm->id_umkm;
+        //         $slide->gambar = $data->hashName();
+        //         $slide->position = 'slide';
+        //         $slide->save();
+        //         $data->store('images/umkm/slide_umkm', 'public');
+        //     }
+
+        //     // 
+        //     foreach ($request->list_kategori as $data) {
+        //         $list_kategori = new ListKategoriUMKMModel();
+        //         $list_kategori->id_umkm = $umkm->id_umkm;
+        //         $list_kategori->id_kategori = $data;
+        //         $list_kategori->save();
+        //     }
+
+        //     $request->cover->store('images/umkm/cover_umkm', 'public');
+        //     $user = auth()->user();
+        //     $user->notify(new UMKM('UMKM berhasil ditambahkan. Mohon tunggu verifikasi dari admin.'));
+        // });
+        // return redirect()->route('user.umkm.dashboard')->with('success', 'UMKM berhasil ditambahkan');
     }
 
     public function update(Request $request)
@@ -145,6 +268,8 @@ class UmkmController extends Controller
         $request->validate([
             'id_umkm' => 'required|exists:tb_umkm,id_umkm',
             'deskripsi' => 'required',
+            'jam_buka' => 'required|date_format:H:i',
+            'jam_tutup' => 'required|date_format:H:i|after:jam_buka',
         ]);
 
         $id_umkm = $request->id_umkm;
@@ -203,8 +328,8 @@ class UmkmController extends Controller
             }
             $umkm->deskripsi = $deskripsi;
             $umkm->hari = implode(',', $request->hari);
-            $umkm->jam_buka = $request->start_time;
-            $umkm->jam_tutup = $request->end_time;
+            $umkm->jam_buka = $request->jam_buka;
+            $umkm->jam_tutup = $request->jam_tutup;
             $umkm->save();
 
             foreach ($list_images as $name => $data) {
@@ -242,11 +367,11 @@ class UmkmController extends Controller
             }
 
             ListKategoriUMKMModel::where('id_umkm', $umkm->id_umkm)->delete();
-            foreach ($request->list_kategori as $data) {
-                $list_kategori = new ListKategoriUMKMModel();
-                $list_kategori->id_umkm = $umkm->id_umkm;
-                $list_kategori->id_kategori = $data;
-                $list_kategori->save();
+            foreach ($request->kategori as $data) {
+                $kategori = new ListKategoriUMKMModel();
+                $kategori->id_umkm = $umkm->id_umkm;
+                $kategori->id_kategori = $data;
+                $kategori->save();
             }
 
             if ($request->hasFile('cover')) {

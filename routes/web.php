@@ -32,6 +32,10 @@ Route::get('/', function () {
     return redirect(route('user.home'));
     
 });
+Route::get('/tugasdanfungsi', [\App\Http\Controllers\User\UserController::class, 'tugasdanfungsi'])->name('user.tugasdanfungsi');
+Route::get('/strukturorganisasi', function () {
+    return view('user.strukturorganisasi.index');
+})->name('user.strukturorganisasi');
 
 
 
@@ -41,12 +45,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::put('/gambarstruktur', [AdminController::class, 'updategambarStruktur'])->name('admin.gambarstruktur.update');
 
-       
-
         // Route::prefix('ganti-password')->group(function () {
         //     Route::get('/change_password', [ChangePasswordController::class, 'index'])->middleware('auth');
         //     Route::post('/change_password', [ChangePasswordController::class, 'store'])->middleware('auth');
         // });
+        
         // Admin Penduduk
         Route::prefix('penduduk')->group(function () {
             Route::get('/', [PendudukController::class, 'index'])->name('admin.penduduk');

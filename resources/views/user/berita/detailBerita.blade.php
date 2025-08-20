@@ -1,53 +1,62 @@
+
 <x-layout.user-layout>
-
-    <section class="mt-8 max-w-6xl mx-auto sm:px-0 px-10">
-        <div class="mb-4 md:mb-0 w-full mx-auto relative">
-            <div class="px-4 lg:px-0 py-5">
-                <h2 class="text-4xl font-semibold text-gray-800 dark:text-gray-50 leading-tight"> {{ $berita->judul }}
-                </h2>
-                </a>
+        <div class="container-fluid bg-breadcrumb">
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="text-white display-3 mb-4">Artikel/Berita</h3>
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="#">Artikel</a></li>
+                </ol>    
             </div>
-            <img src="{{ $berita->sampul }}" class="w-full object-cover lg:rounded h-[32em]" alt="Blog Cover" />
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:space-x-12">
-            <div class="px-4 lg:px-0 mt-8 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
-                <span class="text-gray-500 dark:text-gray-400">View:
-                    {{ $berita->view }}</span>
-
-                <p class="mt-2 dark:text-gray-300">{!! $berita->isi !!}</p>
-            </div>
-
-            <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
-                <div class="p-4 border-t border-b md:border md:rounded">
-                    <div class="flex py-2">
-                        <i class="fa fa-user h-5 my-auto mx-3" aria-hidden="true"></i>
-                        <div>
-                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">
-                                {{ $berita->Penulis->nama }}</p>
-                            <p class="font-semibold text-gray-600 dark:text-gray-500 text-xs"> Editor </p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-400 py-3 text-xs">
-                        Tanggal Publikasi: {{ $berita->tanggal_posting }}
-                    </p>
-                    <a href="{{ route('user.detail', $berita->Penulis) }}">
-                        <button
-                            class="px-2 py-1 text-gray-100 bg-purple-700 flex w-full items-center justify-center rounded">
-                            Detail Penulis
-                            <div class="ml-2"></div>
-                        </button>
-                    </a>
+        <!-- Contact Start -->
+        <div class="container-fluid contact bg-light py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Detail Artikel/Berita</h5>
                 </div>
-                {{-- <div class="iklan mt-8">
-                    <img src="https://source.unsplash.com/300x200/?advertising,social&fm=jpg&q=60"
-                        alt="Iklan Masyarakat" width="300" height="200">
-                    <img class="mt-4" src="https://source.unsplash.com/300x400/?iklan,social,portrait&fm=jpg&q=60"
-                        alt="Iklan Masyarakatt" width="300" height="400">
-                </div> --}}
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-4">
+                        @foreach ($thumbnail_berita as $item)
+                        <div class="bg-white rounded p-4">
+                            <div class="card border-0 shadow-sm mb-3">
+                            <div class="row g-0 align-items-center">
+                                <!-- Gambar -->
+                                <div class="col-md-4">
+                                    <img src="{{ asset('storage/images/berita/' . $item->gambar) }}"
+                                        alt="{{ $item->judul }}"
+                                        class="thumbnail-berita">
+                                </div>
+
+                                <!-- Teks -->
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <small class="text-muted">
+                                            {{ $item->created_at->format('d M Y') }}
+                                        </small>
+                                      <h5 class="card-title mb-2">
+                                        <a href="{{ url('berita/detail/' . $item->slug) }}" class="text-decoration-none text-dark">
+                                            <font size="3">{{ $item->judul }}</font>
+                                        </a>
+                                    </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                   <div class="col-lg-8 konten-berita">
+                        <h2 class="mb-4">{{ $berita->judul }}</h2>
+                         <img src="{{ asset('storage/images/berita/' . $berita->gambar) }}"
+                            alt="{{ $berita->judul }}"
+                            class="gambar-berita mb-3">
+                        {!! $berita->isi !!}
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-    <x-view.Popular-Berita />
-    <div class="mt-90"></div>
+        <!-- Contact End -->
+        </div>
 </x-layout.user-layout>

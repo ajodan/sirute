@@ -71,6 +71,7 @@ class InventarisController extends Controller
 
         DB::transaction(function () use ($request) {
             $inventaris = InventarisModel::findOrFail($request->id_inventaris);
+            dd($inventaris);
             if ($request->hasFile('image')) {
                 // hapus gambar lama
                 if (file_exists(storage_path('app/public/inventaris/' . $inventaris->image))) {
@@ -85,7 +86,7 @@ class InventarisController extends Controller
             $inventaris->rt = $request->rt;
             $inventaris->save();
         });
-        return redirect()->route('admin.inventaris')->with('success', 'Data berhasil diubah');
+        return redirect()->route('admin.inventaris', compact('inventaris'))->with('success', 'Data berhasil diubah');
     }
 
     public function delete($id_inventaris)
