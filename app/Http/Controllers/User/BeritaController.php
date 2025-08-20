@@ -230,8 +230,8 @@ class BeritaController extends Controller
                 $gambar->id_berita = $berita->id_berita;
                 $gambar->gambar = $name;
                 $gambar->save();
-                Storage::disk('public')->makeDirectory('images/berita/content');
-                Storage::disk('public')->put('images/berita/content/' . $name, $data);
+                Storage::disk('public')->makeDirectory('images/berita/');
+                Storage::disk('public')->put('images/berita/' . $name, $data);
             }
             if ($request->hasFile('gambar'))
                 $request->gambar->store('images/berita', 'public');
@@ -288,9 +288,11 @@ class BeritaController extends Controller
         return redirect()->back();
     }
 
-    public function edit(BeritaModel $berita)
+    public function edit($id)
     {
         $kategori = KategoriBeritaModel::all();
+        $berita = BeritaModel::find($id);
+        //dd($id);
         return view('user.berita.edit', compact('berita', 'kategori'));
     }
 }

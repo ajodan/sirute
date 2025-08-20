@@ -5,7 +5,7 @@
 <x-layout.user-layout>
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4">Artikel/Berita</h3>
+            <h3 class="text-white display-3 mb-4">Edit Artikel/Berita</h3>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Beranda</a></li>
                 <li class="breadcrumb-item"><a href="#">Artikel</a></li>
@@ -13,17 +13,17 @@
         </div>
     </div>
 
-    <!-- Form Tambah Berita -->
+    <!-- Form Edit Berita -->
     <div class="container-fluid contact bg-light py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                <h5 class="section-title px-3">Tambah Artikel/Berita</h5>
+                <h5 class="section-title px-3">Edit Artikel/Berita</h5>
             </div>
             <div class="row g-5 align-items-center">
                 <div class="col-lg-8 mx-auto">
                     <div class="card shadow rounded-3">
-                        <div class="card-header bg-success text-white">
-                            <h5 class="mb-0">Tambah Berita</h5>
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Edit Berita</h5>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -32,32 +32,41 @@
                                 @endforeach
                             @endif
 
-                            <form action="{{ route('user.berita.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('user.berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-
+                                @method('PUT')
+                                <input type="hidden" name="id_berita" value="{{ $berita->id_berita }}"> 
                                 <!-- Judul -->
                                 <div class="mb-3">
                                     <label class="form-label">Judul Artikel/Berita</label>
-                                    <input type="text" name="judul" class="form-control" value="{{ old('judul') }}" required>
+                                    <input type="text" name="judul" class="form-control" 
+                                           value="{{ old('judul', $berita->judul) }}" required>
                                 </div>
 
                                 <!-- Slug -->
                                 <div class="mb-3">
                                     <label class="form-label">Slug</label>
-                                    <input type="text" name="slug" class="form-control" value="{{ old('slug') }}" required>
+                                    <input type="text" name="slug" class="form-control" 
+                                           value="{{ old('slug', $berita->slug) }}" required>
                                 </div>
 
                                 <!-- Tanggal Posting -->
                                 <div class="mb-3">
                                     <label class="form-label">Tanggal Posting</label>
-                                    <input type="date" name="tanggal_posting" class="form-control" value="{{ old('tanggal_posting') }}" required>
+                                    <input type="date" name="tanggal_posting" class="form-control" 
+                                           value="{{ old('tanggal_posting', $berita->tanggal_posting) }}" required>
                                 </div>
 
                                 <!-- Gambar -->
                                 <div class="mb-3">
-                                    <label class="form-label">Gambar Artikel/Berita</label>
+                                    <label class="form-label">Gambar Artikel/Berita</label><br>
+                                    @if($berita->gambar)
+                                        <img src="{{ asset('storage/images/berita/' . $berita->gambar) }}" 
+                                             alt="Cover Lama" 
+                                             class="img-thumbnail mb-2" 
+                                             style="max-width: 200px;">
+                                    @endif
                                     <input type="file" id="gambar" name="gambar" class="form-control">
-                                    <!-- Preview gambar baru -->
                                     <img id="imagePreview" class="img-thumbnail mt-2 d-none" width="200">
                                 </div>
 
@@ -68,7 +77,8 @@
                                         <div class="flex items-center">
                                             <input type="checkbox" id="kategori-{{ $item->id_kategori }}"
                                                 value="{{ $item->id_kategori }}" name="kategori[]"
-                                                class="w-4 h-4 text-blue-600 bg-gray-300 border-gray-300 rounded focus:ring-blue-500">
+                                                class="w-4 h-4 text-blue-600 bg-gray-300 border-gray-300 rounded focus:ring-blue-500"
+                                                {{ in_array($item->id_kategori, old('kategori', $berita->kategori->pluck('id_kategori')->toArray())) ? 'checked' : '' }}>
                                             <label for="kategori-{{ $item->id_kategori }}" class="ms-2 text-sm font-medium text-gray-900">
                                                 {{ $item->nama_kategori }}
                                             </label>
@@ -79,13 +89,15 @@
                                 <!-- Isi Berita -->
                                 <div class="mb-3">
                                     <label class="form-label">Isi Berita</label>
-                                    <textarea id="summernote" name="isi" class="form-control w-100" style="min-height:300px;" required>{{ old('isi') }}</textarea>
+                                    <textarea id="summernote" name="isi" class="form-control w-100" style="min-height:300px;" required>
+                                        {{ old('isi', Str::limit(strip_tags($berita->isi), 230)) }}
+                                    </textarea>
                                 </div>
 
                                 <!-- Tombol -->
                                 <div class="d-flex justify-content-between">
                                     <a href="{{ route('user.berita') }}" class="btn btn-secondary">Kembali</a>
-                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -111,7 +123,6 @@
         });
     });
 
-    // preview gambar baru
     document.getElementById('gambar').addEventListener('change', function(event) {
         document.getElementById('imagePreview').classList.remove('d-none');
         const file = event.target.files[0];
