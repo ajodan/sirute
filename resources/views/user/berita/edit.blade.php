@@ -90,7 +90,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Isi Berita</label>
                                     <textarea id="summernote" name="isi" class="form-control w-100" style="min-height:300px;" required>
-                                        {{ old('isi', Str::limit(strip_tags($berita->isi), 230)) }}
+                                        {{ old('isi', strip_tags($berita->isi)) }}
                                     </textarea>
                                 </div>
 
