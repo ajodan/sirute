@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $level = auth()->user()->level->nama_level;
-        $auth = $level == 'Super Admin' || $level == 'RT' || $level == 'RW' || $level == 'Penduduk' || $level == 'Pengurus RT';
+        $auth = $level == 'Super Admin' || $level == 'RT' || $level == 'RW' || $level == 'Penduduk' || $level == 'Pengurus RT' || $level == 'Pengurus RW';
         if ($auth) {
             return $next($request);
         }

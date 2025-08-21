@@ -30,7 +30,7 @@ class InventarisController extends Controller
         $peminjaman = PeminjamanModel::whereHas('penduduk', function ($query) use ($nik) {
             $query->where('nik', $nik);
         })->with('inventaris')->get();
-        $inventaris = InventarisModel::where('rt', auth()->user()->penduduk->alamat->rt)->get();
+        $inventaris = InventarisModel::all();
 
         $page = request()->get('page', 1);
         $perPage = 10;
