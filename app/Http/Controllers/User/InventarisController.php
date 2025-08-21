@@ -17,10 +17,10 @@ class InventarisController extends Controller
 {
     public function index()
     {
-        $rt = auth()->user()->penduduk->alamat->rt;
-        $inventaris = InventarisModel::where('rt', $rt)->get();
-      //  $inventaris = InventarisModel::all();
-      //dd($inventaris);
+       // $rt = auth()->user()->penduduk->alamat->rt;
+       // $inventaris = InventarisModel::where('rt', $rt)->get();
+       $inventaris = InventarisModel::all();
+      // dd($inventaris);
         return view('user.inventaris.index', compact('inventaris'));
     }
 
