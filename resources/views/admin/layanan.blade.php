@@ -50,10 +50,10 @@
                             Nama Surat
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            image
+                            Cover Gambar
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            File
+                            File Surat
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Keterangan
@@ -76,7 +76,7 @@
                             <img class="max-h-20" src="{{ $item->getImage() }}">
                         </td>
                         <td class="px-6 py-4">
-                            <a class="hover:underline hover:text-blue-500 " href="{{ $item->downloadSurat() }}">{{ $item->file }}</a>
+                            <a class="hover:underline hover:text-blue-500 " href="{{ $item->downloadSurat() }}">Download File Surat</a>
                         </td>
                         <td class="px-6 py-4">
                             {{ $item->keterangan }}

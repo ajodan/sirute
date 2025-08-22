@@ -209,7 +209,8 @@ class PendudukController extends Controller
                 $penduduk = KkModel::with('pendudukHasOne');
                 if ($this->alamat) {
                     $penduduk->whereHas('pendudukHasOne.alamat', function ($query) {
-                        $query->where('rt', $this->alamat->rt);
+                        $query->where('rt', $this->alamat->rt)
+                              ->where('status_dasar', 'Hidup');
                     });
                 }
             }

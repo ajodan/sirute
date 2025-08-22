@@ -20,13 +20,13 @@
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Menu</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Tentang Kami</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Artikel</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Layanan</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> UKM</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Inventaris</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Agenda</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Aspirasi</a>
+                            <a href="{{ route('user.home') }}"><i class="fas fa-angle-right me-2"></i> Tentang Kami</a>
+                            <a href="{{ route('user.berita') }}"><i class="fas fa-angle-right me-2"></i> Artikel</a>
+                            <a href="{{ route('user.layanan') }}"><i class="fas fa-angle-right me-2"></i> Layanan</a>
+                            <a href="{{ route('user.umkm') }}"><i class="fas fa-angle-right me-2"></i> UKM</a>
+                            <a href="{{ route('user.inventaris') }}"><i class="fas fa-angle-right me-2"></i> Inventaris</a>
+                            <a href="{{ route('user.agenda') }}"><i class="fas fa-angle-right me-2"></i> Agenda</a>
+                            <a href="{{ route('user.aspirasi') }}"><i class="fas fa-angle-right me-2"></i> Aspirasi</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">

@@ -87,7 +87,7 @@
                                 @if ($item->pendudukHasOne->foto_profile())
                                     <img src="{{ $item->pendudukHasOne->foto_profile() }}" 
                                         alt="Foto {{ $item->pendudukHasOne->nama }}" 
-                                        class="w-[40px] h-[60px] object-cover rounded border shadow">
+                                        class="w-[60px] h-[80px] object-cover rounded border shadow">
                                 @endif
                             </td>
                             <th scope="row"
