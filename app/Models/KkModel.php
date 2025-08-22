@@ -51,4 +51,14 @@ class KkModel extends Model
     {
         return $this->hasMany(FotoRumah::class, 'no_kk', 'no_kk');
     }
+    public function foto_profile()
+    {
+        // return asset('storage/images/penduduk/' . $this->image);
+        // check if image is null or image exists
+        if ($this->image == null || !file_exists(public_path('storage/images/penduduk/' . $this->image))) {
+            return asset('assets/images/illustration/image-not-found.svg');
+        } else {
+            return asset('storage/images/penduduk/' . $this->image);
+        }
+    }
 }

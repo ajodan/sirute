@@ -53,6 +53,9 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
+                            Photo
+                        </th>
+                         <th scope="col" class="px-6 py-3">
                             Nama Kepala Keluarga
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -80,6 +83,13 @@
                     @foreach ($penduduk as $item)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">
+                                @if ($item->pendudukHasOne->foto_profile())
+                                    <img src="{{ $item->pendudukHasOne->foto_profile() }}" 
+                                        alt="Foto {{ $item->pendudukHasOne->nama }}" 
+                                        class="w-[40px] h-[60px] object-cover rounded border shadow">
+                                @endif
+                            </td>
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $item->pendudukHasOne->nama }}
