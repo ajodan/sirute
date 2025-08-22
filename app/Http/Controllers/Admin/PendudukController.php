@@ -290,6 +290,8 @@ class PendudukController extends Controller
                     'status_penduduk' => $request->status_penduduk,
                     'no_hp' => $request->no_hp,
                     'email' => $request->email,
+                    'instagram' => $request->instagram,
+                    'facebook' => $request->facebook,
                     'status_dasar' => $request->status_dasar,
                     'image' => $request->image->hashName(),
                 ]);
@@ -365,6 +367,9 @@ class PendudukController extends Controller
             'Pendidikan Terakhir' => $penduduk->pendidikan,
             'Alamat' => $penduduk->alamat->jalan,
             'Email' => $penduduk->email,
+            'No HP' => $penduduk->no_hp,
+            'Instagram' => $penduduk->instagram,
+            'Facebook' => $penduduk->facebook,
             'Kelurahan' => $penduduk->alamat->kel,
             'Kecamatan' => $penduduk->alamat->kecamatan,
             'RT' => $penduduk->alamat->rt,

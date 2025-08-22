@@ -61,6 +61,9 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="whitespace-nowrap">
                         <th scope="col" class="px-6 py-3">
+                            Photo
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Nama Lengkap
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -91,6 +94,13 @@
                     @foreach ($penduduk as $item)
                         <tr
                             class="whitespace-nowrap bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">
+                                @if ($item->foto_profile())
+                                    <img src="{{ $item->foto_profile() }}" 
+                                        alt="Foto {{ $item->nama }}" 
+                                        class="w-[60px] h-[80px] object-cover rounded border shadow">
+                                @endif
+                            </td>
                             <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                 <div>{{ $item->nama }}</div>
                             </td>
