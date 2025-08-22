@@ -20,8 +20,7 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
-            'page' => 'required',
-            'g-recaptcha-response' => 'required|captcha'
+            'page' => 'required'
         ]);
         $remember = $request->remember ?? false;
         if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']], $remember)) {

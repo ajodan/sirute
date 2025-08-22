@@ -35,13 +35,6 @@
                         class="shadow-sm bg-white border border-green-300 text-green-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         placeholder="Password" name="password" required />
                 </div>
-                <!-- reCAPTCHA -->
-                <div class="mt-3">
-                    {!! NoCaptcha::display() !!}
-                    @if ($errors->has('g-recaptcha-response'))
-                        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
-                    @endif
-                </div>
                 <div class="flex items-center mb-5 mt-4">
                     
                     <label for="terms" class="ms-2 text-base font-medium  text-green-900 dark:text-gray-300">
@@ -55,8 +48,7 @@
                 <button type="submit"
                     class="bg-purple-400 hover:bg-indigo-700 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-lg px-5 py-4 w-full text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Masuk</button>
             </form>
-           {{-- Load JS reCAPTCHA --}}
-            {!! NoCaptcha::renderJs() !!}
+           
              
 
 
