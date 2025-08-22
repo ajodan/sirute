@@ -20,6 +20,7 @@ use App\Http\Controllers\User\UserController;
 Route::get('/home', [UserController::class, 'index'])->name('user.home');
 
 
+
 Route::prefix('aspirasi')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [AspirasiController::class, 'index'])->name('user.aspirasi');
@@ -73,6 +74,8 @@ Route::prefix('umkm')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::put('/profile/update-foto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('user.profile.update');
 });
 
 Route::get('/agenda', [AgendaController::class, 'index'])->name('user.agenda');

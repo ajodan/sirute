@@ -98,4 +98,6 @@ class PendudukModel extends Model
     {
         return $this->hasOne(MapsModel::class, 'nik', 'nik');
     }
+
+    
 }
