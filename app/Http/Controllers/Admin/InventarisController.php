@@ -16,24 +16,24 @@ class InventarisController extends Controller
 
     public function index()
     {
-        $rt = auth()->user()->penduduk->alamat->rt;
-        $inventaris = InventarisModel::where('rt', $rt)->get();
-       //$inventaris = InventarisModel::orderBy('created_at', 'desc')->get();
+    //     $rt = auth()->user()->penduduk->alamat->rt;
+    //     $inventaris = InventarisModel::where('rt', $rt)->get();
+    //    //$inventaris = InventarisModel::orderBy('created_at', 'desc')->get();
 
-        return view('admin.inventaris', compact('inventaris'));
+    //     return view('admin.inventaris', compact('inventaris'));
+            $rt = auth()->user()->penduduk?->alamat?->rt;
+
+            if (!$rt) {
+                // misalnya kalau user belum punya RT
+                return redirect()->back()->with('error', 'Data RT tidak ditemukan.');
+            }
+
+            $inventaris = InventarisModel::where('rt', $rt)->get();
+
+            return view('admin.inventaris', compact('inventaris'));
     }
 
-    // public function destroy($id_inventaris)
-    // {
-    //     // return $nik;
-    //     try {
-    //         $barang = InventarisModel::where('id_inventaris', $id_inventaris)->first();
-    //         $barang->delete();
-    //     } catch (\Exception $e) {
-    //         return config('app.debug') ? redirect()->route('admin.inventaris')->withErrors($e->getMessage())->withInput() : redirect()->route('admin.penduduk')->withErrors('Barang di Inventaris Gagal di Hapus.')->withInput();
-    //     }
-    //     return redirect()->route('admin.inventaris')->with('success', 'Barang Berhasil Dihapus.');
-    // }
+  
     public function updatePeminjaman(Request $request)
     {
         $peminjaman = PeminjamanModel::findOrFail($request->id_peminjaman);
