@@ -40,26 +40,37 @@ class AspirasiController extends Controller
     // }
 
     public function store(Request $request)
-{
-    // Validasi
-    $request->validate([
-        'isi' => 'required|string|min:10|max:255',
-    ], [
-        'isi.required' => 'Aspirasi tidak boleh kosong.',
-        'isi.min' => 'Aspirasi minimal 10 karakter.',
-        'isi.max' => 'Aspirasi maksimal 255 karakter.',
-    ]);
+    {
+        try {
+            $request->validate([
+                'isi' => 'required|string|max:1000',
+            ]);
 
-    // Simpan data aspirasi
-    $aspirasi = new AspirasiModel();
-    $aspirasi->author = auth()->user()->nik; // author: NIK user
-    $aspirasi->isi = $request->isi;          // sesuai nama field form
-    $aspirasi->status = 'pending';           // status default
-    $aspirasi->respon = null;                // kosong dulu
-    $aspirasi->save();
+            $aspirasi = new AspirasiModel();
+            $aspirasi->author = auth()->user()->nik;
+            $aspirasi->isi    = $request->isi;
 
-    // Redirect dengan pesan sukses
-    return redirect()->route('user.aspirasi.riwayataspirasi')
-                     ->with('success', 'Aspirasi berhasil dikirim.');
-}
+            // Pastikan RT tidak null
+            $aspirasi->rt = auth()->user()->penduduk->alamat->rt ?? '-';
+
+            $aspirasi->status = 'pending';
+            $aspirasi->respon = null;
+            $aspirasi->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Aspirasi berhasil dikirim!',
+                'data'    => $aspirasi
+            ]);
+        } catch (\Exception $e) {
+            // log error biar bisa dicek di storage/logs/laravel.log
+            \Log::error("Error simpan aspirasi: " . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan server saat simpan: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
 }

@@ -15,6 +15,7 @@ class AspirasiModel extends Model
         'isi',
         'status',
         'respon',
+        'rt',
     ];
 
     public function penduduk()

@@ -79,7 +79,7 @@
                     <h5 class="modal-title" id="tambahPeminjamanLabel">Tambah Peminjaman</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
+                <input type="hidden" name="rt" value="{{ auth()->user()->penduduk->alamat->rt }}">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="id_inventaris" class="form-label">Jenis Inventaris</label>

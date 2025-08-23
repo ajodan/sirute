@@ -30,7 +30,7 @@
                                     <p class="text-danger">{{ $error }}</p>
                                 @endforeach
                             @endif
-
+                             <input type="hidden" name="rt" value="{{ auth()->user()->penduduk->alamat->rt }}">
                             <form action="{{ route('user.umkm.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')

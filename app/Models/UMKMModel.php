@@ -23,6 +23,7 @@ class UMKMModel extends Model
         'jam_tutup',
         'status',
         'nik',
+        'rt',
     ];
 
     public function penduduk(): \Illuminate\Database\Eloquent\Relations\HasOne

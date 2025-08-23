@@ -88,6 +88,7 @@
         <div class="modal-content">
             <form id="formTambahAspirasi" action="{{ route('user.aspirasi.store') }}" method="POST">
                 @csrf
+                <input type="hidden" name="rt" value="{{ auth()->user()->penduduk->alamat->rt }}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambahAspirasiLabel">Tambah Aspirasi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: formData
         })
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             if (data.success) {
                 Swal.fire({
@@ -137,15 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     title: 'Berhasil!',
                     text: data.message,
                     confirmButtonColor: '#3085d6'
+                }).then(() => {
+                    // Tutup modal
+                    const modalInstance = bootstrap.Modal.getInstance(tambahModal);
+                    modalInstance.hide();
+                    form.reset();
+
+                    // Reload list aspirasi
+                    location.reload();
                 });
-
-                // Tutup modal dan reset form
-                const modalInstance = bootstrap.Modal.getInstance(tambahModal);
-                modalInstance.hide();
-                form.reset();
-
-                // Reload halaman agar list aspirasi terbaru tampil
-                location.reload();
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -159,11 +160,13 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error(error);
             Swal.fire({
                 icon: 'error',
-                title: 'Oops!',
-                text: 'Terjadi kesalahan, coba lagi.',
+                title: 'Gagal!',
+                text: 'Terjadi kesalahan saat mengirim aspirasi.',
+                confirmButtonColor: '#d33'
             });
         });
     });
 });
 </script>
+
 
