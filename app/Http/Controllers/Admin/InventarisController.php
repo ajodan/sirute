@@ -20,7 +20,7 @@ class InventarisController extends Controller
         $inventaris = InventarisModel::where('rt', $rt)->get();
        //$inventaris = InventarisModel::orderBy('created_at', 'desc')->get();
 
-        return view("admin.inventaris", compact("inventaris"));
+        return view('admin.inventaris', compact('inventaris'));
     }
 
     // public function destroy($id_inventaris)
