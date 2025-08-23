@@ -21,12 +21,12 @@ class LoginController extends Controller
             'username' => ['required'],
             'password' => ['required'],
             'page' => 'required',
-            'captcha'  => 'required|captcha',
+            // 'captcha'  => 'required|captcha',
         ], [
-            'captcha.required' => 'Mohon isi captcha.',
-            'captcha.captcha'  => 'Captcha tidak cocok, silakan coba lagi.',
+            // 'captcha.required' => 'Mohon isi captcha.',
+            // 'captcha.captcha'  => 'Captcha tidak cocok, silakan coba lagi.',
         ]);
-        
+
         $remember = $request->remember ?? false;
         if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']], $remember)) {
             $request->session()->regenerate();
