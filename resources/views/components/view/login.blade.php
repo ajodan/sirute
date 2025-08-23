@@ -40,22 +40,18 @@
 
                     <div class="flex items-center gap-3">
                         <img id="captcha-img" src="{{ captcha_src('flat') }}" alt="captcha" class="rounded border">
-                        <button type="button" id="reload-captcha" 
-                            class="p-2 rounded border flex items-center justify-center hover:bg-gray-100" 
-                            title="Reload Captcha">
-                        <svg xmlns="http://www.w3.org/2000/svg" 
-                            class="h-5 w-5" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            stroke-width="2" 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10M1 14l5.36 5.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>
-                    </button>
+
+<button type="button"
+        onclick="document.getElementById('captcha-img').src='{{ captcha_src('flat') }}' + '&_=' + Date.now();"
+        class="p-2 rounded border"
+        title="Reload Captcha">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10M1 14l5.36 5.36A9 9 0 0 0 20.49 15"></path>
+    </svg>
+</button>
                     </div>
 
                     <input type="text" 
