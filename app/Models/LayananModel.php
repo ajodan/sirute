@@ -16,6 +16,7 @@ class LayananModel extends Model
         'keterangan',
         'file',
         'author',
+        'rt',
     ];
 
     public function getImage(): string
@@ -29,6 +30,10 @@ class LayananModel extends Model
     public function downloadSurat(): string
     {
         return asset('storage/layanan/berkas/' . $this->file);
+    }
+    public function penduduk()
+    {
+        return $this->belongsTo(PendudukModel::class, 'author', 'nik');
     }
 
 }

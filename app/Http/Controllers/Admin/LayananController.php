@@ -12,7 +12,7 @@ class LayananController extends Controller
     public function index()
     {
 
-        $layanan = LayananModel::all();
+        $layanan = LayananModel::where('rt', auth()->user()->penduduk->alamat->rt)->get();
         return view('admin.layanan', compact('layanan'));
     }
     public function store(Request $request)
@@ -30,6 +30,7 @@ class LayananController extends Controller
             $layanan->keterangan = $request->keterangan;
             $layanan->file = $request->file->hashName();
             $layanan->author = auth()->user()->nik;
+            $layanan->rt = auth()->user()->penduduk->alamat->rt;
             $layanan->save();
             $file = $request->file('file');
             $file->store('layanan/berkas', 'public');

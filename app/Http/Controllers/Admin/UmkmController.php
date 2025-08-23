@@ -11,7 +11,7 @@ class UmkmController extends Controller
     private $pagging = 10;
     public function index()
     {
-        $UMKM = UMKMModel::orderBy('created_at', 'desc')->paginate($this->pagging);
+        $UMKM = UMKMModel::where('rt', auth()->user()->penduduk->alamat->rt)->orderBy('created_at', 'desc')->paginate($this->pagging);
 
         return view("admin.data-umkm", compact("UMKM"));
     }

@@ -99,5 +99,10 @@ class PendudukModel extends Model
         return $this->hasOne(MapsModel::class, 'nik', 'nik');
     }
 
+    public function layanan()
+    {
+        return $this->hasMany(LayananModel::class, 'author', 'nik');
+    }
+
     
 }

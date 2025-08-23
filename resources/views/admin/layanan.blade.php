@@ -59,10 +59,10 @@
                             Keterangan
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Author
+                            Penginput
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            Aksi
                         </th>
                     </tr>
                 </thead>
@@ -83,7 +83,7 @@
                         </td>
 
                         <td class="px-6 py-4">
-                            {{ $item->author }}
+                            {{ $item->penduduk->nama }}
                         </td>
                         <td class="px-6 py-4 flex gap-2">
                             <button onclick="showEdit({{ $item }})" data-modal-target="edit-surat" data-modal-toggle="edit-surat"

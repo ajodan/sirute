@@ -12,7 +12,8 @@ class AspirasiController extends Controller
 {
     public function index()
     {
-        $aspirasi = AspirasiModel::all();
+
+        $aspirasi = AspirasiModel::where('rt', auth()->user()->penduduk->alamat->rt)->get();
 
         return view("admin.aspirasi", compact('aspirasi'));
     }
