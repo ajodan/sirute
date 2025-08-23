@@ -89,7 +89,7 @@
                         Kesejahteraan</h3>
 
                     <!-- Menu Bansos -->
-                    <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
+                    {{-- <li x-show="levelUser === 'Super Admin' || levelUser === 'RW' || levelUser === 'RT'">
                         <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-graydark duration-300 ease-in-out hover:bg-ungu hover:text-white dark:hover:bg-purple-600 dark:text-white"
                             href="#" @click.prevent="selected = (selected.includes('bansos') ? '':'bansos')"
                             :class="{ 'bg-ungu text-white dark:bg-purple-700': (selected.includes('bansos')) }">
@@ -123,7 +123,7 @@
                             </ul>
                         </div>
                         <!-- Dropdown Menu End -->
-                    </li>
+                    </li> --}}
 
                     <!-- Menu Bansos End -->
 

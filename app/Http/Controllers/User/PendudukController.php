@@ -12,16 +12,13 @@ class PendudukController extends Controller
 {
     public function index(Request $request)
     {
-        if(auth()->user()->id_level == 2){
-            $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
-                $query->where('rt', auth()->user()->penduduk->alamat->rt);
-            });
-        } else {
-            $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
-                $query->where('norumah', auth()->user()->penduduk->alamat->norumah);
-            });
-        }
-        
+        // if(auth()->user()->id_level == 2){
+        //     $query = PendudukModel::with('alamat')->whereHas('alamat', function ($query) {
+        //         $query->where('rt', auth()->user()->penduduk->alamat->rt);
+        //     });
+        // } else {
+        $query = PendudukModel::where('no_kk', auth()->user()->penduduk->no_kk);
+
         if ($request->has('s')) {
             $query->where('nama', 'like', '%' . $request->s . '%');
         }

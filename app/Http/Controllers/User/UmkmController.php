@@ -171,6 +171,7 @@ class UmkmController extends Controller
         'jam_buka'  => $request->jam_buka,
         'jam_tutup' => $request->jam_tutup,
         'nik'       => auth()->user()->penduduk->nik,
+        'rt'        => $request->rt,
         'status'    => 'pending',
         'deskripsi' => $request->deskripsi,
         'cover'     => $coverName,

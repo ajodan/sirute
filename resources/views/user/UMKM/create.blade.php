@@ -33,6 +33,9 @@
 
                             <form action="{{ route('user.umkm.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('POST')
+                                <input type="hidden" name="nik" value="{{ auth()->user()->penduduk->nik }}">
+                                <input type="hidden" name="rt" value="{{ auth()->user()->penduduk->alamat->rt }}">
 
                                 <!-- Judul -->
                                 <div class="mb-3">

@@ -16,6 +16,12 @@ class UmkmController extends Controller
         return view("admin.data-umkm", compact("UMKM"));
     }
 
+    /**
+     * Mengupdate status UMKM
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function set_status(Request $request)
     {
         $umkm = UMKMModel::find($request->id_umkm);
