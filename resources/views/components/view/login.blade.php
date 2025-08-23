@@ -35,13 +35,13 @@
                         class="shadow-sm bg-white border border-green-300 text-green-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         placeholder="Password" name="password" required />
                 </div>
-                 <div class="mb-3">
+                 {{-- <div class="mb-3">
                     <label for="captcha">Captcha</label>
 
                     <div class="flex items-center gap-3">
                         <img id="captcha-img" src="{{ captcha_src('flat') }}" alt="captcha" class="rounded border">
 
-                        {{-- <button type="button"
+                        <button type="button"
                                 onclick="document.getElementById('captcha-img').src='{{ captcha_src('flat') }}' + '&_=' + Date.now();"
                                 class="p-2 rounded border"
                                 title="Reload Captcha">
@@ -51,7 +51,7 @@
                                 <polyline points="1 20 1 14 7 14"></polyline>
                                 <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10M1 14l5.36 5.36A9 9 0 0 0 20.49 15"></path>
                             </svg>
-                        </button> --}}
+                        </button>
                     </div>
 
                     <input type="text" 
@@ -62,7 +62,7 @@
                     @error('captcha')
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         const btn = document.getElementById('reload-captcha');
