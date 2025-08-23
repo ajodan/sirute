@@ -35,6 +35,63 @@
                         class="shadow-sm bg-white border border-green-300 text-green-900 text-sm  focus:ring-ungu focus:border-ungu block w-full py-3 px-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         placeholder="Password" name="password" required />
                 </div>
+                 <div class="mb-3">
+                    <label for="captcha">Captcha</label>
+
+                    <div class="flex items-center gap-3">
+                        <img id="captcha-img" src="{{ captcha_src('flat') }}" alt="captcha" class="rounded border">
+                        <button type="button" id="reload-captcha" 
+                            class="p-2 rounded border flex items-center justify-center hover:bg-gray-100" 
+                            title="Reload Captcha">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-5 w-5" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="2" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10M1 14l5.36 5.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                    </button>
+                    </div>
+
+                    <input type="text" 
+                        name="captcha" 
+                        class="form-control mt-2" 
+                        style="width: 250px;" 
+                        placeholder="Masukkan huruf/angka di atas">
+                    @error('captcha')
+                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const btn = document.getElementById('reload-captcha');
+                        const img = document.getElementById('captcha-img');
+
+                        if (!btn || !img) return; // jaga-jaga
+
+                        btn.addEventListener('click', async function (e) {
+                            e.preventDefault();
+                            try {
+                                const res = await fetch('{{ route('captcha.refresh') }}', {
+                                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                                });
+                                if (!res.ok) throw new Error('Request gagal');
+                                const data = await res.json();
+
+                                // cache buster supaya browser tidak pakai gambar lama
+                                img.src = data.src + (data.src.includes('?') ? '&' : '?') + '_=' + Date.now();
+                            } catch (err) {
+                                // Fallback (lihat bagian B)
+                                img.src = '{{ captcha_src('flat') }}' + '&_=' + Date.now();
+                            }
+                        });
+                    });
+                    </script>
                 <div class="flex items-center mb-5 mt-4">
                     
                     <label for="terms" class="ms-2 text-base font-medium  text-green-900 dark:text-gray-300">
@@ -53,7 +110,15 @@
 
 
             {{-- opsi akses --}}
-           
+            
+                
+        {{-- <script>
+        document.getElementById('reload-captcha').addEventListener('click', async () => {
+            const res = await fetch('{{ route('captcha.refresh') }}');
+            const data = await res.json();
+            document.getElementById('captcha-img').src = data.src + '&_=' + Date.now();
+        });
+        </script> --}}
 
         <script src="{{ asset('assets/js/particles.min.js') }}"></script>
         <script>

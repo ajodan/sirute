@@ -20,8 +20,13 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
-            'page' => 'required'
+            'page' => 'required',
+            'captcha'  => 'required|captcha',
+        ], [
+            'captcha.required' => 'Mohon isi captcha.',
+            'captcha.captcha'  => 'Captcha tidak cocok, silakan coba lagi.',
         ]);
+        
         $remember = $request->remember ?? false;
         if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']], $remember)) {
             $request->session()->regenerate();

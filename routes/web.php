@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\UmkmController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -170,3 +171,7 @@ Route::get('/error', function () {
 
 Route::get('/report-data/preview', [ReportDataController::class, 'preview'])->name('admin.report-data.preview');
 Route::get('/report-data/download', [ReportDataController::class, 'downloadPdf'])->name('admin.report-data.download');
+
+Route::get('/captcha/refresh', function () {
+    return response()->json(['src' => captcha_src('flat')]);
+})->name('captcha.refresh');
