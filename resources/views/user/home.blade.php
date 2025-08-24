@@ -651,98 +651,88 @@
 
         
         <!-- Testimonial Start -->
-        <div class="container-fluid testimonial py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Data Statistik</h5>
-                    <h1 class="mb-0">Statistik Penduduk RW 13</h1>
+       <div class="container-fluid testimonial py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Data Statistik</h5>
+            <h1 class="mb-0">Statistik Penduduk RW 13</h1>
+        </div>
+        <div class="testimonial-carousel owl-carousel">
+            
+            <!-- Total Penduduk -->
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <div class="bg-green-100 dark:bg-ungu_muda rounded-2xl p-10 w-64 h-64 flex flex-col items-center justify-center text-center shadow-lg">
+                        <h1 class="text-6xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                            data-penduduk-total="{{ number_format($totalPenduduk, 0, ',', '.') }}">
+                        </h1>
+                    </div>
                 </div>
-                <div class="testimonial-carousel owl-carousel">
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
-                                    <!-- Angka -->
-                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
-                                        data-penduduk-total="{{ number_format($totalPenduduk, 0, ',', '.') }}">
-                                         
-                                    </h5>
-                                    <!-- Label -->
-                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
-                                </div>
-                        </div>
-                       
-                        <div style="margin-top: -25px;">
-                            <h5 class="mb-0">Total Penduduk</h5>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
-                                    <!-- Angka -->
-                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
-                                        data-penduduk-total="{{ number_format($totalPendudukLaki, 0, ',', '.') }}">
-                                    </h5>
-                                    <!-- Label -->
-                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
-                                </div>
-                        </div>
-                       
-                        <div style="margin-top: -25px;">
-                            <h5 class="mb-0">Laki-Laki</h5>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
-                                    <!-- Angka -->
-                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
-                                        data-penduduk-total="{{ number_format($totalPendudukPerempuan, 0, ',', '.') }}">
-                                    </h5>
-                                    <!-- Label -->
-                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
-                                </div>
-                        </div>
-                       
-                        <div style="margin-top: -25px;">
-                            <h5 class="mb-0">Perempuan</h5>
-                        </div>
-                    </div>
-                     <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
-                                    <!-- Angka -->
-                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
-                                         data-penduduk-total="{{ number_format($totalPendudukTetap, 0, ',', '.') }}">
-                                    </h5>
-                                    <!-- Label -->
-                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
-                                </div>
-                        </div>
-                       
-                        <div style="margin-top: -25px;">
-                            <h5 class="mb-0">Penduduk Tetap</h5>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center rounded pb-4">
-                        <div class="testimonial-comment bg-light rounded p-4">
-                                <div class="bg-green-100 dark:bg-ungu_muda rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-md">
-                                    <!-- Angka -->
-                                    <h5 class="text-4xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
-                                         data-penduduk-total="{{ number_format($totalPendudukPendatang, 0, ',', '.') }}">
-                                    </h5>
-                                    <!-- Label -->
-                                    {{-- <span class="mt-2 text-sm text-gray-600 dark:text-white font-medium">Laki - Laki</span> --}}
-                                </div>
-                        </div>
-                       
-                        <div style="margin-top: -25px;">
-                            <h5 class="mb-0">Penduduk Pendatang</h5>
-                        </div>
-                    </div>
-                    
+                <div class="mt-3">
+                    <h5 class="mb-0 text-2xl font-semibold">Total Penduduk</h5>
                 </div>
             </div>
+
+            <!-- Laki-laki -->
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <div class="bg-green-100 dark:bg-ungu_muda rounded-2xl p-10 w-64 h-64 flex flex-col items-center justify-center text-center shadow-lg">
+                        <h1 class="text-6xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                            data-penduduk-total="{{ number_format($totalPendudukLaki, 0, ',', '.') }}">
+                        </h1>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h5 class="mb-0 text-2xl font-semibold">Laki-Laki</h5>
+                </div>
+            </div>
+
+            <!-- Perempuan -->
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <div class="bg-green-100 dark:bg-ungu_muda rounded-2xl p-10 w-64 h-64 flex flex-col items-center justify-center text-center shadow-lg">
+                        <h1 class="text-6xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                            data-penduduk-total="{{ number_format($totalPendudukPerempuan, 0, ',', '.') }}">
+                        </h1>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h5 class="mb-0 text-2xl font-semibold">Perempuan</h5>
+                </div>
+            </div>
+
+            <!-- Penduduk Tetap -->
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <div class="bg-green-100 dark:bg-ungu_muda rounded-2xl p-10 w-64 h-64 flex flex-col items-center justify-center text-center shadow-lg">
+                        <h1 class="text-6xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                            data-penduduk-total="{{ number_format($totalPendudukTetap, 0, ',', '.') }}">
+                        </h1>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h5 class="mb-0 text-2xl font-semibold">Penduduk Tetap</h5>
+                </div>
+            </div>
+
+            <!-- Penduduk Pendatang -->
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <div class="bg-green-100 dark:bg-ungu_muda rounded-2xl p-10 w-64 h-64 flex flex-col items-center justify-center text-center shadow-lg">
+                        <h1 class="text-6xl font-extrabold text-green-500 dark:text-green-400 transition-all duration-1000 ease-in data-penduduk"
+                            data-penduduk-total="{{ number_format($totalPendudukPendatang, 0, ',', '.') }}">
+                        </h1>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h5 class="mb-0 text-2xl font-semibold">Penduduk Pendatang</h5>
+                </div>
+            </div>
+
         </div>
+    </div>
+</div>
+
         <!-- Testimonial End -->
         <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -29,7 +29,7 @@ class InventarisController extends Controller
             }
 
             $inventaris = InventarisModel::where('rt', $rt)->get();
-
+//dd($inventaris);
             return view('admin.inventaris', compact('inventaris'));
     }
 

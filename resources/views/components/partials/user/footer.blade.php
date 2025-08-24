@@ -30,8 +30,28 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
-                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d429.12815855593357!2d107.04559919424015!3d-6.216835167021535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698f456bc0a2d1%3A0xbaf0da200c510e41!2sSekretariat%20RW%20Blok%20C%20Taman%20Alamanda!5e0!3m2!1sen!2sid!4v1755283829359!5m2!1sen!2sid" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="rounded overflow-hidden shadow-lg w-100" 
+                            style="position: relative; padding-bottom: 65%; height: 0;">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d429.12815855593357!2d107.04559919424015!3d-6.216835167021535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698f456bc0a2d1%3A0xbaf0da200c510e41!2sSekretariat%20RW%20Blok%20C%20Taman%20Alamanda!5e0!3m2!1sen!2sid!4v1755283829359!5m2!1sen!2sid" 
+                                style="border:0; position:absolute; top:0; left:0; width:100%; height:100%;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
                     </div>
+
+                    <style>
+                    /* Jika layar >= 768px (tablet/desktop) */
+                    @media (min-width: 768px) {
+                    .col-md-6.col-lg-6.col-xl-3 > .rounded {
+                        height: 300px !important;   /* Fix tinggi */
+                        padding-bottom: 0 !important; /* Matikan rasio */
+                    }
+                    }
+                    </style>
+
                 </div>
             </div>
         </div>
