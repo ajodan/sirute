@@ -216,8 +216,11 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="guide-item">
                                 <div class="guide-img">
-                                    <div class="guide-img-efects" style="height: 400px; overflow: hidden;">
-                                        <img src="storage/images/penduduk/<?= $row->penduduk->image ?>" class="img-fluid w-100 rounded-top" alt="<?= $row->penduduk->nama ?>">
+                                     <div class="guide-img-efects" 
+                                        style="aspect-ratio: 3 / 4; width: 200px; max-width: 100%; overflow: hidden; border-radius: 8px; margin: auto;">
+                                        <img src="storage/images/penduduk/<?= $row->penduduk->image ?>" 
+                                            alt="<?= $row->penduduk->nama ?>"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                     <div class="guide-icon rounded-pill p-2">
                                         <a class="btn btn-square btn-primary rounded-circle mx-1" href="<?= $row->penduduk->facebook ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -261,8 +264,11 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="guide-item">
                                 <div class="guide-img">
-                                    <div class="guide-img-efects" style="height: 400px; overflow: hidden;">
-                                        <img src="storage/images/penduduk/<?= $row->penduduk->image ?>" class="img-fluid w-100 rounded-top" alt="<?= $row->penduduk->nama ?>">
+                                    <div class="guide-img-efects" 
+                                        style="aspect-ratio: 3 / 4; width: 200px; max-width: 100%; overflow: hidden; border-radius: 8px; margin: auto;">
+                                        <img src="storage/images/penduduk/<?= $row->penduduk->image ?>" 
+                                            alt="<?= $row->penduduk->nama ?>"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                     <div class="guide-icon rounded-pill p-2">
                                         <a class="btn btn-square btn-primary rounded-circle mx-1" href="<?= $row->penduduk->facebook ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
